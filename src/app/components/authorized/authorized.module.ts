@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { AuthorizedRoutingModule } from './authorized-routing.module';
 import { AuthorizedComponent } from './authorized.component';
+import { LayoutModule } from 'src/app/common/components/layout/layout.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { AuthorizedComponent } from './authorized.component';
   ],
   imports: [
     CommonModule,
-    AuthorizedRoutingModule
+    AuthorizedRoutingModule,
+    LayoutModule,
+    MatSidenavModule
   ]
 })
 export class AuthorizedModule { }

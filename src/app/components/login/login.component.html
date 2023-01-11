@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="conatiner">
+    <form [formGroup]="checkLoginForm" (ngSubmit)="onClickLogin()">
+        <div class="row mt-3 justify-content-between">
+            <div class="col-md-4">
+                <label>UserName</label>
+                <input matInput type="text" formControlName="userName">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label>Password</label>
+                <input matInput type="password" formControlName="password">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label>Division</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="division">
+                        <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
+                            [value]="item?.divisionid">
+                            {{item.divisiondesc}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label>Role</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="role">
+                        <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role"
+                            [value]="item?.roleid">
+                            {{item.roledesc}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <button type="submit" mat-raised-button color="primary" [disabled]="checkLoginForm.invalid">Login</button>
+    </form>
+</div>
