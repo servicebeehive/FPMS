@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGaurdService } from 'src/app/common/services/gaurd/auth-gaurd.service';
 import { AuthorizedComponent } from './authorized.component';
 
 const routes: Routes = [{
   path: '',
   component: AuthorizedComponent,
+  canActivate: [AuthGaurdService],
   children: [
     {
       path: '',

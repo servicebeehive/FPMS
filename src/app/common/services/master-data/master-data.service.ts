@@ -17,7 +17,7 @@ export class MasterDataService extends BaseService {
   constructor(public http: HttpClient,
     public controllers: Controllers,
     public config: ConfigService<IConfig>) {
-    super(http, 'http://3.109.32.232:1610/')
+    super(http, 'http://3.109.32.232:1610')
   }
 
   getMasterData() {

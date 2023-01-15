@@ -1,0 +1,35 @@
+<h3>Project Filter : </h3>
+
+<div class="row-container">
+    <p>
+        <label>FY</label>
+        <input matInput type="text">
+    </p>
+    <p>
+        <label>Range</label>
+        <mat-form-field appearance="outline">
+            <mat-select>
+                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role" [value]="item?.roleid">
+                    {{item.roledesc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <label>Status</label>
+        <mat-form-field appearance="outline">
+            <mat-select>
+                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role" [value]="item?.roleid">
+                    {{item.roledesc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <label>Project</label>
+        <input matInput type="text">
+    </p>
+    <p>
+        <button type="submit" mat-raised-button color="primary">Create Project</button>
+    </p>
+</div>

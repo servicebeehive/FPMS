@@ -1,0 +1,6 @@
+<ng-container *ngIf="columnName !=='actions'">{{ row[columnName] }}</ng-container>
+<ng-container *ngIf="columnName ==='actions'">
+    <ng-container *ngFor="let button of actionButtons">
+        <button mat-button>{{button}}</button>
+    </ng-container>
+</ng-container>

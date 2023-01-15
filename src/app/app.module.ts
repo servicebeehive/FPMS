@@ -7,13 +7,14 @@ import { ConfigInit } from './common/services/config/config.init';
 import { ConfigService } from './common/services/config/config.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Controllers } from './common/models/controllers';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MasterDataService } from './common/services/master-data/master-data.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { BaseInterceptor } from './common/interceptor/base.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,15 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
       deps: [MasterDataService],
       multi: true,
     },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseInterceptor,
+      multi: true
+    },
     Controllers
   ],
   bootstrap: [AppComponent]

@@ -8,51 +8,39 @@ export abstract class BaseService {
   public async PostReturn<T, U>(controllerInfo: string, info: T): Promise<U> {
     const requestInfo = JSON.stringify(info);
     return await this.httpClient
-      .post<U>(this.BaseUrl + controllerInfo, requestInfo, {
-        headers: new HttpHeaders().set('content-type', 'application/json')
-      })
+      .post<U>(this.BaseUrl + controllerInfo, requestInfo)
       .toPromise();
   }
 
   public async Post<T, U>(controllerInfo: string, info: T): Promise<U> {
     const requestInfo = JSON.stringify(info);
     return await this.httpClient
-      .post<U>(this.BaseUrl + controllerInfo, requestInfo, {
-        headers: new HttpHeaders().set('content-type', 'application/json')
-      })
+      .post<U>(this.BaseUrl + controllerInfo, requestInfo)
       .toPromise();
   }
 
   public async Get<U>(controllerInfo: string): Promise<U> {
     return await this.httpClient
-      .get<U>(this.BaseUrl + controllerInfo, {
-        headers: new HttpHeaders().set('content-type', 'application/json')
-      })
+      .get<U>(this.BaseUrl + controllerInfo)
       .toPromise();
   }
 
   public async GetWithValue<U>(controllerInfo: string, Value: number): Promise<U> {
     return await this.httpClient
-      .get<U>(this.BaseUrl + controllerInfo + `/${Value}`, {
-        headers: new HttpHeaders().set('content-type', 'application/json')
-      })
+      .get<U>(this.BaseUrl + controllerInfo + `/${Value}`)
       .toPromise();
   }
 
   public async Put<T, U>(controllerInfo: string, info: T): Promise<U> {
     const requestInfo = JSON.stringify(info);
     return await this.httpClient
-      .put<U>(this.BaseUrl + controllerInfo, requestInfo, {
-        headers: new HttpHeaders().set('content-type', 'application/json')
-      })
+      .put<U>(this.BaseUrl + controllerInfo, requestInfo)
       .toPromise();
   }
 
   public async Delete<U>(controllerInfo: string, RowId: number): Promise<U> {
     return await this.httpClient
-      .delete<U>(this.BaseUrl + controllerInfo + `?Id=${RowId}`, {
-        headers: new HttpHeaders().set('content-type', 'application/json'),
-      })
+      .delete<U>(this.BaseUrl + controllerInfo + `?Id=${RowId}`)
       .toPromise();
   }
 
