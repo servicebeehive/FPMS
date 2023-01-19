@@ -15,7 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     CommonModule,
     AuthorizedRoutingModule,
     LayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
   ]
 })
 export class AuthorizedModule { }

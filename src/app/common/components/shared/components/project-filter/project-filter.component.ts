@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
 
 @Component({
@@ -8,9 +8,15 @@ import { MasterDataService } from 'src/app/common/services/master-data/master-da
 })
 export class ProjectFilterComponent implements OnInit {
 
+  @Output() public projectCreation = new EventEmitter;
+
   constructor(public masterDataService: MasterDataService) { }
 
   ngOnInit(): void {
+  }
+
+  onCreareProject() {
+    this.projectCreation.emit();
   }
 
 }

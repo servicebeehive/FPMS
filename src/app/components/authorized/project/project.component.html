@@ -1,1 +1,37 @@
-<p>project works!</p>
+<form [formGroup]="addProjectCreation" (ngSubmit)="onClickProjectCreation()">
+    <div class="row-container">
+        <p>
+            <label>Project Name</label>
+            <input matInput type="text" formControlName="projectName">
+        </p>
+        <p>
+            <label>Tenure</label>
+            <input matInput type="number" formControlName="tenure">
+        </p>
+        <p>
+            <label>FY</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="financialYear">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
+                        [value]="item?.fyid">
+                        {{item.fydesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <button type="submit" mat-raised-button color="primary" [disabled]="addProjectCreation.invalid">Create
+                Project</button>
+        </p>
+        <p>
+            <button type="button" mat-raised-button color="primary">Draft</button>
+        </p>
+        <p>
+            <button type="button" mat-raised-button color="primary">Submit</button>
+        </p>
+    </div>
+</form>
+<ng-container *ngIf="showProjectCreation">
+    <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"></app-project-creation>
+</ng-container>

@@ -4,9 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders
+  HttpHeaders,
+  HttpResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
@@ -16,6 +17,7 @@ export class BaseInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.includes('signin') || request.url.includes('getglobalmasterdata')) {
       request = request.clone({
+        withCredentials: true,
         headers: new HttpHeaders({
           "Content-Type": "application/json",
         })
@@ -23,13 +25,20 @@ export class BaseInterceptor implements HttpInterceptor {
     }
     else {
       request = request.clone({
-        setHeaders: {
+        withCredentials: true,
+        headers: new HttpHeaders({
           "Content-Type": "application/json",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwidXNlcnJvbGUiOiJERk8iLCJpYXQiOjE2NzIzOTc0MDR9.BOeMGi06bhq_gkolb05w-z7mPN3T9QcRId4EHlMkpSM",
-        }
+          'token': localStorage.getItem('access-token'),
+          'operationtype': 'LIST'
+        })
       })
     }
-    console.log("request", request)
-    return next.handle(request);
+    return next.handle(request).pipe(
+      tap((response) => {
+        if (response instanceof HttpResponse) {
+          console.log('response', response.status);
+        }
+      })
+    );
   }
 }
