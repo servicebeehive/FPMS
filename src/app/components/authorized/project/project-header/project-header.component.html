@@ -1,1 +1,173 @@
-<p>project-header works!</p>
+<form [formGroup]="addProjectHeader" (ngSubmit)="onClickProjectHeader()">
+    <div class="row-container">
+        <p>
+            <label>Project Name</label>
+            <input matInput type="text" formControlName="projectName">
+        </p>
+
+        <p>
+            <label>Division*</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="division">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
+                        [value]="item?.divisionid">
+                        {{item.divisiondesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <label>SubDivision*</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="subDivision">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.subdivision"
+                        [value]="item?.subdivisionid">
+                        {{item.subdivisiondesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+    </div>
+    <div class="row-container">
+        <p>
+            <label>Range*</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="range">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.range" [value]="item?.rangeid">
+                        {{item.rangedesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <label>Village*</label>
+            <input matInput type="text" formControlName="village">
+        </p>
+
+        <p>
+            <label>Tahsil*</label>
+            <input matInput type="text" formControlName="tahsil">
+        </p>
+    </div>
+    <div class="row-container">
+        <p>
+            <label>Samittee*</label>
+            <input matInput type="text" formControlName="samittee">
+        </p>
+
+        <p>
+            <label>Vidhansabha*</label>
+            <input matInput type="text" formControlName="vidhansabha">
+        </p>
+
+        <p>
+            <label>Beat*</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="beat">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.beat" [value]="item?.beatId">
+                        {{item.beatDesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+    </div>
+    <div class="row-container">
+        <p>
+            <label>Compartment No*</label>
+            <input matInput type="text" formControlName="compartmentNo">
+        </p>
+
+        <p>
+            <label>Site*</label>
+            <input matInput type="text" formControlName="site">
+        </p>
+
+        <p>
+            <label>Total Area*</label>
+            <input matInput type="text" formControlName="totalArea">
+        </p>
+    </div>
+    <div class="row-container">
+        <p>
+            <label>APO Year*</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="apoYear">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
+                        [value]="item?.fyid">
+                        {{item.fydesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <label>Financial Year*</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="financialYear">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
+                        [value]="item?.fyid">
+                        {{item.fydesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <label>Project Tenure*</label>
+            <input matInput type="text" formControlName="projectTenure">
+        </p>
+    </div>
+    <div class="row-container">
+        <p>
+            <label>Project Area*</label>
+            <input matInput type="text" formControlName="projectArea">
+        </p>
+
+        <p>
+            <label>Scheme Name*</label>
+            <input matInput type="text" formControlName="schemeName">
+        </p>
+
+        <p>
+            <label>Execution Name*</label>
+            <input matInput type="text" formControlName="executionName">
+        </p>
+    </div>
+    <div class="row-container">
+        <p>
+            <label>Execution Supervisor*</label>
+            <input matInput type="text" formControlName="executionSupervisor">
+        </p>
+
+        <p>
+            <label>Execution Post*</label>
+            <input matInput type="text" formControlName="executionPost">
+        </p>
+
+        <p>
+            <label>Budget Head*</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="budgetHead">
+                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.budgethead"
+                        [value]="item?.budgetheadid">
+                        {{item?.budgetheaddesc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+    </div>
+    <div formArrayName="addYearInformation">
+        <div *ngFor="let item of formControl.controls; let i = index">
+            <div [formGroupName]="i">
+                <label>Year-{{i+1}}</label>
+                <input matInput type="number" formControlName="amount">
+            </div>
+        </div>
+    </div>
+    <p>
+        <button type="submit" mat-raised-button color="primary" [disabled]="addProjectHeader.invalid">Create
+            Project</button>
+    </p>
+</form>

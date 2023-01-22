@@ -42,5 +42,69 @@
     ],
     "profile": {
         "name": "typicode"
-    }
+    },
+    "componentsDetails": [
+        {
+            "year": "23-24",
+            "isworkheader": false,
+            "workHeader": "Test workHeader 1",
+            "workDetails": [
+                {
+                    "workDetailsHeader": "Test workDetailsHeader 1",
+                    "sorNo": "Test SORNO 1",
+                    "quantity": 1,
+                    "uom": "M/FT",
+                    "rate": 2500,
+                    "amount": 77550,
+                    "geoLocation": "",
+                    "materialRequired": true,
+                    "startTime": "2023-01-13T18:07:49.480582",
+                    "endTime": "2023-01-16T18:07:49.480582"
+                },
+                {
+                    "workDetailsHeader": "Test workDetailsHeader 2",
+                    "sorNo": "Test SORNO 2",
+                    "quantity": 2,
+                    "uom": "M",
+                    "rate": 98700,
+                    "amount": 72127550,
+                    "geoLocation": "",
+                    "materialRequired": false,
+                    "startTime": "2023-02-18T18:07:49.480582",
+                    "endTime": "2023-03-16T18:07:49.480582"
+                }
+            ]
+        },
+        {
+            "year": "24-25",
+            "isworkheader": false,
+            "workHeader": "Test workHeader 1",
+            "workDetails": [
+                {
+                    "workDetailsHeader": "Test workDetailsHeader 1",
+                    "sorNo": "Test SORNO 1",
+                    "quantity": 1,
+                    "uom": "M/FT",
+                    "rate": 2500,
+                    "amount": 77550,
+                    "geoLocation": "",
+                    "materialRequired": true,
+                    "startTime": "2023-01-13T18:07:49.480582",
+                    "endTime": "2023-01-16T18:07:49.480582"
+                },
+                {
+                    "workDetailsHeader": "Test workDetailsHeader 2",
+                    "sorNo": "Test SORNO 2",
+                    "quantity": 2,
+                    "uom": "M",
+                    "rate": 98700,
+                    "amount": 72127550,
+                    "geoLocation": "",
+                    "materialRequired": false,
+                    "startTime": "2023-02-18T18:07:49.480582",
+                    "endTime": "2023-03-16T18:07:49.480582"
+                }
+            ]
+        }
+    ]
 }
