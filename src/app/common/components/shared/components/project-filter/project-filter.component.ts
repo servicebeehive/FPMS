@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
 
 @Component({
@@ -8,9 +9,17 @@ import { MasterDataService } from 'src/app/common/services/master-data/master-da
 })
 export class ProjectFilterComponent implements OnInit {
 
+  public addProjectFilter = this.fb.group({
+    financialYear: [null],
+    range: [null],
+    status: [null],
+    projectName: ['']
+  })
+
   @Output() public projectCreation = new EventEmitter;
 
-  constructor(public masterDataService: MasterDataService) { }
+  constructor(public masterDataService: MasterDataService,
+    public fb: FormBuilder) { }
 
   ngOnInit(): void {
   }

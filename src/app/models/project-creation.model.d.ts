@@ -1,6 +1,8 @@
+import { budgetYearDetails } from "./budgetyear.model";
+
 export interface projectCreationDetails {
     projectName: string;
-    tenure: string;
-    financialYear: string;
-    tabs?: number[]
+    tenure: number;
+    financialYear: number;
+    tabs?: budgetYearDetails[]
 }

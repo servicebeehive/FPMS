@@ -8,6 +8,11 @@ import { projectCreationDetails } from 'src/app/models/project-creation.model';
 })
 export class ProjectComponentsComponent implements OnChanges {
 
+  public actionButtons: string[] = ['Add', 'Edit', 'Delete']
+
+  public getProjectListData
+
+
   constructor() { }
 
   ngOnChanges(): void {

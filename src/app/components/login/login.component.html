@@ -1,43 +1,64 @@
-<div class="conatiner">
+<div class="login-viewer-wrapper">
+    <div class="login-docs-example-viewer-title">
+        <i class="material-icons">account_circle</i>
+    </div>
+    <div class="login-docs-example-viewer-title">
+        Login with Username and Password
+    </div>
     <form [formGroup]="checkLoginForm" (ngSubmit)="onClickLogin()">
-        <div class="row mt-3 justify-content-between">
-            <div class="col-md-4">
-                <label>UserName</label>
-                <input matInput type="text" formControlName="userName">
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-4">
-                <label>Password</label>
-                <input matInput type="password" formControlName="password">
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-4">
-                <label>Division</label>
+        <mat-card align="center">
+            <p>
                 <mat-form-field appearance="outline">
+                    <mat-label>UserName</mat-label>
+                    <input matInput type="text" formControlName="userName">
+                    <mat-error
+                        *ngIf="checkLoginForm.controls['userName'].touched && checkLoginForm.controls['userName'].hasError('required')">User
+                        Name is required</mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-error
+                        *ngIf="checkLoginForm.controls['password'].touched && checkLoginForm.controls['password'].hasError('required')">
+                        Password is required</mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Division</mat-label>
                     <mat-select formControlName="division">
+                        <mat-option disabled selected>--Select Division --</mat-option>
                         <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
                             [value]="item?.divisionid">
                             {{item.divisiondesc}}
                         </mat-option>
                     </mat-select>
+                    <mat-error
+                        *ngIf="checkLoginForm.controls['division'].touched && checkLoginForm.controls['division'].hasError('required')">You
+                        must make a selection of division</mat-error>
                 </mat-form-field>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-4">
-                <label>Role</label>
+            </p>
+            <p>
                 <mat-form-field appearance="outline">
+                    <mat-label>Role</mat-label>
                     <mat-select formControlName="role">
+                        <mat-option disabled selected>--Select Role --</mat-option>
                         <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role"
                             [value]="item?.roleid">
                             {{item.roledesc}}
                         </mat-option>
                     </mat-select>
+                    <mat-error
+                        *ngIf="checkLoginForm.controls['role'].touched && checkLoginForm.controls['role'].hasError('required')">You
+                        must make a selection of role</mat-error>
                 </mat-form-field>
-            </div>
-        </div>
-        <button type="submit" mat-raised-button color="primary" [disabled]="checkLoginForm.invalid">Login</button>
+            </p>
+            <p>
+                <button type="submit" mat-raised-button color="primary"
+                    [disabled]="checkLoginForm.invalid">Login</button>
+            </p>
+        </mat-card>
     </form>
 </div>

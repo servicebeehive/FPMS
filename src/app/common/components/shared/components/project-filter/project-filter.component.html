@@ -1,35 +1,60 @@
-<h3>Project Filter : </h3>
+<div class="viewer-wrapper">
+    <div class="docs-example-viewer-title">
+        Project Filter
+    </div>
+    <form [formGroup]="addProjectFilter" (ngSubmit)="onCreareProject()">
+        <mat-card>
+            <div class="conatiner row-container">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>FY</mat-label>
+                            <mat-select formControlName="financialYear">
+                                <mat-option disabled selected>--Select Financial Year --</mat-option>
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
+                                    [value]="item?.fyid">
+                                    {{item.fydesc}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Range</mat-label>
+                            <mat-select formControlName="range">
+                                <mat-option disabled selected>--Select Range --</mat-option>
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.range"
+                                    [value]="item?.rangeid">
+                                    {{item.rangedesc}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Status</mat-label>
+                            <mat-select formControlName="status">
+                                <mat-option disabled selected>--Select Status--</mat-option>
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.status"
+                                    [value]="item?.statusid">
+                                    {{item.statusdesc}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Project Name</mat-label>
+                            <input matInput type="text" formControlName="projectName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col button-position-single" align="center">
+                        <button type="submit" mat-raised-button color="primary">Filter</button>
+                    </div>
+                </div>
 
-<div class="row-container">
-    <p>
-        <label>FY</label>
-        <input matInput type="text">
-    </p>
-    <p>
-        <label>Range</label>
-        <mat-form-field appearance="outline">
-            <mat-select>
-                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role" [value]="item?.roleid">
-                    {{item.roledesc}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <label>Status</label>
-        <mat-form-field appearance="outline">
-            <mat-select>
-                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role" [value]="item?.roleid">
-                    {{item.roledesc}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <label>Project</label>
-        <input matInput type="text">
-    </p>
-    <p>
-        <button type="submit" mat-raised-button color="primary" (click)="onCreareProject()">Create Project</button>
-    </p>
+            </div>
+        </mat-card>
+
+    </form>
 </div>

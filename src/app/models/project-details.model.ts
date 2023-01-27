@@ -11,7 +11,7 @@ export interface projectDetails {
     beatid?: number;
     compantmentid?: number;
     apoyear?: string;
-    financialyear?: string;
+    financialyear?: number;
     projecttenure?: number;
     projectarea?: string;
     schemeid?: number;

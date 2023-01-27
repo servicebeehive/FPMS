@@ -6,6 +6,7 @@ import { ReturnResult } from '../common/models/return-result';
 import { BaseService } from '../common/services/base/base.service';
 import { ConfigService } from '../common/services/config/config.service';
 import { projectDetails } from '../models/project-details.model';
+import { projectHeaderDetails } from '../models/projectheader.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class ProjectService extends BaseService {
 
   public async getProjectList(): Promise<ReturnResult<projectDetails[]>> {
     return this.Get<ReturnResult<projectDetails[]>>(this.controller.getprojectheadlist)
+  }
+
+  public insertProjectDetails(projectDeatils: projectHeaderDetails): Promise<ReturnResult<any>> {
+    return this.PostReturn<projectHeaderDetails, ReturnResult>(this.controller.createProjectHeader, projectDeatils);
   }
 }

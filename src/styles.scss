@@ -5,17 +5,34 @@
 html,
 body {
     height: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-size: 14px;
 }
 
 .row-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    margin-bottom: -5px !important
+}
+
+.mat-form-field {
+    font-size: 14px;
+}
+
+.viewer-wrapper {
+    border-radius: 4px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    margin-bottom: 30px;
+
+    .docs-example-viewer-title {
+        margin-bottom: 10px;
+    }
+}
+
+.button-position-single {
+    position: relative;
+    top: 10px;
 }

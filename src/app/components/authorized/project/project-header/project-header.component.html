@@ -1,173 +1,272 @@
-<form [formGroup]="addProjectHeader" (ngSubmit)="onClickProjectHeader()">
-    <div class="row-container">
-        <p>
-            <label>Project Name</label>
-            <input matInput type="text" formControlName="projectName">
-        </p>
+<div class="viewer-wrapper">
+    <form [formGroup]="addProjectHeader" (ngSubmit)="onClickProjectHeader()">
+        <mat-card>
+            <div class="conatiner row-container">
+                <div class="row row-cols-6 mb-3">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Division</mat-label>
+                            <mat-select formControlName="division">
+                                <mat-option disabled selected>--Select Division --</mat-option>
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
+                                    [value]="item?.divisionid">
+                                    {{item.divisiondesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['division'].touched && addProjectHeader.controls['division'].hasError('required')">You
+                                must make a selection of division</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Division*</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="division">
-                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
-                        [value]="item?.divisionid">
-                        {{item.divisiondesc}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>SubDivision</mat-label>
+                            <mat-select formControlName="subDivision">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.subdivision"
+                                    [value]="item?.subdivisionid">
+                                    {{item.subdivisiondesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['subDivision'].touched && addProjectHeader.controls['subDivision'].hasError('required')">You
+                                must make a selection of sub-division</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>SubDivision*</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="subDivision">
-                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.subdivision"
-                        [value]="item?.subdivisionid">
-                        {{item.subdivisiondesc}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
-    </div>
-    <div class="row-container">
-        <p>
-            <label>Range*</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="range">
-                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.range" [value]="item?.rangeid">
-                        {{item.rangedesc}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Range</mat-label>
+                            <mat-select formControlName="range">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.range"
+                                    [value]="item?.rangeid">
+                                    {{item.rangedesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['range'].touched && addProjectHeader.controls['range'].hasError('required')">You
+                                must make a selection of range</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Village*</label>
-            <input matInput type="text" formControlName="village">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Village</mat-label>
+                            <mat-select formControlName="village">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.village"
+                                    [value]="item?.villageid">
+                                    {{item.villagedesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['village'].touched && addProjectHeader.controls['village'].hasError('required')">You
+                                must make a selection of village</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Tahsil*</label>
-            <input matInput type="text" formControlName="tahsil">
-        </p>
-    </div>
-    <div class="row-container">
-        <p>
-            <label>Samittee*</label>
-            <input matInput type="text" formControlName="samittee">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Tahsil</mat-label>
+                            <mat-select formControlName="tahsil">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.tahsil"
+                                    [value]="item?.tahsilid">
+                                    {{item.tahsildesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['tahsil'].touched && addProjectHeader.controls['tahsil'].hasError('required')">You
+                                must make a selection of tahsil</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Vidhansabha*</label>
-            <input matInput type="text" formControlName="vidhansabha">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Samittee</mat-label>
+                            <mat-select formControlName="samittee">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.samittee"
+                                    [value]="item?.samitteeid">
+                                    {{item.samitteedesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['samittee'].touched && addProjectHeader.controls['samittee'].hasError('required')">You
+                                must make a selection of samittee</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row row-cols-6 mb-3">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Vidhansabha</mat-label>
+                            <mat-select formControlName="vidhansabha">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.vidhansabha"
+                                    [value]="item?.vidhansabhaid">
+                                    {{item.vidhansabhadesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['vidhansabha'].touched && addProjectHeader.controls['vidhansabha'].hasError('required')">You
+                                must make a selection of vidhansabha</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Beat*</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="beat">
-                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.beat" [value]="item?.beatId">
-                        {{item.beatDesc}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
-    </div>
-    <div class="row-container">
-        <p>
-            <label>Compartment No*</label>
-            <input matInput type="text" formControlName="compartmentNo">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Beat</mat-label>
+                            <mat-select formControlName="beat">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.beat"
+                                    [value]="item?.beatid">
+                                    {{item.beatdesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['beat'].touched && addProjectHeader.controls['beat'].hasError('required')">You
+                                must make a selection of beat</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Site*</label>
-            <input matInput type="text" formControlName="site">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Compartment No</mat-label>
+                            <mat-select formControlName="compartmentNo">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.compartment"
+                                    [value]="item?.compartmentid">
+                                    {{item.compartmentdesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['compartmentNo'].touched && addProjectHeader.controls['compartmentNo'].hasError('required')">You
+                                must make a selection of compartment No</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Total Area*</label>
-            <input matInput type="text" formControlName="totalArea">
-        </p>
-    </div>
-    <div class="row-container">
-        <p>
-            <label>APO Year*</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="apoYear">
-                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
-                        [value]="item?.fyid">
-                        {{item.fydesc}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Site</mat-label>
+                            <input matInput type="text" formControlName="site">
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['site'].touched && addProjectHeader.controls['site'].hasError('required')">
+                                Site is required</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Financial Year*</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="financialYear">
-                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
-                        [value]="item?.fyid">
-                        {{item.fydesc}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Total Area</mat-label>
+                            <input matInput type="text" formControlName="totalArea">
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['totalArea'].touched && addProjectHeader.controls['totalArea'].hasError('required')">Total
+                                Area
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Project Tenure*</label>
-            <input matInput type="text" formControlName="projectTenure">
-        </p>
-    </div>
-    <div class="row-container">
-        <p>
-            <label>Project Area*</label>
-            <input matInput type="text" formControlName="projectArea">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>APO Year</mat-label>
+                            <input matInput type="text" formControlName="apoYear">
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['apoYear'].touched && addProjectHeader.controls['apoYear'].hasError('required')">
+                                APO Year is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row row-cols-6 mb-3">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Project Area</mat-label>
+                            <input matInput type="text" formControlName="projectArea">
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['projectArea'].touched && addProjectHeader.controls['projectArea'].hasError('required')">Project
+                                Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Scheme Name*</label>
-            <input matInput type="text" formControlName="schemeName">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Scheme Name</mat-label>
+                            <mat-select formControlName="schemeName">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.scheme"
+                                    [value]="item?.schemeid">
+                                    {{item.schemedesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['schemeName'].touched && addProjectHeader.controls['schemeName'].hasError('required')">You
+                                must make a selection of scheme name</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Execution Name*</label>
-            <input matInput type="text" formControlName="executionName">
-        </p>
-    </div>
-    <div class="row-container">
-        <p>
-            <label>Execution Supervisor*</label>
-            <input matInput type="text" formControlName="executionSupervisor">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Execution Name</mat-label>
+                            <input matInput type="text" formControlName="executionName">
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['executionName'].touched && addProjectHeader.controls['executionName'].hasError('required')">Execution
+                                Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Execution Post*</label>
-            <input matInput type="text" formControlName="executionPost">
-        </p>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Execution Supervisor</mat-label>
+                            <input matInput type="text" formControlName="executionSupervisor">
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['executionSupervisor'].touched && addProjectHeader.controls['executionSupervisor'].hasError('required')">Execution
+                                Supervisor
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
 
-        <p>
-            <label>Budget Head*</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="budgetHead">
-                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.budgethead"
-                        [value]="item?.budgetheadid">
-                        {{item?.budgetheaddesc}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
-    </div>
-    <div formArrayName="addYearInformation">
-        <div *ngFor="let item of formControl.controls; let i = index">
-            <div [formGroupName]="i">
-                <label>Year-{{i+1}}</label>
-                <input matInput type="number" formControlName="amount">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Execution Post</mat-label>
+                            <input matInput type="text" formControlName="executionPost">
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['executionPost'].touched && addProjectHeader.controls['executionPost'].hasError('required')">Execution
+                                Post is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Budget Head</mat-label>
+                            <mat-select formControlName="budgetHead">
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.budgethead"
+                                    [value]="item?.budgetheadid">
+                                    {{item?.budgetheaddesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['budgetHead'].touched && addProjectHeader.controls['budgetHead'].hasError('required')">You
+                                must make a selection of budget Head</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div formArrayName="addYearInformation">
+                    <div class="row row-cols-6 mb-3">
+                        <div class="col" *ngFor="let item of formControl.controls; let i = index">
+                            <div [formGroupName]="i">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>FY {{item.value.planyear}} Amount</mat-label>
+                                    <input matInput type="number" formControlName="budgetamount">
+                                    <mat-error
+                                        *ngIf="item['controls'].budgetamount.touched && item['controls'].budgetamount.hasError('required')">FY
+                                        {{item.value.planyear}}
+                                        Amount
+                                        is required</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <button type="submit" mat-raised-button color="primary"
+                        [disabled]="addProjectHeader.invalid">{{isSaved?'Edit':'Create'}}
+                        Project Header</button>
+                </p>
             </div>
-        </div>
-    </div>
-    <p>
-        <button type="submit" mat-raised-button color="primary" [disabled]="addProjectHeader.invalid">Create
-            Project</button>
-    </p>
-</form>
+        </mat-card>
+    </form>
+</div>

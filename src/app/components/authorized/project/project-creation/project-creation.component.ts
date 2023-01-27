@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { budgetYearDetails } from 'src/app/models/budgetyear.model';
 import { projectCreationDetails } from 'src/app/models/project-creation.model';
 
 @Component({
@@ -9,7 +10,7 @@ import { projectCreationDetails } from 'src/app/models/project-creation.model';
 export class ProjectCreationComponent implements OnChanges {
 
   @Input() public projectCreationDetailsForTabs: projectCreationDetails;
-  public tabNumber: number[];
+  public tabNumber: budgetYearDetails[];
 
   constructor() { }
 

@@ -12,37 +12,37 @@ export class AuthorizedComponent implements OnInit {
 
   public routerData: routerModel[] = [
     {
-      label: "dashboard",
+      label: "Dashboard",
       route: "dashboard",
       icon: "",
     },
     {
-      label: "financial",
-      route: "financial",
-      icon: "",
-    },
-    {
-      label: "project",
+      label: "Project",
       route: "project",
       icon: "",
     },
     {
-      label: "report",
+      label: "Financial",
+      route: "financial",
+      icon: "",
+    },
+    {
+      label: "Report",
       route: "report",
       icon: "",
     },
     {
-      label: "setting",
+      label: "Setting",
       route: "setting",
       icon: "",
     },
     {
-      label: "user",
+      label: "User",
       route: "user",
       icon: "",
     },
     {
-      label: "voucher",
+      label: "Voucher",
       route: "voucher",
       icon: "",
     }

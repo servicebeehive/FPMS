@@ -9,6 +9,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { GenericTableRowComponent } from './components/generic-table-row/generic-table-row.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     FormsModule,
     MatSelectModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
   ],
   exports: [
     ProjectFilterComponent,

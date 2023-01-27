@@ -1,0 +1,22 @@
+.login-viewer-wrapper {
+    border-radius: 4px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    width: 25%;
+    background-color: #fafafa;
+    position: absolute;
+    right: 40%;
+    left: 35%;
+
+    .login-docs-example-viewer-title {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+}
+
+i {
+    font-size: 3rem;
+    color: #3f51b5;
+}
