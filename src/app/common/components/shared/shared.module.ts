@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 
 
+
 @NgModule({
   declarations: [
     ProjectFilterComponent,
@@ -31,7 +32,7 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatButtonModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
   ],
   exports: [
     ProjectFilterComponent,

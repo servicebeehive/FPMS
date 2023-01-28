@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ReturnResult } from 'src/app/common/models/return-result';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
+import { NotificationService } from 'src/app/common/services/notification/notification.service';
 import { budgetYearDetails } from 'src/app/models/budgetyear.model';
 import { projectCreationDetails } from 'src/app/models/project-creation.model';
 import { projectHeaderDetails } from 'src/app/models/projectheader.model';
@@ -17,6 +18,7 @@ export class ProjectHeaderComponent implements OnInit {
   private _tabYear: budgetYearDetails[];
   private _projectCreationDetails: projectCreationDetails
   public isSaved: boolean = false;
+  public projectHeaderId: number;
 
   @Input() public set tabYear(arr: budgetYearDetails[]) {
     this._tabYear = arr;
@@ -25,8 +27,9 @@ export class ProjectHeaderComponent implements OnInit {
 
   @Input() public set formsDetails(arr: projectCreationDetails) {
     this._projectCreationDetails = arr;
-    console.log('formsDetails', this.formsDetails)
   }
+
+  @Output() public budgetYearAmount = new EventEmitter<budgetYearDetails[]>();
 
   public get tabYear(): budgetYearDetails[] {
     return this._tabYear;
@@ -36,32 +39,56 @@ export class ProjectHeaderComponent implements OnInit {
     return this._projectCreationDetails;
   }
 
+  // public addProjectHeader = this.fb.group({
+  //   division: [null, Validators.required],
+  //   subDivision: [null, Validators.required],
+  //   range: [null, Validators.required],
+  //   village: [null, Validators.required],
+  //   tahsil: [null, Validators.required],
+  //   samittee: [null, Validators.required],
+  //   vidhansabha: [null, Validators.required],
+  //   beat: [null, Validators.required],
+  //   compartmentNo: [null, Validators.required],
+  //   site: ['', Validators.required],
+  //   totalArea: ['', Validators.required],
+  //   apoYear: ['', Validators.required],
+  //   projectArea: ['', Validators.required],
+  //   schemeName: [null, Validators.required],
+  //   executionName: [''],
+  //   executionSupervisor: ['', Validators.required],
+  //   executionPost: ['', Validators.required],
+  //   budgetHead: ['', Validators.required],
+
+  //   addYearInformation: this.fb.array([]),
+  // })
+
   public addProjectHeader = this.fb.group({
-    division: [null, Validators.required],
-    subDivision: [null, Validators.required],
-    range: [null, Validators.required],
-    village: [null, Validators.required],
-    tahsil: [null, Validators.required],
-    samittee: [null, Validators.required],
-    vidhansabha: [null, Validators.required],
-    beat: [null, Validators.required],
-    compartmentNo: [null, Validators.required],
-    site: ['', Validators.required],
-    totalArea: ['', Validators.required],
-    apoYear: ['', Validators.required],
-    projectArea: ['', Validators.required],
-    schemeName: [null, Validators.required],
-    executionName: [''],
-    executionSupervisor: ['', Validators.required],
-    executionPost: ['', Validators.required],
-    budgetHead: ['', Validators.required],
+    division: [1, Validators.required],
+    subDivision: [1, Validators.required],
+    range: [1, Validators.required],
+    village: [1, Validators.required],
+    tahsil: [1, Validators.required],
+    samittee: [2, Validators.required],
+    vidhansabha: [1, Validators.required],
+    beat: [1, Validators.required],
+    compartmentNo: [1, Validators.required],
+    site: ['Test Site 1', Validators.required],
+    totalArea: ['23', Validators.required],
+    apoYear: ['2023', Validators.required],
+    projectArea: ['45', Validators.required],
+    schemeName: [1, Validators.required],
+    executionName: ['Test Execution Name'],
+    executionSupervisor: ['Test Execution Supervisor', Validators.required],
+    executionPost: ['Test Execution Post', Validators.required],
+    budgetHead: ['3', Validators.required],
 
     addYearInformation: this.fb.array([]),
   })
 
   constructor(public fb: FormBuilder,
     public masterDataService: MasterDataService,
-    public projectService: ProjectService) { }
+    public projectService: ProjectService,
+    public notificationService: NotificationService<any>) { }
 
   get formControl() {
     return this.addProjectHeader.get('addYearInformation') as FormArray;
@@ -72,7 +99,7 @@ export class ProjectHeaderComponent implements OnInit {
 
   onClickProjectHeader(): void {
     const projectDetails: projectHeaderDetails = {
-      projectheadid: 0,
+      projectheadid: this.isSaved ? this.projectHeaderId : 0,
       projectname: this.formsDetails.projectName,
       divisionid: this.addProjectHeader.value.division,
       subdivisionid: this.addProjectHeader.value.subDivision,
@@ -94,17 +121,18 @@ export class ProjectHeaderComponent implements OnInit {
       executionsupervisor: this.addProjectHeader.value.executionSupervisor,
       executionpost: this.addProjectHeader.value.executionPost,
       budgetheaddesc: <string>this.addProjectHeader.value.budgetHead,
-      operationtype: "INSERT",
+      operationtype: this.isSaved ? "UPDATE" : "INSERT",
       budgetyear: this.addProjectHeader.value.addYearInformation as budgetYearDetails[]
     }
-    // this.projectService.insertProjectDetails(projectDetails).then((res: ReturnResult<any>) => {
-    //   if (res.success) {
-    //     this.isSaved = true;
-    //     console.log('res', res)
-    //   }
-    // })
-    console.log('addProjectHeader', this.addProjectHeader.value)
-    console.log('projectDetails', projectDetails)
+    this.projectService.insertProjectDetails(projectDetails).then((res: ReturnResult<[{ id: number }]>) => {
+      if (res.success) {
+        this.projectHeaderId = res.data[0].id;
+        this.setProjectHeaderID(res.data[0].id);
+        this.isSaved = true;
+        this.budgetYearAmount.emit(this.formControl.value as budgetYearDetails[]);
+      }
+      this.notificationService.showNotification(res);
+    })
   }
 
   setProjectHeaderID(projectHeaderID) {

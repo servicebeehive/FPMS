@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -7,12 +7,12 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './generic-table.component.html',
   styleUrls: ['./generic-table.component.scss']
 })
-export class GenericTableComponent<T> implements OnInit, OnChanges {
+export class GenericTableComponent<T> implements OnChanges {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @Input() tableData: T[];
+  @Input() tableData: T[] = [];
   @Input() actionButtons: string[];
-
+  @Input() title: string;
 
   dataSource = new MatTableDataSource();
 
@@ -20,21 +20,12 @@ export class GenericTableComponent<T> implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit(): void {
-
-  }
-
   ngOnChanges(): void {
     if (this.tableData) {
       this.dataSource = new MatTableDataSource(this.tableData);
       this.columnNames = Object.keys(this.tableData[0]);
       this.columnNames = [...this.columnNames, 'actions']
-      console.log(this.columnNames)
+      this.dataSource.paginator = this.paginator;
     }
   }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-
 }

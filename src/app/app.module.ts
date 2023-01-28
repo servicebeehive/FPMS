@@ -12,6 +12,8 @@ import { MasterDataService } from './common/services/master-data/master-data.ser
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BaseInterceptor } from './common/interceptor/base.interceptor';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { BaseInterceptor } from './common/interceptor/base.interceptor';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [
     {

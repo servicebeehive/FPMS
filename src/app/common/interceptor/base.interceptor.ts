@@ -36,7 +36,6 @@ export class BaseInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap((response) => {
         if (response instanceof HttpResponse) {
-          console.log('response', response.status);
         }
       })
     );

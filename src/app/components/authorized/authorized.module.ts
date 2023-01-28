@@ -6,7 +6,6 @@ import { AuthorizedComponent } from './authorized.component';
 import { LayoutModule } from 'src/app/common/components/layout/layout.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-
 @NgModule({
   declarations: [
     AuthorizedComponent
@@ -15,7 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     CommonModule,
     AuthorizedRoutingModule,
     LayoutModule,
-    MatSidenavModule,
+    MatSidenavModule
   ]
 })
 export class AuthorizedModule { }

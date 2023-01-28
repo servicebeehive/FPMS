@@ -23,7 +23,7 @@ export class ProjectService extends BaseService {
     return this.Get<ReturnResult<projectDetails[]>>(this.controller.getprojectheadlist)
   }
 
-  public insertProjectDetails(projectDeatils: projectHeaderDetails): Promise<ReturnResult<any>> {
+  public insertProjectDetails(projectDeatils: projectHeaderDetails): Promise<ReturnResult<[{ id: number }]>> {
     return this.PostReturn<projectHeaderDetails, ReturnResult>(this.controller.createProjectHeader, projectDeatils);
   }
 }

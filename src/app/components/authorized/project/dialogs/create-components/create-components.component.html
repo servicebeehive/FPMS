@@ -1,0 +1,148 @@
+<div class="dialog-viewer-title">
+    <span class="title">Project Component Creation</span>
+</div>
+<form [formGroup]="addComponentInformation">
+    <mat-card>
+        <div class="conatiner row-container">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Financial Year</mat-label>
+                        <input matInput type="text" formControlName="year">
+                        <mat-error
+                            *ngIf="addComponentInformation.controls['year'].touched && addComponentInformation.controls['year'].hasError('required')">Financial
+                            year
+                            is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>SOR No</mat-label>
+                        <input matInput type="text" formControlName="sorno">
+                        <mat-error
+                            *ngIf="addComponentInformation.controls['sorno'].touched && addComponentInformation.controls['sorno'].hasError('required')">
+                            SOR No
+                            is required</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Work Details</mat-label>
+                    <textarea matInput type="text" formControlName="workdetail"> </textarea>
+                    <mat-error
+                        *ngIf="addComponentInformation.controls['workdetail'].touched && addComponentInformation.controls['workdetail'].hasError('required')">
+                        Work Details
+                        is required</mat-error>
+                </mat-form-field>
+            </div>
+            <ng-container *ngIf="!dialogData.componentHeadreType">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Quantity</mat-label>
+                            <input matInput type="number" formControlName="quantity">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['quantity'].touched && addComponentInformation.controls['quantity'].hasError('required')">
+                                Quantity
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>UOM</mat-label>
+                            <input matInput type="text" formControlName="uom">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['uom'].touched && addComponentInformation.controls['uom'].hasError('required')">
+                                UOM
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Quantity</mat-label>
+                            <input matInput type="number" formControlName="quantity">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['quantity'].touched && addComponentInformation.controls['quantity'].hasError('required')">
+                                Quantity
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Rate</mat-label>
+                            <input matInput type="number" formControlName="rate">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['rate'].touched && addComponentInformation.controls['rate'].hasError('required')">
+                                Rate
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Amount</mat-label>
+                            <input matInput type="number" formControlName="amount">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['amount'].touched && addComponentInformation.controls['amount'].hasError('required')">
+                                Amount
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Geo Location</mat-label>
+                            <input matInput type="text" formControlName="geolocation">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['geolocation'].touched && addComponentInformation.controls['geolocation'].hasError('required')">
+                                Geo Location
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Start Time</mat-label>
+                            <input matInput type="text" formControlName="startdate">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['startdate'].touched && addComponentInformation.controls['startdate'].hasError('required')">Start
+                                Time
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>End Time</mat-label>
+                            <input matInput type="text" formControlName="enddate">
+                            <mat-error
+                                *ngIf="addComponentInformation.controls['enddate'].touched && addComponentInformation.controls['enddate'].hasError('required')">End
+                                Time
+                                is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <mat-checkbox class="example-margin" formControlName="materialRequired">Material
+                            Required</mat-checkbox>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <button type="button" mat-raised-button color="primary"
+                        [disabled]="addComponentInformation.invalid">Create
+                        {{dialogData.componentHeadreType?'Header':'Element'}}
+                        Component</button>
+                </div>
+                <div class="col-6" align="right">
+                    <button type="button" mat-raised-button color="warn" (click)="onClickCancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</form>

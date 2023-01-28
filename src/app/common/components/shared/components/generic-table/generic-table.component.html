@@ -1,8 +1,7 @@
 <div class="viewer-wrapper">
     <div class="docs-example-viewer-title">
-        Project Information
+        {{title}}
     </div>
-
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container *ngFor="let columnName of columnNames" [matColumnDef]="columnName">
             <th mat-header-cell *matHeaderCellDef>{{ columnName |capitalize }}</th>

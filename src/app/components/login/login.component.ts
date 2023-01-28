@@ -28,6 +28,13 @@ export class LoginComponent implements OnInit {
     role: [1, Validators.required]
   })
 
+  // public checkLoginForm = this.fb.group({
+  //   userName: ['', Validators.required],
+  //   password: ['', Validators.required],
+  //   division: [null, Validators.required],
+  //   role: [null, Validators.required]
+  // })
+
 
   ngOnInit(): void {
   }

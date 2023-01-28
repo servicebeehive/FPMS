@@ -1,1 +1,55 @@
-<app-generic-table [tableData]="getProjectListData" [actionButtons]="actionButtons"></app-generic-table>
+<div class="viewer-wrapper">
+    <div class="docs-example-viewer-title">
+        Project Component Creation
+    </div>
+    <form [formGroup]="addProjectComponent">
+        <mat-card>
+            <div class="conatiner row-container">
+                <div class="row">
+                    <div class="col-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Component Header Amount</mat-label>
+                            <input matInput type="text" formControlName="budgetamount">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Financial year</mat-label>
+                            <input matInput type="text" formControlName="planyear">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Component Type</mat-label>
+                            <mat-select formControlName="componentHeadreType">
+                                <mat-option disabled selected>--Select Component Type --</mat-option>
+                                <mat-option *ngFor="let item of componentType" [value]="item?.id">
+                                    {{item.type}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addProjectComponent.controls['componentHeadreType'].touched && addProjectComponent.controls['componentHeadreType'].hasError('required')">You
+                                must make a selection of Component Type</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <div class="row button-position-single">
+                            <div class="col">
+                                <button type="button" mat-raised-button color="primary"
+                                    [disabled]="addProjectComponent.invalid" (click)="onComponentHeaderClick()">Create
+                                    Component</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </form>
+    <div *ngIf="getProjectListData">
+        No records
+    </div>
+
+    <div *ngIf="!getProjectListData">
+        <app-generic-table [tableData]="getProjectListData" [actionButtons]="actionButtons"></app-generic-table>
+    </div>
+</div>

@@ -11,7 +11,6 @@ export class AuthGaurdService implements CanActivate {
     public accountService: AccountService) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
-    console.log('test')
     if (!this.accountService.isLoggedIn()) {
       this.router.navigate(['/login'], { queryParams: { returl: route.url } });
       return false;

@@ -19,4 +19,8 @@ export class ProjectCreationComponent implements OnChanges {
     this.tabNumber = tabs;
   }
 
+  public tabYearAmount(value: budgetYearDetails[]) {
+    this.tabNumber = value;
+  }
+
 }

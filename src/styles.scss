@@ -2,6 +2,8 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 
+@import '~@angular/material/theming';
+
 html,
 body {
     height: 100%;
@@ -13,11 +15,16 @@ body {
 }
 
 .row-container {
-    margin-bottom: -5px !important
+    margin-bottom: -15px !important
 }
 
 .mat-form-field {
     font-size: 14px;
+}
+
+.dialog-class .mat-dialog-container {
+    height: auto;
+    border-radius: 10px;
 }
 
 .viewer-wrapper {
@@ -35,4 +42,27 @@ body {
 .button-position-single {
     position: relative;
     top: 10px;
+}
+
+.warning-snackbar {
+    background: #E9F316;
+}
+
+.success-snackbar {
+    background: #97F872;
+}
+
+.error-snackbar {
+    background: #F33116;
+}
+
+.dialog-viewer-title {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px 8px 0px;
+
+    .title {
+        font-size: x-large;
+    }
 }

@@ -13,9 +13,12 @@ import { ProjectHeaderComponent } from './project-header/project-header.componen
 import { ProjectComponentsComponent } from './project-components/project-components.component';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from 'src/app/common/components/shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
+import { CreateComponentsComponent } from './dialogs/create-components/create-components.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { MatCardModule } from '@angular/material/card';
     ProjectCreationComponent,
     ProjectHeaderComponent,
     ProjectComponentsComponent,
+    CreateComponentsComponent,
   ],
   imports: [
     CommonModule,
@@ -33,8 +37,10 @@ import { MatCardModule } from '@angular/material/card';
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule,
     MatCardModule,
+    MatDialogModule,
+    MatIconModule,
+    MatCheckboxModule,
     SharedModule
   ],
 })
