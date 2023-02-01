@@ -21,19 +21,19 @@ export class LoginComponent implements OnInit {
     public accountService: AccountService) { }
 
 
-  public checkLoginForm = this.fb.group({
-    userName: ['testuser', Validators.required],
-    password: ['testuser', Validators.required],
-    division: [1, Validators.required],
-    role: [1, Validators.required]
-  })
-
   // public checkLoginForm = this.fb.group({
-  //   userName: ['', Validators.required],
-  //   password: ['', Validators.required],
-  //   division: [null, Validators.required],
-  //   role: [null, Validators.required]
+  //   userName: ['testuser', Validators.required],
+  //   password: ['testuser', Validators.required],
+  //   division: [1, Validators.required],
+  //   role: [1, Validators.required]
   // })
+
+  public checkLoginForm = this.fb.group({
+    userName: ['', Validators.required],
+    password: ['', Validators.required],
+    division: [null, Validators.required],
+    role: [null, Validators.required]
+  })
 
 
   ngOnInit(): void {

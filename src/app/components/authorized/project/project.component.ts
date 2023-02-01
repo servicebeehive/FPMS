@@ -19,17 +19,17 @@ export class ProjectComponent implements OnInit {
     public masterDataService: MasterDataService,
     public fb: FormBuilder) { }
 
-  public addProjectCreation = this.fb.group({
-    projectName: ['Test Project', Validators.required],
-    tenure: [3, Validators.required],
-    financialYear: [1, Validators.required]
-  })
-
   // public addProjectCreation = this.fb.group({
-  //   projectName: ['', Validators.required],
-  //   tenure: [null, Validators.required],
-  //   financialYear: [null, Validators.required]
+  //   projectName: ['Test Project', Validators.required],
+  //   tenure: [3, Validators.required],
+  //   financialYear: [1, Validators.required]
   // })
+
+  public addProjectCreation = this.fb.group({
+    projectName: ['', Validators.required],
+    tenure: [null, Validators.required],
+    financialYear: [null, Validators.required]
+  })
 
   ngOnInit(): void {
     this.showProjectCreation = false;
