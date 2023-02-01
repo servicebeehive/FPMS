@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    height: 0px;
+}

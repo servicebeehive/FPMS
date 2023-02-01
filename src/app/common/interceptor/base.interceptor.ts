@@ -23,13 +23,28 @@ export class BaseInterceptor implements HttpInterceptor {
         })
       })
     }
+    else if (request.url.includes('getprojectcomponentdetailbyyear')) {
+      const headerData = JSON.parse(request.headers.get("data"));
+      request = request.clone({
+        withCredentials: true,
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          'token': localStorage.getItem('access-token'),
+          'operationtype': 'LIST',
+          'projectheadid': String(headerData.projectheadid),
+          'projectcomponentyear': headerData.projectcomponentyear
+
+        })
+      })
+    }
     else {
       request = request.clone({
         withCredentials: true,
         headers: new HttpHeaders({
           "Content-Type": "application/json",
           'token': localStorage.getItem('access-token'),
-          'operationtype': 'LIST'
+          'operationtype': 'LIST',
+
         })
       })
     }

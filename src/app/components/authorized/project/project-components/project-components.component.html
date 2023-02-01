@@ -46,10 +46,7 @@
         </mat-card>
     </form>
     <div *ngIf="getProjectListData">
-        No records
-    </div>
-
-    <div *ngIf="!getProjectListData">
-        <app-generic-table [tableData]="getProjectListData" [actionButtons]="actionButtons"></app-generic-table>
+        <app-project-component-headers
+            [projectComponentData]="getProjectListData.projectcomponent"></app-project-component-headers>
     </div>
 </div>

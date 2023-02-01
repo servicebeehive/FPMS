@@ -19,6 +19,10 @@ import { CreateComponentsComponent } from './dialogs/create-components/create-co
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { ProjectComponentElementsComponent } from './project-component-elements/project-component-elements.component';
+import { ProjectComponentHeadersComponent } from './project-component-headers/project-component-headers.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ProjectHeaderComponent,
     ProjectComponentsComponent,
     CreateComponentsComponent,
+    ProjectComponentElementsComponent,
+    ProjectComponentHeadersComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +47,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDialogModule,
     MatIconModule,
     MatCheckboxModule,
-    SharedModule
+    SharedModule,
+    MatExpansionModule,
+    MatTableModule
   ],
 })
 export class ProjectModule { }

@@ -25,9 +25,16 @@ export abstract class BaseService {
       .toPromise();
   }
 
-  public async GetWithValue<U>(controllerInfo: string, Value: number): Promise<U> {
+  public async GetWithValue<U, T>(controllerInfo: string, Value: T): Promise<U> {
     return await this.httpClient
       .get<U>(this.BaseUrl + controllerInfo + `/${Value}`)
+      .toPromise();
+  }
+
+  public async GetWithHeaders<U, T>(controllerInfo: string, Value: T): Promise<U> {
+    const value = JSON.stringify(Value)
+    return await this.httpClient
+      .get<U>(this.BaseUrl + controllerInfo, { headers: new HttpHeaders().set('data', value) })
       .toPromise();
   }
 
