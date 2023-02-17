@@ -42,17 +42,17 @@
 
                     <div class="col-4">
                         <div class="row button-position-single">
-                            <div class="col">
+                            <div class="col" *ngIf="this.editProjectDetails?.projectdetails === null">
                                 <button type="submit" mat-raised-button color="primary"
                                     [disabled]="addProjectCreation.invalid">Create
                                     Project</button>
                             </div>
-                            <!-- <div class="col">
+                            <!-- <div class="col" *ngIf="this.editProjectDetails?.projectdetails !== null">
                                 <button type="button" mat-raised-button color="primary"
                                     [disabled]="addProjectCreation.invalid">Edit
                                     Tenure</button>
-                            </div>
-                            <div class="col">
+                            </div> -->
+                            <!-- <div class="col">
                                 <button type="button" mat-raised-button color="primary"
                                     [disabled]="addProjectCreation.invalid">Delete
                                     Project</button>
@@ -65,5 +65,6 @@
     </form>
 </div>
 <ng-container *ngIf="showProjectCreation">
-    <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"></app-project-creation>
+    <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"
+        [editProjectHeaderDetails]="editProjectDetails"></app-project-creation>
 </ng-container>

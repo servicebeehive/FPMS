@@ -47,7 +47,6 @@ export class ProjectComponentsComponent implements OnChanges {
     budgetamount: [0, Validators.required],
     planyear: ['', Validators.required],
     projectid: [0, Validators.required],
-    componentHeadreType: [null, Validators.required]
   })
   constructor(public fb: FormBuilder,
     public notificationService: NotificationService<any>,
@@ -56,6 +55,9 @@ export class ProjectComponentsComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.setFormData();
+    if (this.planYearAmount.projectid !== 0) {
+      this.projectComponentDetailYear();
+    }
   }
 
   setFormData() {
@@ -81,7 +83,7 @@ export class ProjectComponentsComponent implements OnChanges {
     }
 
     const dialogRef = this.dialog.open(CreateComponentsComponent, {
-      data: { planYearAmount: this.planYearAmount, componentHeadreType: this.addProjectComponent.value.componentHeadreType },
+      data: { planYearAmount: this.planYearAmount, headercomponentid: 0 },
       disableClose: true,
       panelClass: 'dialog-class'
     });

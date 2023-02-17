@@ -1,4 +1,5 @@
 export interface projectDetails {
+    project_id?: number;
     projectheadid?: number;
     projectname?: string;
     divisionid?: number;
@@ -17,7 +18,7 @@ export interface projectDetails {
     schemeid?: number;
     executionsupervisor?: string;
     executionpost?: string;
-    budgetheaddesc?: string;
+    budgetheaddesc?: number;
     operationtype?: string
     project_name?: string;
     division?: string;
@@ -39,7 +40,7 @@ export interface projectDetails {
     dexecution_name?: string;
     execution_supervisor?: string;
     execution_post?: string;
-    budgethead?: string;
+    budgethead?: number;
     statuscode?: string;
     createdby?: string;
     createdon?: string;

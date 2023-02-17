@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReturnResult } from 'src/app/common/models/return-result';
 import { NotificationService } from 'src/app/common/services/notification/notification.service';
@@ -28,6 +29,7 @@ export class CreateComponentsComponent implements OnInit {
   }
 
   public addComponentInformation = this.fb.group({
+    componentHeadreType: [false],
     year: [''],
     sorno: ['', Validators.required],
     workdetail: ['', Validators.required],
@@ -38,7 +40,6 @@ export class CreateComponentsComponent implements OnInit {
     geolocation: ['', Validators.required],
     startdate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
     enddate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
-    headercomponent: [null, Validators.required],
     materialRequired: [false],
   })
 
@@ -47,7 +48,11 @@ export class CreateComponentsComponent implements OnInit {
       this.addComponentInformation.controls.year.setValue(this.dialogData.planYearAmount.planyear);
       this.addComponentInformation.controls.year.disable();
     }
-    if (this.dialogData.componentHeadreType) {
+
+  }
+
+  onChangeHeader(value: MatCheckboxChange) {
+    if (value.checked) {
       this.addComponentInformation.controls.quantity.clearValidators();
       this.addComponentInformation.controls.quantity.updateValueAndValidity();
 
@@ -69,12 +74,30 @@ export class CreateComponentsComponent implements OnInit {
       this.addComponentInformation.controls.enddate.clearValidators();
       this.addComponentInformation.controls.enddate.updateValueAndValidity();
 
-      this.addComponentInformation.controls.headercomponent.clearValidators();
-      this.addComponentInformation.controls.headercomponent.updateValueAndValidity();
+    } else {
+      this.addComponentInformation.controls.quantity.setValidators(Validators.required);
+      this.addComponentInformation.controls.quantity.updateValueAndValidity();
+
+      this.addComponentInformation.controls.uom.setValidators(Validators.required);
+      this.addComponentInformation.controls.uom.updateValueAndValidity();
+
+      this.addComponentInformation.controls.amount.setValidators(Validators.required);
+      this.addComponentInformation.controls.amount.updateValueAndValidity();
+
+      this.addComponentInformation.controls.rate.setValidators(Validators.required);
+      this.addComponentInformation.controls.rate.updateValueAndValidity();
+
+      this.addComponentInformation.controls.geolocation.setValidators(Validators.required);
+      this.addComponentInformation.controls.geolocation.updateValueAndValidity();
+
+      this.addComponentInformation.controls.startdate.setValidators(Validators.required);
+      this.addComponentInformation.controls.startdate.updateValueAndValidity();
+
+      this.addComponentInformation.controls.enddate.setValidators(Validators.required);
+      this.addComponentInformation.controls.enddate.updateValueAndValidity();
+
     }
-    this.getComponentHedareDetails()
-
-
+    console.log('event', value.checked)
   }
 
   onClickCancel() {
@@ -82,10 +105,11 @@ export class CreateComponentsComponent implements OnInit {
   }
 
   public getComponentHedareDetails() {
-    const { projectid } = this.dialogData.planYearAmount;
+    const { projectid, planyear } = this.dialogData.planYearAmount;
     const componentData: createProjectComponent = {
       projectheadid: projectid,
       isheader: true,
+      year: planyear,
       operationtype: 'GETHEADERLIST'
     }
     this.projectService.createProjectComponent(componentData).then((res: ReturnResult<componentHeaderDeatils[]>) => {
@@ -97,7 +121,7 @@ export class CreateComponentsComponent implements OnInit {
 
   onClickProjectComponent() {
     const { projectid, planyear } = this.dialogData.planYearAmount;
-    const { componentHeadreType } = this.dialogData
+    const { headercomponentid } = this.dialogData
     const componentData: createProjectComponent = {
       componentid: 0,
       projectheadid: projectid,
@@ -111,8 +135,8 @@ export class CreateComponentsComponent implements OnInit {
       materialreq: this.addComponentInformation.value.materialRequired,
       startdate: this.addComponentInformation.value.startdate,
       enddate: this.addComponentInformation.value.enddate,
-      isheader: componentHeadreType,
-      headercomponentid: this.addComponentInformation.value.headercomponent,
+      isheader: this.addComponentInformation.value.componentHeadreType,
+      headercomponentid: headercomponentid,
       operationtype: 'INSERT'
     }
     this.projectService.createProjectComponent(componentData).then((res: ReturnResult<any>) => {

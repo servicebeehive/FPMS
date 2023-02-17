@@ -10,7 +10,7 @@ export class ProjectComponentElementsComponent implements OnChanges {
 
   public dataSource: createProjectComponent[];
 
-  public columnToDispaly: string[] = ['sorno', 'workdetail', 'quantity', 'uom', 'rate', 'amount', 'geolocation', 'startdate', 'enddate', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount']
+  public columnToDispaly: string[] = ['sorno', 'workdetail', 'quantity', 'uom', 'rate', 'amount', 'geolocation', 'startdate', 'enddate', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount', 'actions']
 
   @Input() componentElementDetails: createProjectComponent[];
 
@@ -19,6 +19,7 @@ export class ProjectComponentElementsComponent implements OnChanges {
   ngOnChanges() {
     if (this.componentElementDetails) {
       this.dataSource = this.componentElementDetails;
+      console.log('this.dataSource', this.dataSource)
     }
   }
 

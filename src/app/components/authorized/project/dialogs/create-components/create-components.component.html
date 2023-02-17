@@ -4,6 +4,13 @@
 <form [formGroup]="addComponentInformation" (ngSubmit)="onClickProjectComponent()">
     <mat-card>
         <div class="conatiner row-container">
+            <div class="row mb-3">
+                <div class="col-6">
+                    <mat-checkbox class="example-margin" (change)="onChangeHeader($event)"
+                        formControlName="componentHeadreType">Is Header </mat-checkbox>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
@@ -12,21 +19,6 @@
                         <mat-error
                             *ngIf="addComponentInformation.controls['sorno'].touched && addComponentInformation.controls['sorno'].hasError('required')">
                             SOR No
-                            is required</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Header</mat-label>
-                        <mat-select formControlName="headercomponent">
-                            <mat-option disabled selected>--Select Header --</mat-option>
-                            <mat-option *ngFor="let item of headerDetails" [value]="item?.componentid">
-                                {{item.workdetail}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-error
-                            *ngIf="addComponentInformation.controls['headercomponent'].touched && addComponentInformation.controls['headercomponent'].hasError('required')">
-                            Header
                             is required</mat-error>
                     </mat-form-field>
                 </div>
@@ -41,7 +33,7 @@
                         is required</mat-error>
                 </mat-form-field>
             </div>
-            <ng-container *ngIf="!dialogData.componentHeadreType">
+            <ng-container *ngIf="!addComponentInformation.controls['componentHeadreType'].value">
                 <div class="row">
                     <mat-form-field appearance="outline">
                         <mat-label>UOM</mat-label>
@@ -129,7 +121,7 @@
                 <div class="col-6">
                     <button type="submit" mat-raised-button color="primary"
                         [disabled]="addComponentInformation.invalid">Create
-                        {{dialogData.componentHeadreType?'Header':'Element'}}
+                        {{!addComponentInformation.controls['componentHeadreType'].value?'Element':'Header'}}
                         Component</button>
                 </div>
                 <div class="col-6" align="right">

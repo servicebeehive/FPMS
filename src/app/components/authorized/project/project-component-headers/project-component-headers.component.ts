@@ -11,7 +11,7 @@ export class ProjectComponentHeadersComponent implements OnChanges {
 
   @Input() projectComponentData: componentDetails[];
 
-  public columnToDispaly: string[] = ['sorno', 'workdetail', 'startdate', 'enddate'];
+  public columnToDispaly: string[] = ['sorno', 'workdetail', 'startdate', 'enddate', 'action'];
 
   public dataSource: componentDetails[];
   public columnsToDisplayWithExpand: string[];

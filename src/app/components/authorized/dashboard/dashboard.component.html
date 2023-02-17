@@ -1,4 +1,4 @@
 <app-project-filter (projectCreation)="onClickCreateProject()"></app-project-filter>
 <!-- <app-project-stats></app-project-stats> -->
-<app-generic-table [title]="'Project Information'" [tableData]="getProjectListData"
-    [actionButtons]="actionButtons"></app-generic-table>
+<app-generic-table [title]="'Project Information'" [tableData]="getProjectListData" [actionButtons]="actionButtons"
+    (actionButtonItem)="onGetActionItem($event)"></app-generic-table>

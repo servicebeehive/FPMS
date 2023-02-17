@@ -1,7 +1,7 @@
 <div class="viewer-wrapper">
     <mat-tab-group animationDuration="0ms">
         <mat-tab label="Project Header Details"><app-project-header [tabYear]="tabNumber"
-                [formsDetails]="projectCreationDetailsForTabs"
+                [formsDetails]="projectCreationDetailsForTabs" [projectDetailsForEdit]="projectDetails"
                 (budgetYearAmount)="tabYearAmount($event)"></app-project-header>
         </mat-tab>
         <mat-tab label="FY {{tab.planyear}}" *ngFor="let tab of tabNumber"><app-project-components

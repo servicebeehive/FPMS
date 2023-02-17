@@ -1,6 +1,7 @@
 <ng-container *ngIf="columnName !=='actions'">{{ row[columnName] }}</ng-container>
 <ng-container *ngIf="columnName ==='actions'">
-    <ng-container *ngFor="let button of actionButtons">
-        <button mat-stroked-button color="primary">{{button}}</button>
+    <ng-container *ngFor="let action of actionButtons">
+        <button mat-stroked-button color="primary" (click)="onClickActionButton(action)">{{action |
+            capitalize}}</button>
     </ng-container>
 </ng-container>

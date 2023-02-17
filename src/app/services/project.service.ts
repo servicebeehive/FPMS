@@ -6,6 +6,7 @@ import { ReturnResult } from '../common/models/return-result';
 import { BaseService } from '../common/services/base/base.service';
 import { ConfigService } from '../common/services/config/config.service';
 import { createProjectComponent } from '../models/create-project-component.model';
+import { editProjectDetails } from '../models/edit-project-details.model';
 import { projectComponentDetails } from '../models/project-component-details.model';
 import { projectDetails } from '../models/project-details.model';
 import { projectHeaderDetails } from '../models/projectheader.model';
@@ -35,5 +36,9 @@ export class ProjectService extends BaseService {
 
   public getProjectComponentDetailsBYYear(data: { projectheadid: number, projectcomponentyear: string }): Promise<ReturnResult<projectComponentDetails>> {
     return this.GetWithHeaders<ReturnResult<projectComponentDetails>, { projectheadid: number, projectcomponentyear: string }>(this.controller.getprojectcomponentdetailbyyear, data)
+  }
+
+  public getProjectInfoDetails(data: { projectheadid: number }): Promise<ReturnResult<editProjectDetails>> {
+    return this.GetWithHeaders<ReturnResult<editProjectDetails>, { projectheadid: number }>(this.controller.getprojectinfodetails, data)
   }
 }

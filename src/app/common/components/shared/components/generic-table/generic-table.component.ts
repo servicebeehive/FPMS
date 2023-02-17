@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { tableActionData } from 'src/app/common/models/table-action-data.model';
 
 @Component({
   selector: 'app-generic-table',
@@ -13,6 +14,8 @@ export class GenericTableComponent<T> implements OnChanges {
   @Input() tableData: T[] = [];
   @Input() actionButtons: string[];
   @Input() title: string;
+
+  @Output() actionButtonItem = new EventEmitter<tableActionData<T>>();
 
   dataSource = new MatTableDataSource();
 
@@ -27,5 +30,9 @@ export class GenericTableComponent<T> implements OnChanges {
       this.columnNames = [...this.columnNames, 'actions']
       this.dataSource.paginator = this.paginator;
     }
+  }
+
+  public actionButtonClicked(actionItem: tableActionData<T>) {
+    this.actionButtonItem.emit(actionItem);
   }
 }
