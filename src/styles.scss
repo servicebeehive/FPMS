@@ -45,6 +45,14 @@ body {
     top: 10px;
 }
 
+.button-position-multiple {
+    position: relative;
+    top: -10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .warning-snackbar {
     background: #E9F316;
 }
@@ -66,4 +74,8 @@ body {
     .title {
         font-size: x-large;
     }
+}
+
+.error-font-color {
+    color: #F33116;
 }

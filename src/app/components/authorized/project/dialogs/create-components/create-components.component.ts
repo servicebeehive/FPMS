@@ -49,6 +49,10 @@ export class CreateComponentsComponent implements OnInit {
       this.addComponentInformation.controls.year.disable();
     }
 
+    if (this.dialogData.actionType) {
+
+    }
+
   }
 
   onChangeHeader(value: MatCheckboxChange) {
@@ -97,7 +101,6 @@ export class CreateComponentsComponent implements OnInit {
       this.addComponentInformation.controls.enddate.updateValueAndValidity();
 
     }
-    console.log('event', value.checked)
   }
 
   onClickCancel() {

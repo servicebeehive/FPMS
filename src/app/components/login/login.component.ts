@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ReturnResult } from 'src/app/common/models/return-result';
 import { AccountService } from 'src/app/common/services/account/account.service';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
+import { NotificationService } from 'src/app/common/services/notification/notification.service';
 import { userDetails } from 'src/app/models/user-details.model';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     public masterDataService: MasterDataService,
     public fb: FormBuilder,
     public route: Router,
-    public accountService: AccountService) { }
+    public accountService: AccountService,
+    public notificationService: NotificationService<userDetails>) { }
 
 
   public checkLoginForm = this.fb.group({
@@ -37,6 +39,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.accountService.isLoggedIn()) {
+      this.accountService.setAccessToken(null);
+    }
   }
 
   onClickLogin() {
@@ -50,7 +55,10 @@ export class LoginComponent implements OnInit {
       if (res.success) {
         this.accountService.setAccessToken(res.data.usertoken);
         this.route.navigateByUrl("authorized/dashboard");
+        return;
       }
+      this.notificationService.showNotification(res);
+
     })
   }
 

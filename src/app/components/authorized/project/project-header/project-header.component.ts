@@ -159,7 +159,6 @@ export class ProjectHeaderComponent implements OnInit {
   }
 
   setFormControlsForEdit() {
-    console.log('projectDetailsForEdit', this.projectDetailsForEdit)
     this.isSaved = true;
     this.projectHeaderId = this.projectDetailsForEdit.projectheadid;
     this.addProjectHeader.controls.division.setValue(this.projectDetailsForEdit.divisionid);

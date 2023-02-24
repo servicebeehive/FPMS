@@ -19,7 +19,6 @@ export class ProjectComponentElementsComponent implements OnChanges {
   ngOnChanges() {
     if (this.componentElementDetails) {
       this.dataSource = this.componentElementDetails;
-      console.log('this.dataSource', this.dataSource)
     }
   }
 

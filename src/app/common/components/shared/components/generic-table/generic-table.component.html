@@ -2,7 +2,7 @@
     <div class="docs-example-viewer-title">
         {{title}}
     </div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table *ngIf="this.tableData?.length !==0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container *ngFor="let columnName of columnNames" [matColumnDef]="columnName">
             <th mat-header-cell *matHeaderCellDef>{{ columnName |capitalize }}</th>
             <td mat-cell *matCellDef="let row">
@@ -14,7 +14,11 @@
         <tr mat-row *matRowDef="let row; columns: columnNames"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator *ngIf="this.tableData?.length !== 0" [pageSizeOptions]="[10,20,30]" showFirstLastButtons>
     </mat-paginator>
+
+    <div *ngIf="this.tableData?.length === 0">
+        <span class="error-font-color"> No Data available</span>
+    </div>
 
 </div>

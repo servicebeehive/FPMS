@@ -10,13 +10,14 @@ import { MasterDataService } from 'src/app/common/services/master-data/master-da
 export class ProjectFilterComponent implements OnInit {
 
   public addProjectFilter = this.fb.group({
-    financialYear: [null],
-    range: [null],
-    status: [null],
-    projectName: ['']
+    financialYear: this.fb.control<number | undefined>(null),
+    range: this.fb.control<number | undefined>(null),
+    status: this.fb.control<number | undefined>(null),
+    projectName: this.fb.control<string | undefined>('')
   })
 
-  @Output() public projectCreation = new EventEmitter;
+  @Output() public projectFilter = new EventEmitter;
+  @Output() public clearProjectFilter = new EventEmitter;
 
   constructor(public masterDataService: MasterDataService,
     public fb: FormBuilder) { }
@@ -24,8 +25,13 @@ export class ProjectFilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCreareProject() {
-    this.projectCreation.emit();
+  onProjectFilter() {
+    this.projectFilter.emit(this.addProjectFilter.value);
+  }
+
+  onClickClearFilter() {
+    this.addProjectFilter.reset();
+    this.clearProjectFilter.emit();
   }
 
 }

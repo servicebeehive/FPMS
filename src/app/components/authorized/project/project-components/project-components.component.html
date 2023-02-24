@@ -32,7 +32,7 @@
         </mat-card>
     </form>
     <div *ngIf="getProjectListData">
-        <app-project-component-headers
-            [projectComponentData]="getProjectListData.projectcomponent"></app-project-component-headers>
+        <app-project-component-headers [projectComponentData]="getProjectListData.projectcomponent"
+            [planYearWiseAmount]="planYearAmount"></app-project-component-headers>
     </div>
 </div>

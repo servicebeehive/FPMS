@@ -2,7 +2,7 @@
     <div class="docs-example-viewer-title">
         Project Filter
     </div>
-    <form [formGroup]="addProjectFilter" (ngSubmit)="onCreareProject()">
+    <form [formGroup]="addProjectFilter" (ngSubmit)="onProjectFilter()">
         <mat-card>
             <div class="conatiner row-container">
                 <div class="row">
@@ -48,8 +48,10 @@
                             <input matInput type="text" formControlName="projectName">
                         </mat-form-field>
                     </div>
-                    <div class="col button-position-single" align="center">
-                        <button type="submit" mat-raised-button color="primary">Filter</button>
+                    <div class="col button-position-multiple" align="center">
+                        <button type="submit" mat-raised-button color="primary">Apply Filter</button>
+                        <button type="button" mat-raised-button color="primary" (click)="onClickClearFilter()">Clear
+                            Filter</button>
                     </div>
                 </div>
 

@@ -25,10 +25,15 @@ export class GenericTableComponent<T> implements OnChanges {
 
   ngOnChanges(): void {
     if (this.tableData) {
+      if (this.tableData.length === 0) {
+        return;
+      }
       this.dataSource = new MatTableDataSource(this.tableData);
       this.columnNames = Object.keys(this.tableData[0]);
       this.columnNames = [...this.columnNames, 'actions']
-      this.dataSource.paginator = this.paginator;
+      setTimeout(() => {
+        this.dataSource.paginator = this.paginator;
+      }, 0);
     }
   }
 
