@@ -12,6 +12,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -21,7 +22,8 @@ import { MatCardModule } from '@angular/material/card';
     ProjectStatsComponent,
     GenericTableComponent,
     GenericTableRowComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,

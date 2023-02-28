@@ -7,7 +7,7 @@
             <div class="row mb-3">
                 <div class="col-6">
                     <mat-checkbox class="example-margin" (change)="onChangeHeader($event.checked)"
-                        formControlName="componentHeadreType">Is Header test </mat-checkbox>
+                        formControlName="componentHeadreType">Is Header</mat-checkbox>
                 </div>
             </div>
 
@@ -120,7 +120,8 @@
             <div class="row mb-3">
                 <div class="col-6">
                     <button type="submit" mat-raised-button color="primary"
-                        [disabled]="addComponentInformation.invalid">Create
+                        [disabled]="addComponentInformation.invalid">{{dialogData.actionType ===
+                        actionTypes.edit?'Edit':'Create'}}
                         {{!addComponentInformation.controls['componentHeadreType'].value?'Element':'Header'}}
                         Component</button>
                 </div>

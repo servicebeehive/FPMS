@@ -142,22 +142,8 @@ export class CreateComponentsComponent implements OnInit {
     this.matDialogRef.close();
   }
 
-  public getComponentHedareDetails() {
-    const { projectid, planyear } = this.dialogData.planYearAmount;
-    const componentData: createProjectComponent = {
-      projectheadid: projectid,
-      isheader: true,
-      year: planyear,
-      operationtype: 'GETHEADERLIST'
-    }
-    this.projectService.createProjectComponent(componentData).then((res: ReturnResult<componentHeaderDeatils[]>) => {
-      if (res.success) {
-        this.headerDetails = res.data;
-      }
-    })
-  }
-
   onClickProjectComponent() {
+    console.log('this.dialogData.planYearAmount', this.dialogData.planYearAmount.budgetamount);
     const { projectid, planyear } = this.dialogData.planYearAmount;
     const { headercomponentid } = this.dialogData
 

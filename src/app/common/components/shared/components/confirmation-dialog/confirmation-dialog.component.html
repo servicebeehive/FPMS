@@ -1,0 +1,17 @@
+<mat-card>
+    <div class="conatiner row-container">
+        <div class="row mb-3">
+            <h1>Confirm {{data.actionTitle}}</h1>
+            <span>{{data.message}}</span>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <button type="button" mat-raised-button color="primary"
+                    (click)="onClickConfirm()">{{dialogAction[action] | capitalize}}</button>
+            </div>
+            <div class="col-6" align="right">
+                <button type="button" mat-raised-button color="warn" (click)="onClickCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</mat-card>
