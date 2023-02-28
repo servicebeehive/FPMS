@@ -33,6 +33,7 @@
     </form>
     <div *ngIf="getProjectListData">
         <app-project-component-headers [projectComponentData]="getProjectListData.projectcomponent"
-            [planYearWiseAmount]="planYearAmount"></app-project-component-headers>
+            [planYearWiseAmount]="planYearAmount"
+            (getProjectComponent)="getCallProjectComponent($event)"></app-project-component-headers>
     </div>
 </div>

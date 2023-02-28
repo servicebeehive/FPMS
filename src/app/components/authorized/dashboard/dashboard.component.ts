@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
       projectListCollectionData = projectListCollectionData.filter(res => res.statuscode === statusData.statuscode);
     }
     if (data.projectName) {
-      projectListCollectionData = projectListCollectionData.filter(res => res.project_name.toLocaleLowerCase().includes(data.projectName));
+      projectListCollectionData = projectListCollectionData.filter(res => res.project_name.trim().toLocaleLowerCase().includes(data.projectName.trim().toLocaleLowerCase()));
     }
     this.getProjectListTableData = this.mapProjectData(projectListCollectionData);
   }

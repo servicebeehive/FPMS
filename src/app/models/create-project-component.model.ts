@@ -24,5 +24,6 @@ export interface createProjectComponent {
     iscarryforward?: boolean
     carryforwardamt?: number
     totalamount?: number
+    isExpand?: boolean
 
 }

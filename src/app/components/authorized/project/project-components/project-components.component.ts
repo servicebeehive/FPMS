@@ -106,4 +106,10 @@ export class ProjectComponentsComponent implements OnChanges {
     })
   }
 
+  getCallProjectComponent(value: boolean) {
+    if (value) {
+      this.projectComponentDetailYear();
+    }
+  }
+
 }

@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
 import { ReturnResult } from 'src/app/common/models/return-result';
 import { NotificationService } from 'src/app/common/services/notification/notification.service';
 import { componentHeaderDeatils } from 'src/app/models/component-header.model';
@@ -19,6 +20,7 @@ import { ProjectService } from 'src/app/services/project.service';
 export class CreateComponentsComponent implements OnInit {
 
   public headerDetails: componentHeaderDeatils[] = [];
+  public actionTypes = ActionTypes;
 
   constructor(public matDialogRef: MatDialogRef<CreateComponentsComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: projectComponentData,
@@ -29,18 +31,31 @@ export class CreateComponentsComponent implements OnInit {
   }
 
   public addComponentInformation = this.fb.group({
-    componentHeadreType: [false],
-    year: [''],
-    sorno: ['', Validators.required],
-    workdetail: ['', Validators.required],
-    quantity: [null, Validators.required],
-    uom: ['', Validators.required],
-    amount: [null, Validators.required],
-    rate: [null, Validators.required],
-    geolocation: ['', Validators.required],
-    startdate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
-    enddate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
-    materialRequired: [false],
+    componentHeadreType: this.fb.control<boolean | undefined>(false, Validators.required),
+    year: this.fb.control<string | undefined>('', Validators.required),
+    sorno: this.fb.control<string | undefined>('', Validators.required),
+    workdetail: this.fb.control<string | undefined>('', Validators.required),
+    quantity: this.fb.control<number | undefined>(null, Validators.required),
+    uom: this.fb.control<string | undefined>('', Validators.required),
+    amount: this.fb.control<number | undefined>(null, Validators.required),
+    rate: this.fb.control<number | undefined>(null, Validators.required),
+    geolocation: this.fb.control<string | undefined>('', Validators.required),
+    startdate: this.fb.control<string | undefined>(this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required),
+    enddate: this.fb.control<string | undefined>(this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required),
+    materialRequired: this.fb.control<boolean | undefined>(false, Validators.required),
+
+    // componentHeadreType: [false],
+    // year: [''],
+    // sorno: ['', Validators.required],
+    // workdetail: ['', Validators.required],
+    // quantity: [null, Validators.required],
+    // uom: ['', Validators.required],
+    // amount: [null, Validators.required],
+    // rate: [null, Validators.required],
+    // geolocation: ['', Validators.required],
+    // startdate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
+    // enddate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
+    // materialRequired: [false],
   })
 
   ngOnInit(): void {
@@ -49,14 +64,34 @@ export class CreateComponentsComponent implements OnInit {
       this.addComponentInformation.controls.year.disable();
     }
 
-    if (this.dialogData.actionType) {
+    if (this.dialogData.actionType === this.actionTypes.edit) {
+      const { componentDetails } = this.dialogData;
+      if (componentDetails?.isheader) {
+        this.addComponentInformation.controls.sorno.setValue(componentDetails?.sorno);
+        this.addComponentInformation.controls.workdetail.setValue(componentDetails?.workdetail);
+        this.addComponentInformation.controls.componentHeadreType.setValue(componentDetails?.isheader);
 
+      }
+      else {
+        this.addComponentInformation.controls.sorno.setValue(componentDetails?.sorno);
+        this.addComponentInformation.controls.workdetail.setValue(componentDetails?.workdetail);
+        this.addComponentInformation.controls.quantity.setValue(componentDetails?.quantity);
+        this.addComponentInformation.controls.uom.setValue(componentDetails?.uom);
+        this.addComponentInformation.controls.rate.setValue(componentDetails?.rate);
+        this.addComponentInformation.controls.geolocation.setValue(componentDetails?.geolocation);
+        this.addComponentInformation.controls.materialRequired.setValue(componentDetails?.materialreq);
+        this.addComponentInformation.controls.startdate.setValue(componentDetails?.startdate);
+        this.addComponentInformation.controls.enddate.setValue(componentDetails?.enddate);
+        this.addComponentInformation.controls.componentHeadreType.setValue(componentDetails?.isheader);
+        this.addComponentInformation.controls.amount.setValue(componentDetails?.amount);
+      }
+      this.onChangeHeader(componentDetails?.isheader);
     }
 
   }
 
-  onChangeHeader(value: MatCheckboxChange) {
-    if (value.checked) {
+  onChangeHeader(value: boolean) {
+    if (value) {
       this.addComponentInformation.controls.quantity.clearValidators();
       this.addComponentInformation.controls.quantity.updateValueAndValidity();
 
@@ -125,8 +160,9 @@ export class CreateComponentsComponent implements OnInit {
   onClickProjectComponent() {
     const { projectid, planyear } = this.dialogData.planYearAmount;
     const { headercomponentid } = this.dialogData
+
     const componentData: createProjectComponent = {
-      componentid: 0,
+      componentid: this.dialogData.actionType === this.actionTypes.edit ? this.dialogData.componentDetails.componentid : 0,
       projectheadid: projectid,
       year: planyear,
       sorno: this.addComponentInformation.value.sorno,
@@ -140,7 +176,7 @@ export class CreateComponentsComponent implements OnInit {
       enddate: this.addComponentInformation.value.enddate,
       isheader: this.addComponentInformation.value.componentHeadreType,
       headercomponentid: headercomponentid,
-      operationtype: 'INSERT'
+      operationtype: this.dialogData.actionType === this.actionTypes.edit ? 'UPDATE' : 'INSERT'
     }
     this.projectService.createProjectComponent(componentData).then((res: ReturnResult<any>) => {
       if (res.success) {
