@@ -86,21 +86,24 @@ export class ProjectComponentHeadersComponent implements OnChanges {
         const componentData: createProjectComponent = {
           componentid: item?.componentid,
           projectheadid: item.projectheadid,
-          year: '',
-          sorno: '',
-          workdetail: '',
+          year: null,
+          sorno: null,
+          workdetail: null,
           quantity: null,
-          uom: '',
+          uom: null,
           rate: null,
-          geolocation: '',
+          geolocation: null,
           materialreq: false,
-          startdate: '',
-          enddate: '',
+          startdate: null,
+          enddate: null,
           isheader: false,
           headercomponentid: null,
           operationtype: 'DELETE'
         }
         this.projectService.createProjectComponent(componentData).then((res: ReturnResult<any>) => {
+          if (res.success) {
+            this.getProjectComponent.emit(true);
+          }
           this.notificationService.showNotification(res);
         })
       }

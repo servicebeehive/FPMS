@@ -62,6 +62,8 @@ export class CreateComponentsComponent implements OnInit {
     if (this.dialogData.planYearAmount) {
       this.addComponentInformation.controls.year.setValue(this.dialogData.planYearAmount.planyear);
       this.addComponentInformation.controls.year.disable();
+
+      this.addComponentInformation.controls.amount.disable();
     }
 
     if (this.dialogData.actionType === this.actionTypes.edit) {
@@ -140,6 +142,16 @@ export class CreateComponentsComponent implements OnInit {
 
   onClickCancel() {
     this.matDialogRef.close();
+  }
+
+  calculateAmount() {
+    if (this.addComponentInformation.controls.rate.value && this.addComponentInformation.controls.quantity.value) {
+      const amount = this.addComponentInformation.controls.rate.value * this.addComponentInformation.controls.quantity.value;
+      this.addComponentInformation.controls.amount.setValue(amount);
+    } else {
+      this.addComponentInformation.controls.amount.setValue(null);
+    }
+
   }
 
   onClickProjectComponent() {
