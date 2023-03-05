@@ -7,6 +7,7 @@ import { BaseService } from '../common/services/base/base.service';
 import { ConfigService } from '../common/services/config/config.service';
 import { createProjectComponent } from '../models/create-project-component.model';
 import { editProjectDetails } from '../models/edit-project-details.model';
+import { finalProjectSubmission } from '../models/final-project-submission.model';
 import { projectComponentDetails } from '../models/project-component-details.model';
 import { projectDetails } from '../models/project-details.model';
 import { projectHeaderDetails } from '../models/projectheader.model';
@@ -40,5 +41,9 @@ export class ProjectService extends BaseService {
 
   public getProjectInfoDetails(data: { projectheadid: number }): Promise<ReturnResult<editProjectDetails>> {
     return this.GetWithHeaders<ReturnResult<editProjectDetails>, { projectheadid: number }>(this.controller.getprojectinfodetails, data)
+  }
+
+  public finalSubmitProject(finalSubmitProjectData: finalProjectSubmission): Promise<ReturnResult<any>> {
+    return this.PostReturn<finalProjectSubmission, ReturnResult<any>>(this.controller.postsubmitproject, finalSubmitProjectData)
   }
 }

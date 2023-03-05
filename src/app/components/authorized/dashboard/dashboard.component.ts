@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public mapProjectData(resultData: projectDetails[]): projectDetails[] {
-    const data: projectDetails[] = resultData.map(({ project_id, project_name, financial_year, project_tenure, statuscode }) => ({ project_id, project_name, financial_year, project_tenure, statuscode }));
+    const data: projectDetails[] = resultData.map(({ project_id, project_name, financial_year_desc, project_tenure, status }) => ({ project_id, project_name, financial_year_desc, project_tenure, status }));
     return data;
   }
 

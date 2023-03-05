@@ -155,7 +155,6 @@ export class CreateComponentsComponent implements OnInit {
   }
 
   onClickProjectComponent() {
-    console.log('this.dialogData.planYearAmount', this.dialogData.planYearAmount.budgetamount);
     const { projectid, planyear } = this.dialogData.planYearAmount;
     const { headercomponentid } = this.dialogData
 

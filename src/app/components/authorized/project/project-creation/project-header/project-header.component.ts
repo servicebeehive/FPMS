@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { projectSubmissionValidation } from 'src/app/common/models/project-submission-validation.model';
 import { ReturnResult } from 'src/app/common/models/return-result';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
 import { NotificationService } from 'src/app/common/services/notification/notification.service';
+import { ProjectSubmissionValidationService } from 'src/app/common/services/project-submission-validation/project-submission-validation.service';
 import { budgetYearDetails } from 'src/app/models/budgetyear.model';
 import { projectCreationDetails } from 'src/app/models/project-creation.model';
 import { projectDetails } from 'src/app/models/project-details.model';
@@ -83,7 +85,7 @@ export class ProjectHeaderComponent implements OnInit {
   //   executionName: ['Test Execution Name'],
   //   executionSupervisor: ['Test Execution Supervisor', Validators.required],
   //   executionPost: ['Test Execution Post', Validators.required],
-  //   budgetHead: ['3', Validators.required],
+  //   budgetHead: [3, Validators.required],
 
   //   addYearInformation: this.fb.array([]),
   // })
@@ -91,7 +93,8 @@ export class ProjectHeaderComponent implements OnInit {
   constructor(public fb: FormBuilder,
     public masterDataService: MasterDataService,
     public projectService: ProjectService,
-    public notificationService: NotificationService<any>) { }
+    public notificationService: NotificationService<any>,
+    public projectSubmissionValidationService: ProjectSubmissionValidationService) { }
 
   get formControl() {
     return this.addProjectHeader.get('addYearInformation') as FormArray;
@@ -130,6 +133,7 @@ export class ProjectHeaderComponent implements OnInit {
       operationtype: this.isSaved ? "UPDATE" : "INSERT",
       budgetyear: this.addProjectHeader.value.addYearInformation as budgetYearDetails[]
     }
+    this.projectSubmissionValidationService.amountDetails = [];
     this.projectService.insertProjectDetails(projectDetails).then((res: ReturnResult<[{ id: number }]>) => {
       if (res.success) {
         this.projectHeaderId = res.data[0].id;
@@ -179,5 +183,7 @@ export class ProjectHeaderComponent implements OnInit {
     this.addProjectHeader.controls.executionPost.setValue(this.projectDetailsForEdit.execution_post);
     this.addProjectHeader.controls.budgetHead.setValue(this.projectDetailsForEdit.budgethead);
   }
+
+
 
 }

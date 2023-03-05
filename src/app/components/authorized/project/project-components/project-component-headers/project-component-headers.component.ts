@@ -10,7 +10,8 @@ import { createProjectComponent } from 'src/app/models/create-project-component.
 import { projectComponentData } from 'src/app/models/project-component-data.model';
 import { componentDetails } from 'src/app/models/project-component-details.model';
 import { ProjectService } from 'src/app/services/project.service';
-import { CreateComponentsComponent } from '../dialogs/create-components/create-components.component';
+import { CreateComponentsComponent } from '../create-components/create-components.component';
+
 
 @Component({
   selector: 'app-project-component-headers',
@@ -39,7 +40,7 @@ export class ProjectComponentHeadersComponent implements OnChanges {
       element.componentheader = { ...element.componentheader, isExpand: true }
     });
     this.dataSource = this.projectComponentData;
-    this.columnsToDisplayWithExpand = [...this.columnToDispaly, 'expand'];
+    this.columnsToDisplayWithExpand = ['expand', ...this.columnToDispaly];
   }
 
   onClickExpand(element: createProjectComponent) {

@@ -5,20 +5,32 @@
     <form [formGroup]="addProjectComponent">
         <mat-card>
             <div class="conatiner row-container">
-                <div class="row">
-                    <div class="col-3">
+                <div class="row row-cols-6 ">
+                    <div class="col">
                         <mat-form-field appearance="outline">
-                            <mat-label>Component Header Amount</mat-label>
+                            <mat-label>Header Total Amount</mat-label>
                             <input matInput type="text" formControlName="budgetamount">
                         </mat-form-field>
                     </div>
-                    <div class="col-3">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Total Amount Spends</mat-label>
+                            <input matInput type="text" formControlName="amountSpends">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Header Remaining Amount</mat-label>
+                            <input matInput type="text" formControlName="remainingAmount">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
                         <mat-form-field appearance="outline">
                             <mat-label>Financial year</mat-label>
                             <input matInput type="text" formControlName="planyear">
                         </mat-form-field>
                     </div>
-                    <div class="col-4">
+                    <div class="col">
                         <div class="row button-position-single">
                             <div class="col">
                                 <button type="button" mat-raised-button color="primary"

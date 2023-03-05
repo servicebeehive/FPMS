@@ -42,21 +42,16 @@
 
                     <div class="col-4">
                         <div class="row button-position-single">
-                            <div class="col" *ngIf="this.editProjectDetails?.projectdetails === null">
+                            <div class="col" *ngIf="this.editProjectDetails?.projectdetails === null && !isEdit">
                                 <button type="submit" mat-raised-button color="primary"
                                     [disabled]="addProjectCreation.invalid">Create
                                     Project</button>
                             </div>
-                            <!-- <div class="col" *ngIf="this.editProjectDetails?.projectdetails !== null">
-                                <button type="button" mat-raised-button color="primary"
-                                    [disabled]="addProjectCreation.invalid">Edit
-                                    Tenure</button>
-                            </div> -->
-                            <!-- <div class="col">
-                                <button type="button" mat-raised-button color="primary"
-                                    [disabled]="addProjectCreation.invalid">Delete
+                            <div class="col" *ngIf="this.editProjectDetails?.projectdetails !== null || isEdit">
+                                <button type="button" (click)="onClickFinalProjectSubmit()" mat-raised-button
+                                    color="primary">Submit
                                     Project</button>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,5 +61,6 @@
 </div>
 <ng-container *ngIf="showProjectCreation">
     <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"
-        [editProjectHeaderDetails]="editProjectDetails"></app-project-creation>
+        [editProjectHeaderDetails]="editProjectDetails"
+        (setSubmitProjectButton)="onChangeSubmitButton($event)"></app-project-creation>
 </ng-container>

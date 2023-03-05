@@ -45,5 +45,7 @@ export interface projectDetails {
     createdby?: string;
     createdon?: string;
     updatedby?: string;
-    updatedon?: string
+    updatedon?: string;
+    financial_year_desc?: string;
+    status?: string;
 }

@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationDialogComponent } from 'src/app/common/components/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { confirmationDialogModel } from 'src/app/common/models/confirmation-dialog-data.model';
+import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
 import { ReturnResult } from 'src/app/common/models/return-result';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
+import { NotificationService } from 'src/app/common/services/notification/notification.service';
+import { ProjectSubmissionValidationService } from 'src/app/common/services/project-submission-validation/project-submission-validation.service';
 import { budgetYearDetails } from 'src/app/models/budgetyear.model';
 import { editProjectDetails } from 'src/app/models/edit-project-details.model';
+import { finalProjectSubmission } from 'src/app/models/final-project-submission.model';
 import { projectCreationDetails } from 'src/app/models/project-creation.model';
-import { projectDetails } from 'src/app/models/project-details.model';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -19,17 +25,16 @@ export class ProjectComponent implements OnInit {
   public showProjectCreation: boolean;
   public prjectCreationFormsDetails: projectCreationDetails;
   public editProjectDetails: editProjectDetails;
+  public disabledSubmit: boolean;
+  public isEdit: boolean = false;
 
   constructor(public projectService: ProjectService,
     public masterDataService: MasterDataService,
     public fb: FormBuilder,
-    public activatedRoute: ActivatedRoute) { }
-
-  // public addProjectCreation = this.fb.group({
-  //   projectName: ['Test Project', Validators.required],
-  //   tenure: [3, Validators.required],
-  //   financialYear: [1, Validators.required]
-  // })
+    public activatedRoute: ActivatedRoute,
+    public projectSubmissionValidationService: ProjectSubmissionValidationService,
+    public notificationService: NotificationService<any>,
+    public dialog: MatDialog) { }
 
   public addProjectCreation = this.fb.group({
     projectName: this.fb.control<string | undefined>('', Validators.required),
@@ -44,7 +49,9 @@ export class ProjectComponent implements OnInit {
         this.onEditProjectHeader(value.id);
       }
     })
+
   }
+
 
   public onClickProjectCreation(projectYearBudget?: budgetYearDetails[]) {
     this.showProjectCreation = true;
@@ -100,6 +107,49 @@ export class ProjectComponent implements OnInit {
         }
       }
     })
+  }
+
+  public onClickFinalProjectSubmit() {
+    if (!this.projectSubmissionValidationService.checkAmountValidation()) {
+      const data: ReturnResult = {
+        data: null,
+        success: false,
+        message: 'Please check the component detail'
+      }
+      this.notificationService.showNotification(data);
+      return
+    }
+    const projectAmount = this.projectSubmissionValidationService.amountDetails.reduce(function (acc, obj) { return acc + obj.spendAmount; }, 0);
+    const dialogData: confirmationDialogModel = {
+      actionTitle: 'Submit',
+      message: 'Are you sure you want to submit ?',
+      action: ActionTypes.submit
+    }
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.data = dialogData;
+    const dialogRef = this.dialog.open
+      (ConfirmationDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((dialogResult: boolean) => {
+      if (dialogResult) {
+        const finalSubmitProject: finalProjectSubmission = {
+          projectheadid: this.projectSubmissionValidationService.amountDetails[0].projectid,
+          projectamount: projectAmount,
+          projectstatus: "I"
+        }
+        this.projectService.finalSubmitProject(finalSubmitProject).then(res => {
+          if (res.success) {
+          }
+          this.notificationService.showNotification(res);
+        })
+      }
+    })
+  }
+
+  public onChangeSubmitButton(value: boolean) {
+    this.isEdit = value;
   }
 
 }
