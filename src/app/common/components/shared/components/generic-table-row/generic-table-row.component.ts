@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { tableActionData } from 'src/app/common/models/table-action-data.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { tableActionData } from 'src/app/common/models/table-action-data.model';
   templateUrl: './generic-table-row.component.html',
   styleUrls: ['./generic-table-row.component.scss']
 })
-export class GenericTableRowComponent<T> implements OnInit {
+export class GenericTableRowComponent<T> implements OnChanges {
 
   @Input() row: T;
   @Input() columnName: string;
@@ -16,7 +16,8 @@ export class GenericTableRowComponent<T> implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+
   }
 
   onClickActionButton(actionType: string) {

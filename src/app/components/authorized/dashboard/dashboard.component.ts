@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
+import { statusCode } from 'src/app/common/models/enums/status-code.enum.model';
 import { masterData } from 'src/app/common/models/master-data.model';
 import { projectFilterData } from 'src/app/common/models/project-filter-data.model';
+import { ReturnResult } from 'src/app/common/models/return-result';
 import { tableActionData } from 'src/app/common/models/table-action-data.model';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
+import { NotificationService } from 'src/app/common/services/notification/notification.service';
 import { financialYearDetails } from 'src/app/models/financialyear-details.model';
 import { projectDetails } from 'src/app/models/project-details.model';
 import { rangeDetails } from 'src/app/models/range-details.model';
@@ -18,15 +21,17 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class DashboardComponent implements OnInit {
 
-  public actionButtons: string[] = ['edit', 'delete']
+  public actionButtons: string[] = ['edit', 'delete', 'view summary']
   public getProjectListTableData: projectDetails[];
   public getProjectListCollectionData: projectDetails[];
   public masterDataCollection: masterData;
   public actionTypes = ActionTypes;
+  public statusDetails = statusCode;
 
   constructor(public projectService: ProjectService,
     public router: Router,
-    public masterDataService: MasterDataService) { }
+    public masterDataService: MasterDataService,
+    public notificationService: NotificationService<ReturnResult>) { }
 
   ngOnInit(): void {
     this.getProjectDetails();
@@ -73,6 +78,9 @@ export class DashboardComponent implements OnInit {
       case this.actionTypes.delete:
         this.onClickDeleteAction(actionItem.data);
         break;
+      case this.actionTypes.viewSummary:
+        this.onClickViewSummaryAction(actionItem.data);
+        break;
     }
   }
 
@@ -82,11 +90,41 @@ export class DashboardComponent implements OnInit {
   }
 
   public onClickEditAction(data: projectDetails) {
-    this.router.navigate(['authorized/project'], {
-      queryParams: {
-        id: data.project_id
+    const statusCode = this.masterDataCollection.status.filter(element => element.statusdesc === data.status)[0].statuscode;
+    if (statusCode === this.statusDetails.Draft) {
+      this.router.navigate(['authorized/project'], {
+        queryParams: {
+          id: data.project_id
+        }
+      });
+    }
+    else {
+      const data: ReturnResult = {
+        data: null,
+        success: false,
+        message: 'Can not edit , project is in progress mode.'
       }
-    });
+      this.notificationService.showNotification(data);
+    }
+  }
+
+  public onClickViewSummaryAction(data: projectDetails) {
+    const statusCode = this.masterDataCollection.status.filter(element => element.statusdesc === data.status)[0].statuscode;
+    if (statusCode === this.statusDetails.InProcess) {
+      this.router.navigate(['authorized/summary'], {
+        queryParams: {
+          id: data.project_id
+        }
+      });
+    }
+    else {
+      const data: ReturnResult = {
+        data: null,
+        success: false,
+        message: 'Can not view summary, project is in draft mode.'
+      }
+      this.notificationService.showNotification(data);
+    }
   }
 
   public onClearProjectFilter() {

@@ -153,7 +153,7 @@
                     <div class="col">
                         <mat-form-field appearance="outline">
                             <mat-label>Total Area</mat-label>
-                            <input matInput type="text" formControlName="totalArea">
+                            <input matInput type="text" formControlName="totalArea" numbersWithDecimal>
                             <mat-error
                                 *ngIf="addProjectHeader.controls['totalArea'].touched && addProjectHeader.controls['totalArea'].hasError('required')">Total
                                 Area
@@ -164,10 +164,13 @@
                     <div class="col">
                         <mat-form-field appearance="outline">
                             <mat-label>APO Year</mat-label>
-                            <input matInput type="text" formControlName="apoYear">
+                            <input matInput type="text" formControlName="apoYear" numbersOnly>
                             <mat-error
                                 *ngIf="addProjectHeader.controls['apoYear'].touched && addProjectHeader.controls['apoYear'].hasError('required')">
                                 APO Year is required</mat-error>
+                            <mat-error
+                                *ngIf="addProjectHeader.controls['apoYear'].hasError('maxlength') || addProjectHeader.controls['apoYear'].hasError('minlength')">Max/Min
+                                length should be 4 characters</mat-error>
                         </mat-form-field>
                     </div>
                 </div>
@@ -175,7 +178,7 @@
                     <div class="col">
                         <mat-form-field appearance="outline">
                             <mat-label>Project Area</mat-label>
-                            <input matInput type="text" formControlName="projectArea">
+                            <input matInput type="text" formControlName="projectArea" numbersWithDecimal>
                             <mat-error
                                 *ngIf="addProjectHeader.controls['projectArea'].touched && addProjectHeader.controls['projectArea'].hasError('required')">Project
                                 Name is required</mat-error>
@@ -249,7 +252,7 @@
                             <div [formGroupName]="i">
                                 <mat-form-field appearance="outline">
                                     <mat-label>FY {{item.value.planyear}} Amount</mat-label>
-                                    <input matInput type="number" formControlName="budgetamount">
+                                    <input matInput type="number" formControlName="budgetamount" numbersOnly>
                                     <mat-error
                                         *ngIf="item['controls'].budgetamount.touched && item['controls'].budgetamount.hasError('required')">FY
                                         {{item.value.planyear}}

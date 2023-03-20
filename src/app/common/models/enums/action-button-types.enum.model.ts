@@ -4,5 +4,6 @@ export enum ActionTypes {
     delete = 'delete',
     insert = 'insert',
     save = 'save',
-    submit = 'submit'
+    submit = 'submit',
+    viewSummary = 'view summary'
 }

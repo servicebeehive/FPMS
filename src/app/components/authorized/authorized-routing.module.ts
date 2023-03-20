@@ -40,6 +40,10 @@ const routes: Routes = [{
     {
       path: 'voucher',
       loadChildren: () => import('./voucher/voucher.module').then((v) => v.VoucherModule)
+    },
+    {
+      path: 'summary',
+      loadChildren: () => import('./summary/summary.module').then((s) => s.SummaryModule)
     }
   ]
 }];

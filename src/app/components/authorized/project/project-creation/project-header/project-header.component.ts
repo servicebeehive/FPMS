@@ -56,7 +56,7 @@ export class ProjectHeaderComponent implements OnInit {
     compartmentNo: this.fb.control<number | undefined>(null, Validators.required),
     site: this.fb.control<string | undefined>('', Validators.required),
     totalArea: this.fb.control<string | undefined>('', Validators.required),
-    apoYear: this.fb.control<string | undefined>('', Validators.required),
+    apoYear: this.fb.control<string | undefined>('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
     projectArea: this.fb.control<string | undefined>('', Validators.required),
     schemeName: this.fb.control<number | undefined>(null, Validators.required),
     executionName: this.fb.control<string | undefined>(''),

@@ -54,6 +54,10 @@ export class ProjectComponent implements OnInit {
 
 
   public onClickProjectCreation(projectYearBudget?: budgetYearDetails[]) {
+    const checkTenure = this.checkTenureYears(this.addProjectCreation.value.tenure)
+    if (!checkTenure) {
+      return
+    }
     this.showProjectCreation = true;
     this.prjectCreationFormsDetails = this.addProjectCreation.value as projectCreationDetails
     const tabs = Array.from({ length: Number(this.prjectCreationFormsDetails.tenure) }, (_, index) => index + 1);
@@ -66,6 +70,29 @@ export class ProjectComponent implements OnInit {
         this.prjectCreationFormsDetails.tabs[index].yearbudgetid = item.yearbudgetid;
       })
     }
+  }
+
+  public checkTenureYears(years: number): boolean {
+    let checkTenure: boolean = true;
+    if (years > 10) {
+      checkTenure = false
+      const data: ReturnResult = {
+        data: null,
+        success: false,
+        message: 'Tenure can not be greater than 10 years.'
+      }
+      this.notificationService.showNotification(data);
+    }
+    else if (years <= 0) {
+      checkTenure = false
+      const data: ReturnResult = {
+        data: null,
+        success: false,
+        message: 'Tenure can not be 0 or minus year.'
+      }
+      this.notificationService.showNotification(data);
+    }
+    return checkTenure;
   }
 
   public setFinancialYears(tabs: number[], startFinancialYear: number): budgetYearDetails[] {

@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { NumberDirective } from './directives/numbers-only.directive';
+import { NumbersWithDecimalDirective } from './directives/numbers-with-decimal.directive';
 
 
 
@@ -23,7 +25,9 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     GenericTableComponent,
     GenericTableRowComponent,
     CapitalizePipe,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    NumberDirective,
+    NumbersWithDecimalDirective
   ],
   imports: [
     CommonModule,
@@ -40,7 +44,9 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     ProjectFilterComponent,
     ProjectStatsComponent,
     GenericTableComponent,
-    GenericTableRowComponent
+    GenericTableRowComponent,
+    NumberDirective,
+    NumbersWithDecimalDirective
   ]
 })
 export class SharedModule { }

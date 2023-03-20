@@ -8,7 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
-    AuthorizedComponent
+    AuthorizedComponent,
   ],
   imports: [
     CommonModule,
