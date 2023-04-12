@@ -1,1 +1,10 @@
-<p>summary works!</p>
+<div class="viewer-wrapper">
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Project Details">
+            <app-project-details [projectDetails]="projectSummaryDetails?.projectdetails"></app-project-details>
+        </mat-tab>
+        <mat-tab label="Header Details">
+            <app-header-detials></app-header-detials>
+        </mat-tab>
+    </mat-tab-group>
+</div>

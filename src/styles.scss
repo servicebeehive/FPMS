@@ -79,3 +79,8 @@ body {
 .error-font-color {
     color: #F33116;
 }
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}

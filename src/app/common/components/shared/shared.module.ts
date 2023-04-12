@@ -46,7 +46,8 @@ import { NumbersWithDecimalDirective } from './directives/numbers-with-decimal.d
     GenericTableComponent,
     GenericTableRowComponent,
     NumberDirective,
-    NumbersWithDecimalDirective
+    NumbersWithDecimalDirective,
+    CapitalizePipe
   ]
 })
 export class SharedModule { }

@@ -9,5 +9,7 @@ export class Controllers {
     public readonly createprojectcomponent = '/api/projectcomponent/createprojectcomponent';
     public readonly getprojectcomponentdetailbyyear = '/api/projectcomponent/getprojectcomponentdetailbyyear';
     public readonly getprojectinfodetails = '/api/projecthead/getprojectinfodetails';
-    public readonly postsubmitproject = '/api/projecthead/postsubmitproject'
+    public readonly postsubmitproject = '/api/projecthead/postsubmitproject';
+    public readonly projectsummarydata = '/api/projectsummary/projectsummarydata';
+    public readonly getprojectdocumentoperation = '/api/projectsummary/getprojectdocumentoperation';
 }

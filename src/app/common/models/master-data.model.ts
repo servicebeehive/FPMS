@@ -3,6 +3,7 @@ import { budgetHeadDetails } from "src/app/models/budgethead-details.model";
 import { compartmentDetails } from "src/app/models/compartment-details.model";
 import { districtDetails } from "src/app/models/district-details.model";
 import { divisionDetails } from "src/app/models/division-details.model"
+import { documentType } from "src/app/models/document-type.model";
 import { financialYearDetails } from "src/app/models/financialyear-details.model";
 import { rangeDetails } from "src/app/models/range-details.model";
 import { roleDetails } from "src/app/models/role-details.model"
@@ -29,6 +30,7 @@ export interface masterData {
     district: districtDetails[];
     compartment: compartmentDetails[];
     budgethead: budgetHeadDetails[];
-    range: rangeDetails[]
+    range: rangeDetails[];
+    documenttype: documentType[];
 
 }

@@ -23,7 +23,7 @@ export class BaseInterceptor implements HttpInterceptor {
         })
       })
     }
-    else if (request.url.includes('getprojectinfodetails')) {
+    else if (request.url.includes('getprojectinfodetails') || request.url.includes('projectsummarydata')) {
       const headerData = JSON.parse(request.headers.get("data"));
       request = request.clone({
         withCredentials: true,

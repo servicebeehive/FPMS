@@ -1,0 +1,75 @@
+<div class="viewer-wrapper">
+    <div class="docs-example-viewer-title">
+        Project Details :
+    </div>
+    <mat-card>
+        <div class="conatiner row-container">
+            <div class="row row-cols-5 mb-3">
+                <div class="col">
+                    <span><b>Project Name :</b> {{projectDetails?.project_name}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Division :</b> {{projectDetails?.division}}</span>
+                </div>
+                <div class="col">
+                    <span><b>SubDivision :</b> {{projectDetails?.subdivision}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Range :</b> {{projectDetails?.range}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Village :</b> {{projectDetails?.village}}</span>
+                </div>
+            </div>
+            <div class="row row-cols-5 mb-3">
+                <div class="col">
+                    <span><b>Tahsil :</b> {{projectDetails?.tahsil}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Samittee :</b> {{projectDetails?.samitee}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Vidhansabha :</b> {{projectDetails?.vidhansabha}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Beat :</b> {{projectDetails?.beat}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Compartment No :</b> {{projectDetails?.compartment}}</span>
+                </div>
+            </div>
+            <div class="row row-cols-5 mb-3">
+                <div class="col">
+                    <span><b>Site :</b> {{projectDetails?.site}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Total Area :</b> {{projectDetails?.totalarea}}</span>
+                </div>
+                <div class="col">
+                    <span><b>APO Year :</b> {{projectDetails?.approval_year}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Project Area :</b> {{projectDetails?.project_area}}</span>
+                </div>
+            </div>
+            <div class="row row-cols-5 mb-3">
+                <div class="col">
+                    <span><b>Scheme Name :</b> {{projectDetails?.scheme}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Execution Supervisor :</b> {{projectDetails?.execution_supervisor}}</span>
+                </div>
+                <div class="col">
+                    <span><b>Execution Post :</b> {{projectDetails?.execution_post}}</span>
+                </div>
+                <!-- <div class="col">
+                    <span><b>Budget Head :</b> {{projectDetails?.division}}</span>
+                </div> -->
+            </div>
+        </div>
+    </mat-card>
+</div>
+<app-attachment-details [projectHeaderID]="projectDetails?.projectheadid"></app-attachment-details>

@@ -11,6 +11,9 @@ import { finalProjectSubmission } from '../models/final-project-submission.model
 import { projectComponentDetails } from '../models/project-component-details.model';
 import { projectDetails } from '../models/project-details.model';
 import { projectHeaderDetails } from '../models/projectheader.model';
+import { summaryDeatils } from '../models/summary-details.model';
+import { projectDocumentList } from '../models/project-document-list.model';
+import { getProjectDocumentDataModel } from '../models/project-document-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +48,13 @@ export class ProjectService extends BaseService {
 
   public finalSubmitProject(finalSubmitProjectData: finalProjectSubmission): Promise<ReturnResult<any>> {
     return this.PostReturn<finalProjectSubmission, ReturnResult<any>>(this.controller.postsubmitproject, finalSubmitProjectData)
+  }
+
+  public getProjectSummaryData(data: { projectheadid: number }): Promise<ReturnResult<summaryDeatils>> {
+    return this.GetWithHeaders<ReturnResult<summaryDeatils>, { projectheadid: number }>(this.controller.projectsummarydata, data)
+  }
+
+  public getProjectDocumentOperation(getProjectDocumentData: getProjectDocumentDataModel): Promise<ReturnResult<projectDocumentList[]>> {
+    return this.PostReturn<getProjectDocumentDataModel, ReturnResult<projectDocumentList[]>>(this.controller.getprojectdocumentoperation, getProjectDocumentData)
   }
 }
