@@ -1,86 +1,87 @@
-/* You can add global styles to this file, and also import other style files */
+// /* You can add global styles to this file, and also import other style files */
 
-@import "~bootstrap/dist/css/bootstrap.css";
+// @import "~bootstrap/dist/css/bootstrap.css";
 
-@import '~@angular/material/theming';
+// @import '~@angular/material/theming';
 
-html,
-body {
-    height: 100%;
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    font-size: 14px;
-}
+// html,
+// body {
+//     height: 100%;
+//     margin: 0;
+//     font-family: Roboto, "Helvetica Neue", sans-serif;
+//     overflow-x: hidden;
+//     overflow-y: hidden;
+//     font-size: 14px;
+// }
 
-.row-container {
-    margin-bottom: -15px !important
-}
+// .row-container {
+//     margin-bottom: -15px !important
+// }
 
-.mat-form-field {
-    font-size: 14px;
-}
+// .mat-form-field {
+//     font-size: 14px;
+// }
 
-.dialog-class .mat-dialog-container {
-    height: auto;
-    border-radius: 10px;
-    background: #fafafa;
-}
+// .dialog-class .mat-dialog-container {
+//     height: auto;
+//     border-radius: 10px;
+//     background: #fafafa;
+// }
 
-.viewer-wrapper {
-    border-radius: 4px;
-    margin: 10px;
-    padding: 15px;
-    border: 1px solid rgba(0, 0, 0, .2);
-    margin-bottom: 30px;
+// .viewer-wrapper {
+//     border-radius: 4px;
+//     margin: 10px;
+//     padding: 15px;
+//     border: 1px solid rgba(0, 0, 0, .2);
+//     margin-bottom: 30px;
 
-    .docs-example-viewer-title {
-        margin-bottom: 10px;
-    }
-}
+//     .docs-example-viewer-title {
+//         margin-bottom: 10px;
+//     }
+// }
 
-.button-position-single {
-    position: relative;
-    top: 10px;
-}
+// .button-position-single {
+//     position: relative;
+//     top: 10px;
+// }
 
-.button-position-multiple {
-    position: relative;
-    top: -10px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-}
+// .button-position-multiple {
+//     position: relative;
+//     top: -10px;
+//     padding: 20px;
+//     display: flex;
+//     justify-content: space-between;
+// }
 
-.warning-snackbar {
-    background: #E9F316;
-}
+// .warning-snackbar {
+//     background: #E9F316;
+// }
 
-.success-snackbar {
-    background: #97F872;
-}
+// .success-snackbar {
+//     background: #97F872;
+// }
 
-.error-snackbar {
-    background: #F33116;
-}
+// .error-snackbar {
+//     background: #F33116;
+// }
 
-.dialog-viewer-title {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0px 8px 0px;
+// .dialog-viewer-title {
+//     align-items: center;
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 8px 0px 8px 0px;
 
-    .title {
-        font-size: x-large;
-    }
-}
+//     .title {
+//         font-size: x-large;
+//     }
+// }
 
-.error-font-color {
-    color: #F33116;
-}
+// .error-font-color {
+//     color: #F33116;
+// }
 
-.space-between {
-    display: flex;
-    justify-content: space-between;
-}
+// .space-between {
+//     display: flex;
+//     justify-content: space-between;
+// }
+.example-full-width{ width: 100%;}
