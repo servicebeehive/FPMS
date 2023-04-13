@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Controllers } from '../common/models/controllers';
 import { IConfig } from '../common/models/iconfig';
@@ -14,6 +14,7 @@ import { projectHeaderDetails } from '../models/projectheader.model';
 import { summaryDeatils } from '../models/summary-details.model';
 import { projectDocumentList } from '../models/project-document-list.model';
 import { getProjectDocumentDataModel } from '../models/project-document-data.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,11 @@ export class ProjectService extends BaseService {
 
   public getProjectDocumentOperation(getProjectDocumentData: getProjectDocumentDataModel): Promise<ReturnResult<projectDocumentList[]>> {
     return this.PostReturn<getProjectDocumentDataModel, ReturnResult<projectDocumentList[]>>(this.controller.getprojectdocumentoperation, getProjectDocumentData)
+  }
+
+  public getProjectUploadApprovalFile(data: { projectheadid: number }, fileUploadData: FormData): Promise<ReturnResult<any>> {
+    return this.PostWithFormData<{
+      projectheadid: number;
+    }, ReturnResult<any>>(this.controller.getprojectuploadapprovalfile, data, fileUploadData)
   }
 }

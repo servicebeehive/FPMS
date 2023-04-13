@@ -32,7 +32,6 @@ export class SummaryComponent implements OnInit {
       if (res.success) {
         this.projectSummaryDetails = res.data;
       }
-      console.log('this.projectSummaryDetails', this.projectSummaryDetails);
     })
   }
 

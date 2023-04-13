@@ -19,6 +19,18 @@ export abstract class BaseService {
       .toPromise();
   }
 
+  public async PostWithFormData<T, U>(controllerInfo: string, info: T, formData: FormData): Promise<U> {
+    const requestInfo = JSON.stringify(info);
+    return await this.httpClient
+      .post<U>(this.BaseUrl + controllerInfo, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'data': requestInfo
+        }
+      })
+      .toPromise();
+  }
+
   public async Get<U>(controllerInfo: string): Promise<U> {
     return await this.httpClient
       .get<U>(this.BaseUrl + controllerInfo)

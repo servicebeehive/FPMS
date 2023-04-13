@@ -35,9 +35,18 @@ export class AttachmentDetailsComponent implements OnChanges {
     this.getAttachmentDocumentDetails();
   }
 
-  public onFileSelect(input: HTMLInputElement) {
-    if (input.files.length > 0) {
-      console.log(input.files[0])
+  public onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const formData = new FormData();
+      const data = {
+        projectheadid: this.projectHeaderID
+      }
+      formData.append('approval_file', event.target.files[0], event.target.files[0].fileName);
+      this.projectService.getProjectUploadApprovalFile(data, formData).then((res: ReturnResult<any>) => {
+        if (res.success) {
+          this.getAttachmentDocumentDetails();
+        }
+      })
     }
   }
 
