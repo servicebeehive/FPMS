@@ -1,64 +1,91 @@
-<div class="login-viewer-wrapper">
-    <div class="login-docs-example-viewer-title">
-        <i class="material-icons">account_circle</i>
-    </div>
-    <div class="login-docs-example-viewer-title">
-        Login with Username and Password
-    </div>
-    <form [formGroup]="checkLoginForm" (ngSubmit)="onClickLogin()">
-        <mat-card align="center">
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>UserName</mat-label>
-                    <input matInput type="text" formControlName="userName">
-                    <mat-error
-                        *ngIf="checkLoginForm.controls['userName'].touched && checkLoginForm.controls['userName'].hasError('required')">User
-                        Name is required</mat-error>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password">
-                    <mat-error
-                        *ngIf="checkLoginForm.controls['password'].touched && checkLoginForm.controls['password'].hasError('required')">
-                        Password is required</mat-error>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Division</mat-label>
-                    <mat-select formControlName="division">
-                        <mat-option disabled selected>--Select Division --</mat-option>
-                        <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
-                            [value]="item?.divisionid">
-                            {{item.divisiondesc}}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="checkLoginForm.controls['division'].touched && checkLoginForm.controls['division'].hasError('required')">You
-                        must make a selection of division</mat-error>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Role</mat-label>
-                    <mat-select formControlName="role">
-                        <mat-option disabled selected>--Select Role --</mat-option>
-                        <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role"
-                            [value]="item?.roleid">
-                            {{item.roledesc}}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="checkLoginForm.controls['role'].touched && checkLoginForm.controls['role'].hasError('required')">You
-                        must make a selection of role</mat-error>
-                </mat-form-field>
-            </p>
-            <p>
-                <button type="submit" mat-raised-button color="primary"
-                    [disabled]="checkLoginForm.invalid">Login</button>
-            </p>
-        </mat-card>
-    </form>
-</div>
+
+<div class="auth-container container-fluid">
+    <div class="row auth-main">
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <div class="left-img" style="background-image: url(assets/img/login.png); background-size: 99%;">
+        </div>
+        </div>
+      
+      <div class="col-sm-6 auth-form-section">
+        <div class="form-section">
+          <div class="auth-wrapper">
+          
+            <h2 class="login-title"> Login</h2>
+
+            <form class="validate-form"  [formGroup]="checkLoginForm" (ngSubmit)="onClickLogin()">
+              
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>UserName</mat-label>
+                            <input matInput type="text" formControlName="userName">
+                            <mat-error
+                                *ngIf="checkLoginForm.controls['userName'].touched && checkLoginForm.controls['userName'].hasError('required')">User
+                                Name is required</mat-error>
+                        </mat-form-field>
+                  </div>
+                  </div>
+                    
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" formControlName="password">
+                            <mat-error
+                                *ngIf="checkLoginForm.controls['password'].touched && checkLoginForm.controls['password'].hasError('required')">
+                                Password is required</mat-error>
+                        </mat-form-field>
+                  </div>
+                  </div>
+                 
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Division</mat-label>
+                            <mat-select formControlName="division">
+                                <mat-option disabled selected>--Select Division --</mat-option>
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
+                                    [value]="item?.divisionid">
+                                    {{item.divisiondesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="checkLoginForm.controls['division'].touched && checkLoginForm.controls['division'].hasError('required')">You
+                                must make a selection of division</mat-error>
+                        </mat-form-field>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Role</mat-label>
+                            <mat-select formControlName="role">
+                                <mat-option disabled selected>--Select Role --</mat-option>
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.role"
+                                    [value]="item?.roleid">
+                                    {{item.roledesc}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="checkLoginForm.controls['role'].touched && checkLoginForm.controls['role'].hasError('required')">You
+                                must make a selection of role</mat-error>
+                        </mat-form-field>
+                    </div>
+                    </div>
+                    
+                    <div class="container-auth-form-btn text-center">
+                    
+                        <button type="submit" mat-flat-button color="primary" class="auth-form-btn" [disabled]="checkLoginForm.invalid">Login</button>
+             
+               </div>
+
+              
+            </form>
+           
+        
+        </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  
