@@ -11,15 +11,22 @@ export class ProjectComponentElementsComponent implements OnChanges {
 
   public dataSource: createProjectComponent[];
 
-  public columnToDispaly: string[] = ['sorno', 'workdetail', 'quantity', 'uom', 'rate', 'amount', 'geolocation', 'startdate', 'enddate', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount', 'actions']
+  public columnToDispaly: string[]
 
   @Input() componentElementDetails: createProjectComponent[];
+  @Input() isParentSummaryDetails: boolean;
   @Output() onClickRowItem = new EventEmitter<Partial<projectComponentData>>();
 
   constructor() { }
 
   ngOnChanges() {
     if (this.componentElementDetails) {
+      if (this.isParentSummaryDetails) {
+        this.columnToDispaly = ['sorno', 'workdetail', 'quantity', 'uom', 'rate', 'amount', 'geolocation', 'startdate', 'enddate', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount']
+      }
+      else {
+        this.columnToDispaly = ['sorno', 'workdetail', 'quantity', 'uom', 'rate', 'amount', 'geolocation', 'startdate', 'enddate', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount', 'actions']
+      }
       this.dataSource = this.componentElementDetails;
     }
   }

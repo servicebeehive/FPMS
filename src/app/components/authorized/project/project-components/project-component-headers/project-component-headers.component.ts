@@ -22,6 +22,7 @@ export class ProjectComponentHeadersComponent implements OnChanges {
 
   @Input() projectComponentData: componentDetails[];
   @Input() planYearWiseAmount: budgetYearDetails;
+  @Input() isSummaryDetails: boolean;
 
   @Output() public getProjectComponent = new EventEmitter<boolean>();
 
@@ -36,11 +37,19 @@ export class ProjectComponentHeadersComponent implements OnChanges {
     public notificationService: NotificationService<any>) { }
 
   ngOnChanges(): void {
-    this.projectComponentData.map(element => {
-      element.componentheader = { ...element.componentheader, isExpand: true }
-    });
-    this.dataSource = this.projectComponentData;
-    this.columnsToDisplayWithExpand = ['expand', ...this.columnToDispaly];
+    if (this.projectComponentData) {
+      if (this.isSummaryDetails) {
+        this.columnToDispaly = ['sorno', 'workdetail', 'startdate', 'enddate'];
+      }
+      else {
+        this.columnToDispaly = ['sorno', 'workdetail', 'startdate', 'enddate', 'action'];
+      }
+      this.projectComponentData.map(element => {
+        element.componentheader = { ...element.componentheader, isExpand: true }
+      });
+      this.dataSource = this.projectComponentData;
+      this.columnsToDisplayWithExpand = ['expand', ...this.columnToDispaly];
+    }
   }
 
   onClickExpand(element: createProjectComponent) {

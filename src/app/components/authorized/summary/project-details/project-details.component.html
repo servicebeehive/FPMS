@@ -72,4 +72,6 @@
         </div>
     </mat-card>
 </div>
-<app-attachment-details [projectHeaderID]="projectDetails?.projectheadid"></app-attachment-details>
+<app-attachment-details [projectHeaderID]="projectDetails?.projectheadid"
+    [projectWorkflow]="projectSummaryDetails?.projectworkflow"
+    (actionItemClicked)="onClickedActionButton($event)"></app-attachment-details>

@@ -51,5 +51,9 @@ import { ProjectComponentHeadersComponent } from './project-components/project-c
     MatExpansionModule,
     MatTableModule
   ],
+  exports: [
+    ProjectComponentHeadersComponent,
+    ProjectComponentsComponent
+  ]
 })
 export class ProjectModule { }

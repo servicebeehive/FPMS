@@ -15,6 +15,7 @@ import { summaryDeatils } from '../models/summary-details.model';
 import { projectDocumentList } from '../models/project-document-list.model';
 import { getProjectDocumentDataModel } from '../models/project-document-data.model';
 import { Observable } from 'rxjs';
+import { workFlowOperation } from '../models/work-flow.model';
 
 @Injectable({
   providedIn: 'root'
@@ -63,5 +64,9 @@ export class ProjectService extends BaseService {
     return this.PostWithFormData<{
       projectheadid: number;
     }, ReturnResult<any>>(this.controller.getprojectuploadapprovalfile, data, fileUploadData)
+  }
+
+  public workFlowTaskOperation(workFlowOperationData: workFlowOperation): Promise<ReturnResult<any>> {
+    return this.PostReturn<workFlowOperation, ReturnResult<any>>(this.controller.workflowtaskoperation, workFlowOperationData)
   }
 }

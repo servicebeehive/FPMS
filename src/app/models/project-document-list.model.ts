@@ -5,5 +5,6 @@ export interface projectDocumentList {
     uploadedby: string,
     updatetime: string,
     documentpath: string,
-    documenttypecode: string
+    documenttypecode: string,
+    index: number
 }

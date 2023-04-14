@@ -5,18 +5,19 @@ import { SummaryRoutingModule } from './summary-routing.module';
 import { SummaryComponent } from './summary.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { HeaderDetialsComponent } from './header-detials/header-detials.component';
 import { MatCardModule } from '@angular/material/card';
 import { AttachmentDetailsComponent } from './attachment-details/attachment-details.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { CapitalizePipe } from 'src/app/common/components/shared/pipes/capitalize.pipe';
 import { SharedModule } from 'src/app/common/components/shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProjectModule } from '../project/project.module';
 
 
 @NgModule({
-  declarations: [SummaryComponent, ProjectDetailsComponent, HeaderDetialsComponent, AttachmentDetailsComponent],
+  declarations: [SummaryComponent, ProjectDetailsComponent, AttachmentDetailsComponent],
   imports: [
     CommonModule,
     SummaryRoutingModule,
@@ -25,7 +26,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatTableModule,
     MatSelectModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    ProjectModule
   ]
 })
 export class SummaryModule { }
