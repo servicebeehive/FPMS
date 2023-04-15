@@ -1,3 +1,18 @@
-<ng-container *ngFor="let router of routers">
-    <p [routerLink]="router.route" routerLinkActive="active">{{router.label}}</p>
-</ng-container>
+<div  class="sidebar">
+    <div class="menu">
+       
+        <ul class="list">
+            <li *ngFor="let router of routers">
+                <a [routerLink]="router.route" routerLinkActive="active">
+                 
+                    <mat-icon class="material-icons-outlined"  fontIcon="{{router.icon}}"></mat-icon> {{router.label}}</a>
+            </li>
+        </ul>
+<!-- <ng-container>
+    
+    
+</ng-container> -->
+
+</div>
+
+</div>

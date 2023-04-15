@@ -1,7 +1,12 @@
 <ng-container *ngIf="columnName !=='actions'">{{ row[columnName] }}</ng-container>
 <ng-container *ngIf="columnName ==='actions'">
     <ng-container *ngFor="let action of actionButtons">
-        <button mat-stroked-button color="primary" (click)="onClickActionButton(action)">{{action |
-            capitalize}}</button>
+        <button [matTooltip]="action"  mat-icon-button  (click)="onClickActionButton(action)">
+            <app-feather-icons *ngIf="action=='edit'" [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+            <app-feather-icons  *ngIf="action=='view summary'" [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
+            <app-feather-icons  *ngIf="action=='delete'" [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+            <!-- {{action |
+            capitalize}} -->
+        </button>
     </ng-container>
 </ng-container>

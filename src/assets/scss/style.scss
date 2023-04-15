@@ -11,11 +11,11 @@
 @import "common/_rtl.scss";
 
 /*                 [2. Fonts]                   				*/
-// @import "fonts/_material.scss";
-// @import "fonts/fontawesome/fontawesome.scss";
-// @import "fonts/fontawesome/regular.scss";
-// @import "fonts/fontawesome/solid.scss";
-// @import "fonts/fontawesome/brands.scss";
+ @import "fonts/_material.scss";
+@import "fonts/fontawesome/fontawesome.scss";
+ @import "fonts/fontawesome/regular.scss";
+@import "fonts/fontawesome/solid.scss";
+ @import "fonts/fontawesome/brands.scss";
 
 /*                 [3. Components ]                   		*/
 @import "components/_breadcrumbs.scss";
