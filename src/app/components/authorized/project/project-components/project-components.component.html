@@ -45,7 +45,7 @@
     </form>
     <div *ngIf="getProjectListData">
         <app-project-component-headers [projectComponentData]="getProjectListData.projectcomponent"
-            [planYearWiseAmount]="planYearAmount"
-            (getProjectComponent)="getCallProjectComponent($event)"></app-project-component-headers>
+            [planYearWiseAmount]="planYearAmount" (getProjectComponent)="getCallProjectComponent($event)"
+            [isSummaryDetails]=false></app-project-component-headers>
     </div>
 </div>

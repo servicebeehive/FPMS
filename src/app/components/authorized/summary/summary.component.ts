@@ -12,6 +12,7 @@ import { ProjectService } from 'src/app/services/project.service';
 export class SummaryComponent implements OnInit {
 
   public projectSummaryDetails: summaryDeatils;
+  public projectId: number;
 
   constructor(public activatedRoute: ActivatedRoute,
     public projectService: ProjectService) { }
@@ -19,6 +20,7 @@ export class SummaryComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((value: { id: number }) => {
       if (value.id) {
+        this.projectId = value.id;
         this.getProjectSummaryDetails(value.id);
       }
     })
@@ -32,8 +34,13 @@ export class SummaryComponent implements OnInit {
       if (res.success) {
         this.projectSummaryDetails = res.data;
       }
-      console.log('this.projectSummaryDetails', this.projectSummaryDetails);
     })
+  }
+
+  public onAttachmentActionButtonClicked(value: boolean) {
+    if (value) {
+      this.getProjectSummaryDetails(this.projectId);
+    }
   }
 
 }

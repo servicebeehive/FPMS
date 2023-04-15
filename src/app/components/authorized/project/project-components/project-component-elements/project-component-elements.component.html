@@ -2,7 +2,7 @@
     <ng-container *ngFor="let columnName of columnToDispaly" [matColumnDef]="columnName">
         <th mat-header-cell *matHeaderCellDef>{{ columnName }}</th>
         <td mat-cell *matCellDef="let row">{{row[columnName]}}
-            <ng-container *ngIf="columnName === 'actions'">
+            <ng-container *ngIf="columnName === 'actions' && !isParentSummaryDetails">
                 <button mat-stroked-button color="primary" (click)="onClickEdit('edit',row)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="onClickEdit('delete',row)">Delete</button>
             </ng-container>

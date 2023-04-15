@@ -3,12 +3,12 @@
         Attachment Details :
         <div>
             <button type="button" mat-raised-button color="primary">
-                <input type="file" #fileInput (change)="onFileSelect(fileInput)" />
+                <input type="file" (change)="onFileSelect($event)" />
             </button>
         </div>
     </div>
     <mat-card>
-        <div formGroup='addAttachmentDetails'>
+        <div [formGroup]='addAttachmentDetails'>
             <div formArrayName="addAttachmentsRows">
                 <div class="div_table">
                     <span>Date</span>
@@ -19,84 +19,46 @@
                 </div>
                 <br>
                 <div *ngFor="let item of formControl.controls; let i = index">
-                    <div class="div_table">
-                        <div>
-                            <span>{{item.value.updatetime | date}}</span>
-                        </div>
-                        <div>
-                            <span>{{item.value.documentname}}</span>
-                        </div>
-                        <div>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Document Type</mat-label>
-                                <mat-select formControlName="documenttypecode">
-                                    <mat-option disabled selected>--Select Document Type --</mat-option>
-                                    <mat-option *ngFor="let item of masterDataService?.globalMasterData?.documenttype"
-                                        [value]="item?.documenttypecode">
-                                        {{item.documenttypedesc}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <span>{{item.value.uploadedby}}</span>
-                        </div>
-                        <div>
-                            <button mat-stroked-button color="primary">Download</button>
-                            <button mat-stroked-button color="primary">Cancel</button>
-                            <button mat-stroked-button color="primary">Save</button>
-                        </div>
-                    </div>
-                    <!-- <table>
-                        <tr>
-                            <th>Date</th>
-                            <th>File Name</th>
-                            <th>Type</th>
-                            <th>Added By</th>
-                            <th>Actios</th>
-                        </tr>
-                        <tr>
-                            <td><span>{{item.value.updatetime | date}}</span></td>
-                            <td><span>{{item.value.documentname}}</span></td>
-                            <td>
+                    <div [formGroupName]="i">
+                        <div class="div_table">
+                            <div>
+                                <span>{{item.value.updatetime | date}}</span>
+                            </div>
+                            <div>
+                                <span>{{item.value.documentname}}</span>
+                            </div>
+                            <div>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Document Type</mat-label>
                                     <mat-select formControlName="documenttypecode">
                                         <mat-option disabled selected>--Select Document Type --</mat-option>
                                         <mat-option
-                                            *ngFor="let item of masterDataService?.globalMasterData?.documenttype"
-                                            [value]="item?.documenttypecode">
-                                            {{item.documenttypedesc}}
+                                            *ngFor="let element of masterDataService?.globalMasterData?.documenttype"
+                                            [value]="element?.documenttypecode">
+                                            {{element.documenttypedesc}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </td>
-                            <td>
+                            </div>
+                            <div>
                                 <span>{{item.value.uploadedby}}</span>
-                            </td>
-                            <td>
-                                <button mat-stroked-button color="primary">Insert</button>
-                                <button mat-stroked-button color="primary">Edit</button>
-                                <button mat-stroked-button color="primary">Delete</button>
-                            </td>
-                        </tr>
-                    </table> -->
+                            </div>
+                            <div>
+                                <button mat-stroked-button color="primary"
+                                    (click)="onClickDownload(item.value)">Download</button>
+                                <button mat-stroked-button color="primary"
+                                    (click)="onClickCancel(item.value)">Cancel</button>
+                                <button mat-stroked-button color="primary"
+                                    (click)="onClickSave(item.value)">Save</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </mat-card>
 </div>
 <div class="viewer-wrapper">
-    <div class="docs-example-viewer-title">
-        Approval Task :
-    </div>
-    <mat-card>
-        <table mat-table class="mat-elevation-z8">
-            <ng-container *ngFor="let columnName of columnToDispaly" [matColumnDef]="columnName">
-                <th mat-header-cell *matHeaderCellDef>{{ columnName|capitalize }}</th>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="columnToDispaly"></tr>
-            <tr mat-row *matRowDef="let row; columns: columnToDispaly"></tr>
-        </table>
-    </mat-card>
+    <app-generic-table [title]="'Approval Task'" [tableData]="projectWorkflow" [actionButtons]="actionButtons"
+        (actionButtonItem)="onGetActionItem($event)"></app-generic-table>
 </div>

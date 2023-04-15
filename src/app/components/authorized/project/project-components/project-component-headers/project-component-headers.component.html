@@ -2,13 +2,15 @@
     <ng-container *ngFor="let columnName of columnToDispaly" [matColumnDef]="columnName">
         <th mat-header-cell *matHeaderCellDef>{{ columnName }}</th>
         <td mat-cell *matCellDef="let row">{{row.componentheader[columnName]}}
-            <ng-container *ngIf="columnName === 'action'">
-                <button mat-stroked-button color="primary"
-                    (click)="onClickEdit('insert',row.componentheader)">Insert</button>
-                <button mat-stroked-button color="primary"
-                    (click)="onClickEdit('edit',row.componentheader)">Edit</button>
-                <button mat-stroked-button color="primary"
-                    (click)="onClickEdit('delete',row.componentheader)">Delete</button>
+            <ng-container *ngIf="!isSummaryDetails">
+                <ng-container *ngIf="columnName === 'action'">
+                    <button mat-stroked-button color="primary"
+                        (click)="onClickEdit('insert',row.componentheader)">Insert</button>
+                    <button mat-stroked-button color="primary"
+                        (click)="onClickEdit('edit',row.componentheader)">Edit</button>
+                    <button mat-stroked-button color="primary"
+                        (click)="onClickEdit('delete',row.componentheader)">Delete</button>
+                </ng-container>
             </ng-container>
         </td>
     </ng-container>
@@ -25,7 +27,8 @@
         <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
             <div class="example-element-detail" *ngIf="!element.componentheader['isExpand']">
                 <app-project-component-elements [componentElementDetails]="element.componentelement"
-                    (onClickRowItem)="rowItemDetails($event)"></app-project-component-elements>
+                    (onClickRowItem)="rowItemDetails($event)"
+                    [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
             </div>
         </td>
     </ng-container>

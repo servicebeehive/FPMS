@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
 
   public onClickEditAction(data: projectDetails) {
     const statusCode = this.masterDataCollection.status.filter(element => element.statusdesc === data.status)[0].statuscode;
-    if (statusCode === this.statusDetails.Draft) {
+    if (statusCode === this.statusDetails.Draft || statusCode === this.statusDetails.OnHold) {
       this.router.navigate(['authorized/project'], {
         queryParams: {
           id: data.project_id

@@ -12,4 +12,6 @@ export class Controllers {
     public readonly postsubmitproject = '/api/projecthead/postsubmitproject';
     public readonly projectsummarydata = '/api/projectsummary/projectsummarydata';
     public readonly getprojectdocumentoperation = '/api/projectsummary/getprojectdocumentoperation';
+    public readonly getprojectuploadapprovalfile = '/api/projectsummary/getprojectuploadapprovalfile';
+    public readonly workflowtaskoperation = '/api/projectsummary/workflowtaskoperation';
 }

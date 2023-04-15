@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { projectDetails } from 'src/app/models/project-details.model';
+import { summaryDeatils } from 'src/app/models/summary-details.model';
 
 @Component({
   selector: 'app-project-details',
@@ -8,14 +9,21 @@ import { projectDetails } from 'src/app/models/project-details.model';
 })
 export class ProjectDetailsComponent implements OnChanges {
 
-  @Input() projectDetails: projectDetails;
+  @Input() projectSummaryDetails: summaryDeatils;
+  @Output() attachmentActionButtonClicked = new EventEmitter<boolean>();
+
+  public projectDetails: projectDetails;
 
   constructor() { }
 
   ngOnChanges(): void {
-    // if (this.projectDetails) {
-    //   console.log('projectDetails', this.projectDetails);
-    // }
+    if (this.projectSummaryDetails) {
+      this.projectDetails = this.projectSummaryDetails.projectdetails;
+    }
+  }
+
+  public onClickedActionButton(value: boolean) {
+    this.attachmentActionButtonClicked.emit(value);
   }
 
 }
