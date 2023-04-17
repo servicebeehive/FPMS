@@ -1,6 +1,6 @@
 // /* You can add global styles to this file, and also import other style files */
 
-// @import "~bootstrap/dist/css/bootstrap.css";
+ //@import "~bootstrap/dist/css/bootstrap.css";
 
 // @import '~@angular/material/theming';
 
@@ -85,3 +85,10 @@
 //     justify-content: space-between;
 // }
 .example-full-width{ width: 100%;}
+.mat-toolbar{
+    z-index: 11;
+    position: fixed
+  }
+  mat-drawer-container{ padding-top: 60px;
+.mat-drawer{ top: 64px;}
+}

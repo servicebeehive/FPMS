@@ -15,6 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { NumberDirective } from './directives/numbers-only.directive';
 import { NumbersWithDecimalDirective } from './directives/numbers-with-decimal.directive';
+import { FeatherIconsModule } from './components/feather-icons/feather-icons.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -39,6 +41,8 @@ import { NumbersWithDecimalDirective } from './directives/numbers-with-decimal.d
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    FeatherIconsModule,
+    MatTooltipModule
   ],
   exports: [
     ProjectFilterComponent,

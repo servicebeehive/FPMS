@@ -1,7 +1,7 @@
 <div class="viewer-wrapper">
-    <div class="docs-example-viewer-title">
-        Project Filter
-    </div>
+    <!-- <div class="docs-example-viewer-title">
+         <h2>Project Filter</h2>
+    </div> -->
     <form [formGroup]="addProjectFilter" (ngSubmit)="onProjectFilter()">
         <mat-card>
             <div class="conatiner row-container">
@@ -49,8 +49,8 @@
                         </mat-form-field>
                     </div>
                     <div class="col button-position-multiple" align="center">
-                        <button type="submit" mat-raised-button color="primary">Apply Filter</button>
-                        <button type="button" mat-raised-button color="primary" (click)="onClickClearFilter()">Clear
+                        <button type="submit" class="mr-2" mat-raised-button color="primary">Apply Filter</button>
+                        <button type="button"   mat-raised-button color="primary" (click)="onClickClearFilter()">Clear
                             Filter</button>
                     </div>
                 </div>

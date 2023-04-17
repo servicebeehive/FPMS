@@ -29,8 +29,8 @@
   overflow: hidden;
   display: inline-block;
   height: calc(100vh - 60px);
-  position: fixed;
-  top: 60px;
+  // position: fixed;
+  // top: 60px;
   left: 0;
   border-right: 1px solid #f2f4f9;
   -webkit-box-shadow: 0 8px 10px 0 rgba(183, 192, 206, 0.2);
@@ -279,11 +279,14 @@
         padding: 9px 9px 9px 9px;
         margin: 8px 13px 0px 13px;
         border-radius: 0.5rem;
+        display: flex; 
+        align-items: center;
 
         &:hover,
         &:active {
           text-decoration: none !important;
           background-color: #f0f3fb;
+          
         }
 
         small {
@@ -299,6 +302,15 @@
           font-size: 14px;
           overflow: hidden;
         }
+        .mat-icon{
+          color:#777d9f; margin-right: 5px;
+         }
+      &.active{
+        background-color: #f0f3fb;
+        .mat-icon{
+          color:#3f51b5; margin-right: 5px;
+         }
+      }
       }
 
       .ml-menu {
@@ -320,6 +332,7 @@
           }
 
           &.active {
+           
             a.toggled:not(.menu-toggle) {
               &:before {
                 content: "";
@@ -361,6 +374,7 @@
             .ml-menu-2 {
               display: block;
             }
+            
           }
 
           .ml-menu {

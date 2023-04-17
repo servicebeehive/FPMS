@@ -14,37 +14,37 @@ export class AuthorizedComponent implements OnInit {
     {
       label: "Dashboard",
       route: "dashboard",
-      icon: "",
+      icon: "dashboard",
     },
     {
       label: "Project",
       route: "project",
-      icon: "",
+      icon: "assignment",
     },
     {
       label: "Financial",
       route: "financial",
-      icon: "",
+      icon: "card_travel",
     },
     {
       label: "Report",
       route: "report",
-      icon: "",
+      icon: "assessment",
     },
     {
       label: "Setting",
       route: "setting",
-      icon: "",
+      icon: "settings",
     },
     {
       label: "User",
       route: "user",
-      icon: "",
+      icon: "people",
     },
     {
       label: "Voucher",
       route: "voucher",
-      icon: "",
+      icon: "local_offer",
     }
   ]
 
