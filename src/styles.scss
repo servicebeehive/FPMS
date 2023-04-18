@@ -90,5 +90,7 @@
     position: fixed
   }
   mat-drawer-container{ padding-top: 60px;
+    .mat-drawer-content{ height: 100vh;}
 .mat-drawer{ top: 64px;}
 }
+.mat-form-field{ width: 100%;}
