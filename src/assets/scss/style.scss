@@ -86,3 +86,11 @@
 /*                 [8. Browser ]                   			*/
 @import "browser/_ie10.scss";
 @import "browser/_ie11.scss";
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 4px 0 0 4px;
+   
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 0 4px 4px 0;
+   
+  }
