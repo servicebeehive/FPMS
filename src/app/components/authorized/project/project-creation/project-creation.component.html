@@ -6,6 +6,10 @@
             </app-project-header>
         </mat-tab>
         <mat-tab label="FY {{tab.planyear}}" *ngFor="let tab of tabNumber">
-            <app-project-components [planYearAmount]="tab"></app-project-components></mat-tab>
+            <div class="pt-4">
+            <app-project-components [planYearAmount]="tab"></app-project-components>
+            </div>
+        </mat-tab>
+            
     </mat-tab-group>
 </div>

@@ -1,16 +1,20 @@
 
-<div class="auth-container container-fluid">
+<div class="auth-container container-fluid"  style="background-image:url(assets/img/login-bg.jpg);background-color: #6DB3F2; background-size: 100%;">
     <div class="row auth-main">
       <div class="col-sm-6 px-0 d-none d-sm-block">
-        <div class="left-img" style="background-image: url(assets/img/login.png); background-size: 99%;">
+       
+        <div class="left-img" style="background-image: url(assets/img/logo.jpeg); background-size:25%;">
         </div>
         </div>
       
       <div class="col-sm-6 auth-form-section">
         <div class="form-section">
           <div class="auth-wrapper">
+         
+            <!-- <img src="assets/img/logo.jpeg" alt="FPMS" width="80"> -->
+            <h2  class="welcome-msg mb-3"> Welcome to FPMS </h2>
           
-            <h2 class="login-title"> Login</h2>
+            <h3 class="login-title mt-2"> Login</h3>
 
             <form class="validate-form"  [formGroup]="checkLoginForm" (ngSubmit)="onClickLogin()">
               
