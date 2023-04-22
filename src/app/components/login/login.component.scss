@@ -1,0 +1,11 @@
+.auth-container::before{
+    background-color: rgba(4, 11, 37, 0.9);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  .row{ position: relative; z-index: 1;}

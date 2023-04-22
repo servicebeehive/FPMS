@@ -1,74 +1,45 @@
 <div class="viewer-wrapper">
     <div class="docs-example-viewer-title">
-        Project Details :
+        <h5 class="pl-2"> Project Details :</h5>
+       
     </div>
     <mat-card>
         <div class="conatiner row-container">
-            <div class="row row-cols-5 mb-3">
-                <div class="col">
-                    <span><b>Project Name :</b> {{projectDetails?.project_name}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Division :</b> {{projectDetails?.division}}</span>
-                </div>
-                <div class="col">
-                    <span><b>SubDivision :</b> {{projectDetails?.subdivision}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Range :</b> {{projectDetails?.range}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Village :</b> {{projectDetails?.village}}</span>
-                </div>
-            </div>
-            <div class="row row-cols-5 mb-3">
-                <div class="col">
-                    <span><b>Tahsil :</b> {{projectDetails?.tahsil}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Samittee :</b> {{projectDetails?.samitee}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Vidhansabha :</b> {{projectDetails?.vidhansabha}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Beat :</b> {{projectDetails?.beat}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Compartment No :</b> {{projectDetails?.compartment}}</span>
-                </div>
-            </div>
-            <div class="row row-cols-5 mb-3">
-                <div class="col">
-                    <span><b>Site :</b> {{projectDetails?.site}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Total Area :</b> {{projectDetails?.totalarea}}</span>
-                </div>
-                <div class="col">
-                    <span><b>APO Year :</b> {{projectDetails?.approval_year}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Project Area :</b> {{projectDetails?.project_area}}</span>
-                </div>
-            </div>
-            <div class="row row-cols-5 mb-3">
-                <div class="col">
-                    <span><b>Scheme Name :</b> {{projectDetails?.scheme}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Execution Supervisor :</b> {{projectDetails?.execution_supervisor}}</span>
-                </div>
-                <div class="col">
-                    <span><b>Execution Post :</b> {{projectDetails?.execution_post}}</span>
-                </div>
-                <!-- <div class="col">
-                    <span><b>Budget Head :</b> {{projectDetails?.division}}</span>
-                </div> -->
-            </div>
+            <ul class="list-group list-group-flush flex-row row row-cols-5">
+                    <li class="list-group-item col border-0"><b>Project Name :</b> {{projectDetails?.project_name}}</li>
+                    <li class="list-group-item col border-0"><b>Division :</b> {{projectDetails?.division}}</li>
+                    <li class="list-group-item col border-0"><b>SubDivision :</b> {{projectDetails?.subdivision}}</li>
+                    <li class="list-group-item col border-0"><b>Range :</b> {{projectDetails?.range}}</li>
+                    <li class="list-group-item col border-0"><b>Village :</b> {{projectDetails?.village}}</li>
+                  </ul>
+               <ul class="list-group list-group-flush flex-row row row-cols-5">
+                    <li class="list-group-item col border-0"><b>Tahsil :</b> {{projectDetails?.tahsil}}</li>
+                    <li class="list-group-item col border-0"><b>Samittee :</b> {{projectDetails?.samitee}}</li>
+                    <li class="list-group-item col border-0"><b>Vidhansabha :</b> {{projectDetails?.vidhansabha}}</li>
+                    <li class="list-group-item col border-0"><b>Beat :</b> {{projectDetails?.beat}}</li>
+                    <li class="list-group-item col border-0"><b>Compartment No :</b> {{projectDetails?.compartment}}</li>
+                  </ul>
+
+
+                  <ul class="list-group list-group-flush flex-row row row-cols-5">
+                    <li class="list-group-item col border-0"><b>Site :</b> {{projectDetails?.site}}</li>
+                    <li class="list-group-item col border-0"><b>Total Area :</b> {{projectDetails?.totalarea}}</li>
+                    <li class="list-group-item col border-0"><b>APO Year :</b> {{projectDetails?.approval_year}}</li>
+                    <li class="list-group-item col border-0"><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</li>
+                    <li class="list-group-item col border-0"><b>Project Area :</b> {{projectDetails?.project_area}}</li>
+                  </ul>
+                  <ul class="list-group list-group-flush flex-row row row-cols-5">
+                    <li class="list-group-item col border-0"><b>Scheme Name :</b> {{projectDetails?.scheme}}</li>
+                    <li class="list-group-item col border-0"><b>Execution Supervisor :</b> {{projectDetails?.execution_supervisor}}</li>
+                    <li class="list-group-item col border-0"><b>APO Year :</b> {{projectDetails?.approval_year}}</li>
+                    <li class="list-group-item col border-0"><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</li>
+                    <li class="list-group-item col border-0"><b>Execution Post :</b> {{projectDetails?.execution_post}}</li>
+                    <!-- <li class="list-group-item col border-0"><b>Budget Head :</b> {{projectDetails?.division}}</li> -->
+                  </ul>
+              
+          
+           
+          
         </div>
     </mat-card>
 </div>
