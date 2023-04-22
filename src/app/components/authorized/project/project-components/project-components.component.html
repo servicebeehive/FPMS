@@ -1,9 +1,9 @@
 <div class="viewer-wrapper">
-    <div class="docs-example-viewer-title">
+    <!-- <div class="docs-example-viewer-title">
         Project Component Creation
-    </div>
+    </div> -->
     <form [formGroup]="addProjectComponent">
-        <mat-card>
+      
             <div class="conatiner row-container">
                 <div class="row row-cols-6 ">
                     <div class="col">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-        </mat-card>
+        
     </form>
     <div *ngIf="getProjectListData">
         <app-project-component-headers [projectComponentData]="getProjectListData.projectcomponent"

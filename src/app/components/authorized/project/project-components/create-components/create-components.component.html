@@ -1,12 +1,19 @@
-<div class="dialog-viewer-title">
-    <span class="title">Project Component Creation - FY {{dialogData.planYearAmount.planyear}}</span>
-</div>
-<form [formGroup]="addComponentInformation" (ngSubmit)="onClickProjectComponent()">
-    <mat-card>
-        <div class="conatiner row-container">
-            <div class="row mb-3">
-                <div class="col-6">
-                    <mat-checkbox class="example-margin" (change)="onChangeHeader($event.checked)"
+<div class="addContainer">
+
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+            Project Component Creation - FY {{dialogData.planYearAmount.planyear}}
+        </div>
+      </div>
+   
+
+  <div mat-dialog-content>
+<form  class="register-form" [formGroup]="addComponentInformation" (ngSubmit)="onClickProjectComponent()">
+   
+        <div class="container-fluid">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <mat-checkbox  (change)="onChangeHeader($event.checked)"
                         formControlName="componentHeadreType">Is Header</mat-checkbox>
                 </div>
             </div>
@@ -24,6 +31,7 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col">
                 <mat-form-field appearance="outline">
                     <mat-label>Work Details</mat-label>
                     <textarea matInput type="text" formControlName="workdetail"> </textarea>
@@ -32,6 +40,7 @@
                         Work Details
                         is required</mat-error>
                 </mat-form-field>
+                </div>
             </div>
             <ng-container *ngIf="!addComponentInformation.controls['componentHeadreType'].value">
                 <div class="row">
@@ -110,25 +119,29 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-4">
                     <div class="col-6">
-                        <mat-checkbox class="example-margin" formControlName="materialRequired">Material
+                        <mat-checkbox  formControlName="materialRequired">Material
                             Required</mat-checkbox>
                     </div>
                 </div>
             </ng-container>
-            <div class="row mb-3">
-                <div class="col-6">
-                    <button type="submit" mat-raised-button color="primary"
+            <div class="row mt-2">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <div class="example-button-row">
+                      <button type="submit" mat-raised-button color="primary"
                         [disabled]="addComponentInformation.invalid">{{dialogData.actionType ===
                         actionTypes.edit?'Edit':'Create'}}
                         {{!addComponentInformation.controls['componentHeadreType'].value?'Element':'Header'}}
                         Component</button>
+                    
+                        <button type="button" mat-raised-button color="warn" (click)="onClickCancel()">Cancel</button>
+                  </div>
                 </div>
-                <div class="col-6" align="right">
-                    <button type="button" mat-raised-button color="warn" (click)="onClickCancel()">Cancel</button>
-                </div>
-            </div>
+              </div>
+           
         </div>
-    </mat-card>
+    
 </form>
+</div>
+</div>
