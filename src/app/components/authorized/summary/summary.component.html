@@ -1,12 +1,44 @@
-<div class="viewer-wrapper">
-    <mat-tab-group animationDuration="0ms">
-        <mat-tab label="Project Details">
-            <app-project-details [projectSummaryDetails]="projectSummaryDetails"
-                (attachmentActionButtonClicked)="onAttachmentActionButtonClicked($event)"></app-project-details>
-        </mat-tab>
-        <mat-tab label="Header Details">
-            <app-project-component-headers [projectComponentData]="projectSummaryDetails?.projectcomponent"
-                [isSummaryDetails]=true></app-project-component-headers>
-        </mat-tab>
-    </mat-tab-group>
-</div>
+
+
+<!-- <app-project-stats></app-project-stats> -->
+
+
+    
+
+
+<section class="content ">
+    <div class="content-block">
+   
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="body">
+              <div class="responsive_table">
+            
+                <div class="viewer-wrapper">
+                    <mat-tab-group animationDuration="0ms">
+                        <mat-tab label="Project Details" >
+                            <div class="pt-3">
+                      
+                            <app-project-details [projectSummaryDetails]="projectSummaryDetails"
+                                (attachmentActionButtonClicked)="onAttachmentActionButtonClicked($event)"></app-project-details>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Header Details">
+                            <div class="pt-3">
+                            <app-project-component-headers [projectComponentData]="projectSummaryDetails?.projectcomponent"
+                                [isSummaryDetails]=true></app-project-component-headers>
+                            </div>
+                           
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+               
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
