@@ -1,9 +1,9 @@
 <div class="viewer-wrapper">
     <div class="docs-example-viewer-title">
-        <h5 class="pl-2"> Project Details :</h5>
+        <!-- <h5 class="pl-2"> Project Details</h5> -->
        
     </div>
-    <mat-card>
+   
         <div class="conatiner row-container">
             <ul class="list-group list-group-flush flex-row row row-cols-5">
                     <li class="list-group-item col border-0"><b>Project Name :</b> {{projectDetails?.project_name}}</li>
@@ -41,8 +41,8 @@
            
           
         </div>
-    </mat-card>
-</div>
-<app-attachment-details [projectHeaderID]="projectDetails?.projectheadid"
+  
+    <app-attachment-details [projectHeaderID]="projectDetails?.projectheadid"
     [projectWorkflow]="projectSummaryDetails?.projectworkflow"
     (actionItemClicked)="onClickedActionButton($event)"></app-attachment-details>
+</div>

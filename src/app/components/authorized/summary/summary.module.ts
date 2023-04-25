@@ -14,6 +14,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProjectModule } from '../project/project.module';
+import { FeatherModule } from 'angular-feather';
+import { FeatherIconsModule } from 'src/app/common/components/shared/components/feather-icons/feather-icons.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -30,7 +33,7 @@ import { ProjectModule } from '../project/project.module';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    ProjectModule
+    ProjectModule,FeatherIconsModule, MatTooltipModule
   ]
 })
 export class SummaryModule { }
