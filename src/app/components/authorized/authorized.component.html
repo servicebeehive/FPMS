@@ -4,6 +4,9 @@
         <app-side-nav [routers]="routerData"></app-side-nav>
     </mat-drawer>
     <mat-drawer-content>
+        <ng-container *ngIf="loading$ | async">
+            <mat-spinner [mode]="'indeterminate'"></mat-spinner>
+        </ng-container>
         <router-outlet></router-outlet>
     </mat-drawer-content>
 </mat-drawer-container>

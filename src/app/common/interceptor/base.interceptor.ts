@@ -7,14 +7,16 @@ import {
   HttpHeaders,
   HttpResponse
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, finalize, tap } from 'rxjs';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(public loadingService: LoadingService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    this.loadingService.show();
     if (request.url.includes('signin') || request.url.includes('getglobalmasterdata')) {
       request = request.clone({
         withCredentials: true,
@@ -75,6 +77,9 @@ export class BaseInterceptor implements HttpInterceptor {
       tap((response) => {
         if (response instanceof HttpResponse) {
         }
+      }),
+      finalize(() => {
+        this.loadingService.hide();
       })
     );
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerModel } from 'src/app/common/models/router.model';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-authorized',
@@ -9,6 +10,7 @@ import { routerModel } from 'src/app/common/models/router.model';
 export class AuthorizedComponent implements OnInit {
 
   public isOpenSideBar: boolean = true;
+  public loading$ = this.loader.loading$;
 
   public routerData: routerModel[] = [
     {
@@ -48,7 +50,7 @@ export class AuthorizedComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(public loader: LoadingService) { }
 
   ngOnInit(): void {
   }

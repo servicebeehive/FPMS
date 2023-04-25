@@ -12,6 +12,7 @@ import { financialYearDetails } from 'src/app/models/financialyear-details.model
 import { projectDetails } from 'src/app/models/project-details.model';
 import { rangeDetails } from 'src/app/models/range-details.model';
 import { statusDetails } from 'src/app/models/status-details.model';
+import { LoadingService } from 'src/app/services/loading.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class DashboardComponent implements OnInit {
   public masterDataCollection: masterData;
   public actionTypes = ActionTypes;
   public statusDetails = statusCode;
+
 
   constructor(public projectService: ProjectService,
     public router: Router,

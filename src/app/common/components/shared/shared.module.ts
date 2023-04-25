@@ -19,7 +19,6 @@ import { FeatherIconsModule } from './components/feather-icons/feather-icons.mod
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 
-
 @NgModule({
   declarations: [
     ProjectFilterComponent,
@@ -42,7 +41,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatInputModule,
     MatCardModule,
     FeatherIconsModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   exports: [
     ProjectFilterComponent,
