@@ -53,6 +53,7 @@ export class AuthorizedComponent implements OnInit {
   constructor(public loader: LoadingService) { }
 
   ngOnInit(): void {
+    this.isOpenSideBar=false
   }
 
   public onClickSideNavToggle() {

@@ -23,7 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ProjectComponentElementsComponent } from './project-components/project-component-elements/project-component-elements.component';
 import { ProjectComponentHeadersComponent } from './project-components/project-component-headers/project-component-headers.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   declarations: [
     ProjectComponent,
@@ -49,7 +49,9 @@ import { ProjectComponentHeadersComponent } from './project-components/project-c
     MatCheckboxModule,
     SharedModule,
     MatExpansionModule,
-    MatTableModule
+    MatTableModule,
+    MatStepperModule
+    
   ],
   exports: [
     ProjectComponentHeadersComponent,

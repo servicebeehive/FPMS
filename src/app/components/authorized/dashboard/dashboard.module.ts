@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from 'src/app/common/components/shared/shared.module';
-
+import { FeatherIconsModule } from 'src/app/common/components/shared/components/feather-icons/feather-icons.module';
+import { MatButtonModule } from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { SharedModule } from 'src/app/common/components/shared/shared.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    FeatherIconsModule, MatButtonModule,MatMenuModule
   ]
 })
 export class DashboardModule { }

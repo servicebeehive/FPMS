@@ -17,6 +17,7 @@ import { NumberDirective } from './directives/numbers-only.directive';
 import { NumbersWithDecimalDirective } from './directives/numbers-with-decimal.directive';
 import { FeatherIconsModule } from './components/feather-icons/feather-icons.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCardModule,
     FeatherIconsModule,
     MatTooltipModule,
+    FeatherIconsModule, MatButtonModule,MatInputModule,MatMenuModule
   ],
   exports: [
     ProjectFilterComponent,
@@ -50,7 +52,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     GenericTableRowComponent,
     NumberDirective,
     NumbersWithDecimalDirective,
-    CapitalizePipe
+    CapitalizePipe,
+   
   ]
 })
 export class SharedModule { }
