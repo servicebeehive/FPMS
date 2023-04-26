@@ -2,13 +2,14 @@
     <!-- <div class="docs-example-viewer-title">
          <h2>Project Filter</h2>
     </div> -->
-    Filter <button  mat-icon-button color="primary" [matMenuTriggerFor]="filermenu">
-        <app-feather-icons  [icon]="'filter'" [class]="'tbl-fav-edit'"></app-feather-icons>
-      </button>
-      <mat-menu #filermenu="matMenu">
-      
-        <form [formGroup]="addProjectFilter" class="p-3" (ngSubmit)="onProjectFilter()">
-     
+    Filter <button mat-icon-button color="primary" [matMenuTriggerFor]="filermenu" #clickMenuTrigger="matMenuTrigger">
+        <app-feather-icons [icon]="'filter'" [class]="'tbl-fav-edit'"></app-feather-icons>
+    </button>
+    <mat-menu #filermenu="matMenu" [hasBackdrop]="true">
+
+        <form [formGroup]="addProjectFilter" class="p-3" (ngSubmit)="onProjectFilter()"
+            (click)="$event.stopPropagation()">
+
             <div class="conatiner row-container">
                 <div class="row">
                     <div class="col">
@@ -55,16 +56,16 @@
                     </div>
                     <div class="col button-position-multiple">
                         <button type="submit" class="mr-2" mat-raised-button color="primary">Apply Filter</button>
-                        <button type="button"   mat-raised-button color="primary" (click)="onClickClearFilter()">Clear
+                        <button type="button" mat-raised-button color="primary" (click)="onClickClearFilter()">Clear
                             Filter</button>
                     </div>
                 </div>
 
             </div>
-       
 
-    </form>
-    
-      </mat-menu>
-  
+
+        </form>
+
+    </mat-menu>
+
 </div>

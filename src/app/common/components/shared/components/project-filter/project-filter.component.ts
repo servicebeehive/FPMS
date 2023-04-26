@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { MasterDataService } from 'src/app/common/services/master-data/master-da
   styleUrls: ['./project-filter.component.scss']
 })
 export class ProjectFilterComponent implements OnInit {
+
+  @ViewChild('clickMenuTrigger') clickMenuTrigger: MatMenuTrigger;
 
   public addProjectFilter = this.fb.group({
     financialYear: this.fb.control<number | undefined>(null),
@@ -26,12 +29,14 @@ export class ProjectFilterComponent implements OnInit {
   }
 
   onProjectFilter() {
+    this.clickMenuTrigger.closeMenu();
     this.projectFilter.emit(this.addProjectFilter.value);
   }
 
   onClickClearFilter() {
     this.addProjectFilter.reset();
     this.clearProjectFilter.emit();
+    this.clickMenuTrigger.closeMenu();
   }
 
 }
