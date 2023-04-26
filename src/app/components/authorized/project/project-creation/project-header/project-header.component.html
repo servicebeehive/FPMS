@@ -3,7 +3,7 @@
         <mat-card>
             <div class="conatiner row-container">
                 <div class="row row-cols-6 mb-3">
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Division</mat-label>
                             <mat-select formControlName="division">
@@ -19,7 +19,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>SubDivision</mat-label>
                             <mat-select formControlName="subDivision">
@@ -34,7 +34,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Range</mat-label>
                             <mat-select formControlName="range">
@@ -49,7 +49,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Village</mat-label>
                             <mat-select formControlName="village">
@@ -64,7 +64,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Tahsil</mat-label>
                             <mat-select formControlName="tahsil">
@@ -79,7 +79,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Samittee</mat-label>
                             <mat-select formControlName="samittee">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="row row-cols-6 mb-3">
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Vidhansabha</mat-label>
                             <mat-select formControlName="vidhansabha">
@@ -110,7 +110,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Beat</mat-label>
                             <mat-select formControlName="beat">
@@ -125,7 +125,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Compartment No</mat-label>
                             <mat-select formControlName="compartmentNo">
@@ -140,7 +140,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Site</mat-label>
                             <input matInput type="text" formControlName="site">
@@ -150,7 +150,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Total Area</mat-label>
                             <input matInput type="text" formControlName="totalArea" numbersWithDecimal>
@@ -161,7 +161,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>APO Year</mat-label>
                             <input matInput type="text" formControlName="apoYear" numbersOnly>
@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div class="row row-cols-6 mb-3">
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Project Area</mat-label>
                             <input matInput type="text" formControlName="projectArea" numbersWithDecimal>
@@ -185,7 +185,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Scheme Name</mat-label>
                             <mat-select formControlName="schemeName">
@@ -200,7 +200,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Execution Name</mat-label>
                             <input matInput type="text" formControlName="executionName">
@@ -210,7 +210,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Execution Supervisor</mat-label>
                             <input matInput type="text" formControlName="executionSupervisor">
@@ -221,7 +221,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Execution Post</mat-label>
                             <input matInput type="text" formControlName="executionPost">
@@ -231,7 +231,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Budget Head</mat-label>
                             <mat-select formControlName="budgetHead">
@@ -248,7 +248,7 @@
                 </div>
                 <div formArrayName="addYearInformation">
                     <div class="row row-cols-6 mb-3">
-                        <div class="col" *ngFor="let item of formControl.controls; let i = index">
+                        <div class="col-md-6" *ngFor="let item of formControl.controls; let i = index">
                             <div [formGroupName]="i">
                                 <mat-form-field appearance="outline">
                                     <mat-label>FY {{item.value.planyear}} Amount</mat-label>
