@@ -6,33 +6,33 @@
       
             <div class="conatiner row-container">
                 <div class="row row-cols-6 ">
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Header Total Amount</mat-label>
                             <input matInput type="text" formControlName="budgetamount">
                         </mat-form-field>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Total Amount Spends</mat-label>
                             <input matInput type="text" formControlName="amountSpends">
                         </mat-form-field>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Header Remaining Amount</mat-label>
                             <input matInput type="text" formControlName="remainingAmount">
                         </mat-form-field>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Financial year</mat-label>
                             <input matInput type="text" formControlName="planyear">
                         </mat-form-field>
                     </div>
-                    <div class="col">
-                        <div class="row button-position-single">
-                            <div class="col">
+                    <div class="col-md-6">
+                        <div class="row button-position-single pb-4">
+                            <div class="col-md-6">
                                 <button type="button" mat-raised-button color="primary"
                                     [disabled]="addProjectComponent.invalid" (click)="onComponentHeaderClick()">Create
                                     Component</button>

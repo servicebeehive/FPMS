@@ -111,4 +111,14 @@ mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-f
  .col-xs-6,.col-sm-6,.col-md-6,.col-lg-6 {
     margin-bottom:0 ;
   }
-
+  .mat-horizontal-stepper-header-container{
+    width: 50%;
+  }
+  .table > :not(caption) > * > *{
+    background-color: transparent; box-shadow: none;
+  }
+  tbody {
+    .mat-row:nth-child(odd){
+        background-color: #f8f8f8;
+    }
+  }
