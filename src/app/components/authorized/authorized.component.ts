@@ -35,6 +35,16 @@ export class AuthorizedComponent implements OnInit, AfterContentInit {
       icon: "assessment",
     },
     {
+      label: "Labor",
+      route: "",
+      icon: "settings_accessibility",
+    },
+    {
+      label: "Material",
+      route: "",
+      icon: "precision_manufacturing",
+    },
+    {
       label: "Setting",
       route: "setting",
       icon: "settings",
