@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   public masterDataCollection: masterData;
   public actionTypes = ActionTypes;
   public statusDetails = statusCode;
-
+  public columnDisplay: string[] = ['project_id', 'project_name', 'financial_year_desc', 'project_tenure', 'status']
 
   constructor(public projectService: ProjectService,
     public router: Router,
@@ -87,8 +87,8 @@ export class DashboardComponent implements OnInit {
   }
 
   public mapProjectData(resultData: projectDetails[]): projectDetails[] {
-    const data: projectDetails[] = resultData.map(({ project_id, project_name, financial_year_desc, project_tenure, status }) => ({ project_id, project_name, financial_year_desc, project_tenure, status }));
-    return data;
+    // const data: projectDetails[] = resultData.map(({ project_id, project_name, financial_year_desc, project_tenure, status }) => ({ project_id, project_name, financial_year_desc, project_tenure, status }));
+    return resultData;
   }
 
   public onClickEditAction(data: projectDetails) {

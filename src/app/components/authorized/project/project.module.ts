@@ -23,7 +23,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ProjectComponentElementsComponent } from './project-components/project-component-elements/project-component-elements.component';
 import { ProjectComponentHeadersComponent } from './project-components/project-component-headers/project-component-headers.component';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     ProjectComponent,
@@ -50,8 +51,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     SharedModule,
     MatExpansionModule,
     MatTableModule,
-    MatStepperModule
-    
+    MatStepperModule,
+    MatMenuModule
   ],
   exports: [
     ProjectComponentHeadersComponent,

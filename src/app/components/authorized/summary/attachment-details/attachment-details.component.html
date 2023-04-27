@@ -1,6 +1,6 @@
 <div class="viewer-wrapper mt-2">
     <div class="docs-example-viewer-title space-between">
-       
+
         <h6 class="pl-2 pt-3">Attachment Details</h6>
         <div>
             <button type="button" mat-raised-button color="primary">
@@ -8,9 +8,9 @@
             </button>
         </div>
     </div>
-   
-        <div [formGroup]='addAttachmentDetails' class="pt-3">
-            <div class="table-responsive">
+
+    <div [formGroup]='addAttachmentDetails' class="pt-3">
+        <div class="table-responsive">
             <table formArrayName="addAttachmentsRows" class="table">
                 <thead>
                     <tr>
@@ -20,49 +20,48 @@
                         <th>Added By</th>
                         <th>Actions</th>
                     </tr>
-                    
+
                 </thead>
                 <tbody *ngFor="let item of formControl.controls; let i = index">
-                    <tr [formGroupName]="i" >
+                    <tr [formGroupName]="i">
                         <td>{{item.value.updatetime | date}}</td>
                         <td>{{item.value.documentname}}</td>
                         <td> <mat-form-field appearance="outline" class="p-0 m-0">
-                            <mat-label>Document Type</mat-label>
-                            <mat-select formControlName="documenttypecode">
-                                <mat-option disabled selected>--Select Document Type --</mat-option>
-                                <mat-option
-                                    *ngFor="let element of masterDataService?.globalMasterData?.documenttype"
-                                    [value]="element?.documenttypecode">
-                                    {{element.documenttypedesc}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field></td>
+                                <mat-label>Document Type</mat-label>
+                                <mat-select formControlName="documenttypecode">
+                                    <mat-option disabled selected>--Select Document Type --</mat-option>
+                                    <mat-option
+                                        *ngFor="let element of masterDataService?.globalMasterData?.documenttype"
+                                        [value]="element?.documenttypecode">
+                                        {{element.documenttypedesc}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field></td>
                         <td>{{item.value.uploadedby}}</td>
-                        <td> <button mat-icon-button color="primary"
-                            (click)="onClickDownload(item.value)"  [matTooltip]="'Download'">
-                            <app-feather-icons  [icon]="'download'" [class]="'tbl-fav-edit'"></app-feather-icons>
-                        
-                        </button>
-                        <button mat-icon-button color="primary"
-                            (click)="onClickSave(item.value)" [matTooltip]="'Save'">
-                            <!-- Save -->
-                            <app-feather-icons  [icon]="'save'"  [class]="'tbl-fav-success'"></app-feather-icons>
-                        </button>
-                        <button mat-icon-button color="warn" [matTooltip]="'Cancel'"
-                        
-                            (click)="onClickCancel(item.value)">
-                            <!-- Cancel -->
-                            <app-feather-icons  [icon]="'x'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                        </button>
-                        
-                    </td>
+                        <td> <button mat-icon-button color="primary" (click)="onClickDownload(item.value)"
+                                [matTooltip]="'download'">
+                                <app-feather-icons [icon]="'download'" [class]="'tbl-fav-edit'"></app-feather-icons>
+
+                            </button>
+                            <button mat-icon-button color="primary" (click)="onClickSave(item.value)"
+                                [matTooltip]="'save'">
+                                <!-- Save -->
+                                <app-feather-icons [icon]="'save'" [class]="'tbl-fav-success'"></app-feather-icons>
+                            </button>
+                            <button mat-icon-button color="warn" [matTooltip]="'delete'"
+                                (click)="onClickCancel(item.value)">
+                                <!-- Cancel -->
+                                <app-feather-icons [icon]="'x'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                            </button>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-   
-</div>
-<div class="viewer-wrapper pt-3">
-    <app-generic-table [title]="'Approval Task'" [tableData]="projectWorkflow" [actionButtons]="actionButtons"
-        (actionButtonItem)="onGetActionItem($event)"></app-generic-table>
-</div>
+
+    </div>
+    <div class="viewer-wrapper pt-3">
+        <app-generic-table [title]="'Approval Task'" [tableData]="projectWorkflow" [actionButtons]="actionButtons"
+            (actionButtonItem)="onGetActionItem($event)" [columnDisplayNames]="columnToDispaly"></app-generic-table>
+    </div>
