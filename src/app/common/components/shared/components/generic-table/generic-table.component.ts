@@ -14,12 +14,12 @@ export class GenericTableComponent<T> implements OnChanges {
   @Input() tableData: T[] = [];
   @Input() actionButtons: string[];
   @Input() title: string;
+  @Input() columnDisplayNames: string[];
 
   @Output() actionButtonItem = new EventEmitter<tableActionData<T>>();
 
-  dataSource = new MatTableDataSource();
-
-  columnNames: string[];
+  public dataSource = new MatTableDataSource();
+  public columnNames: string[];
 
   constructor() { }
 
@@ -29,8 +29,7 @@ export class GenericTableComponent<T> implements OnChanges {
         return;
       }
       this.dataSource = new MatTableDataSource(this.tableData);
-      this.columnNames = Object.keys(this.tableData[0]);
-      this.columnNames = [...this.columnNames, 'actions']
+      this.columnNames = [...this.columnDisplayNames, 'actions']
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
       }, 0);

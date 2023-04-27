@@ -39,10 +39,10 @@ export class ProjectComponentHeadersComponent implements OnChanges {
   ngOnChanges(): void {
     if (this.projectComponentData) {
       if (this.isSummaryDetails) {
-        this.columnToDispaly = ['sorno', 'workdetail', 'startdate', 'enddate'];
+        this.columnToDispaly = ['sorno', 'workdetail'];
       }
       else {
-        this.columnToDispaly = ['sorno', 'workdetail', 'startdate', 'enddate', 'action'];
+        this.columnToDispaly = ['sorno', 'workdetail', 'action'];
       }
       this.projectComponentData.map(element => {
         element.componentheader = { ...element.componentheader, isExpand: true }

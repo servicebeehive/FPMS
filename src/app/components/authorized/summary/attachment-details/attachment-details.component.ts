@@ -42,7 +42,7 @@ export class AttachmentDetailsComponent implements OnChanges {
     return this.addAttachmentDetails.get('addAttachmentsRows') as FormArray;
   }
 
-  public columnToDispaly: string[] = ['status', 'assignee', 'completedby', 'completedon', 'actions'];
+  public columnToDispaly: string[] = ['assignee', 'emailid', 'status', 'completedby', 'completedon', 'workflowtype'];
 
   public actionButtons = ['approve', 'reject']
 
@@ -144,7 +144,16 @@ export class AttachmentDetailsComponent implements OnChanges {
 
   public onGetActionItem(actionItem: tableActionData<projectWorkFlow>) {
     const { actionType, data } = actionItem;
-    const actionTitle = actionType === 'approve' ? "Approve" : "Reject"
+    const actionTitle = actionType === 'approve' ? "Approve" : "Reject";
+    let setMessage: ReturnResult<any>
+    if ((actionType === 'approve' && data.status === "A") || (actionType === 'reject' && data.status === "R")) {
+      setMessage = {
+        success: false,
+        message: `Already ${actionTitle}`
+      }
+      this.notificationService.showNotification(setMessage);
+      return;
+    }
     const message = `Are you sure you want to ${actionTitle} ?`
     this.openDialog(actionTitle, message, ActionTypes.submit).then((confirmationDialog: boolean) => {
       if (confirmationDialog) {

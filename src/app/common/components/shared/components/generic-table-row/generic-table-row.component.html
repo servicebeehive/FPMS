@@ -1,11 +1,15 @@
 <ng-container *ngIf="columnName !=='actions'">{{ row[columnName] }}</ng-container>
 <ng-container *ngIf="columnName ==='actions'">
     <ng-container *ngFor="let action of actionButtons">
-        <button [matTooltip]="action" mat-icon-button color="{{action=='reject'|| action=='delete'?'warn':'primary'}}" (click)="onClickActionButton(action)">
-            <app-feather-icons *ngIf="action=='edit'||action=='approve'" [icon]="action=='approve'?'check':'edit'" [class]="action=='approve'?'tbl-fav-success':'tbl-fav-edit'"></app-feather-icons>
-            <app-feather-icons  *ngIf="action=='view summary'" [icon]="'eye'" [class]="'tbl-fav-edit'"></app-feather-icons>
-            <app-feather-icons  *ngIf="action=='delete'" [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
-            <app-feather-icons  *ngIf="action=='reject'" [icon]="'slash'" [class]="'tbl-fav-delete'"></app-feather-icons>
+        <button [matTooltip]="action" mat-icon-button color="{{action=='reject'|| action=='delete'?'warn':'primary'}}"
+            (click)="onClickActionButton(action)">
+            <app-feather-icons *ngIf="action=='edit'||action=='approve'" [icon]="action=='approve'?'check':'edit'"
+                [class]="action=='approve'?'tbl-fav-success':'tbl-fav-edit'"></app-feather-icons>
+            <app-feather-icons *ngIf="action=='view summary'" [icon]="'eye'"
+                [class]="'tbl-fav-edit'"></app-feather-icons>
+            <app-feather-icons *ngIf="action=='delete'" [icon]="'trash-2'"
+                [class]="'tbl-fav-delete'"></app-feather-icons>
+            <app-feather-icons *ngIf="action=='reject'" [icon]="'slash'" [class]="'tbl-fav-delete'"></app-feather-icons>
             <!-- {{action |
             capitalize}} -->
         </button>

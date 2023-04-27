@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
 import { ReturnResult } from 'src/app/common/models/return-result';
@@ -43,19 +42,6 @@ export class CreateComponentsComponent implements OnInit {
     startdate: this.fb.control<string | undefined>(this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required),
     enddate: this.fb.control<string | undefined>(this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required),
     materialRequired: this.fb.control<boolean | undefined>(false, Validators.required),
-
-    // componentHeadreType: [false],
-    // year: [''],
-    // sorno: ['', Validators.required],
-    // workdetail: ['', Validators.required],
-    // quantity: [null, Validators.required],
-    // uom: ['', Validators.required],
-    // amount: [null, Validators.required],
-    // rate: [null, Validators.required],
-    // geolocation: ['', Validators.required],
-    // startdate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
-    // enddate: [this.datepipe.transform(Date(), 'yyyy-MM-dd'), Validators.required],
-    // materialRequired: [false],
   })
 
   ngOnInit(): void {

@@ -12,16 +12,17 @@
             <div class="responsive_table">
               <div class="materialTableHeader">
                 <div class="p-2">
-               
-                  
-                      <app-project-filter (projectFilter)="onProjectFilterData($event)"
-                      (clearProjectFilter)="onClearProjectFilter()"></app-project-filter>
-                    
+
+
+                  <app-project-filter (projectFilter)="onProjectFilterData($event)"
+                    (clearProjectFilter)="onClearProjectFilter()"></app-project-filter>
+
                 </div>
 
               </div>
               <app-generic-table [title]="'Project Information'" [tableData]="getProjectListTableData"
-                [actionButtons]="actionButtons" (actionButtonItem)="onGetActionItem($event)"></app-generic-table>
+                [actionButtons]="actionButtons" (actionButtonItem)="onGetActionItem($event)"
+                [columnDisplayNames]="columnDisplay"></app-generic-table>
             </div>
           </div>
         </div>

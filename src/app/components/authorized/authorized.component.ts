@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { routerModel } from 'src/app/common/models/router.model';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -7,10 +8,10 @@ import { LoadingService } from 'src/app/services/loading.service';
   templateUrl: './authorized.component.html',
   styleUrls: ['./authorized.component.scss']
 })
-export class AuthorizedComponent implements OnInit {
+export class AuthorizedComponent implements OnInit, AfterContentInit {
 
   public isOpenSideBar: boolean = true;
-  public loading$ = this.loader.loading$;
+  public loading$: Observable<boolean>;
 
   public routerData: routerModel[] = [
     {
@@ -53,7 +54,14 @@ export class AuthorizedComponent implements OnInit {
   constructor(public loader: LoadingService) { }
 
   ngOnInit(): void {
-    this.isOpenSideBar=false
+    this.isOpenSideBar = false
+  }
+
+  ngAfterContentInit(): void {
+    setTimeout(() => {
+      this.loading$ = this.loader.loading$
+    });
+
   }
 
   public onClickSideNavToggle() {

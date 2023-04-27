@@ -23,9 +23,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ProjectComponentElementsComponent } from './project-components/project-component-elements/project-component-elements.component';
 import { ProjectComponentHeadersComponent } from './project-components/project-component-headers/project-component-headers.component';
-import {MatStepperModule} from '@angular/material/stepper';
 import { FeatherIconsModule } from 'src/app/common/components/shared/components/feather-icons/feather-icons.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     ProjectComponent,
@@ -54,8 +55,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatStepperModule,
     FeatherIconsModule,
-    MatTooltipModule
+    MatTooltipModule,
     
+    MatMenuModule
   ],
   exports: [
     ProjectComponentHeadersComponent,

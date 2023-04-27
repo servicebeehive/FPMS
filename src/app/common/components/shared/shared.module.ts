@@ -43,7 +43,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCardModule,
     FeatherIconsModule,
     MatTooltipModule,
-    FeatherIconsModule, MatButtonModule,MatInputModule,MatMenuModule
+    FeatherIconsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatMenuModule
   ],
   exports: [
     ProjectFilterComponent,
@@ -53,7 +56,7 @@ import { MatMenuModule } from '@angular/material/menu';
     NumberDirective,
     NumbersWithDecimalDirective,
     CapitalizePipe,
-   
+
   ]
 })
 export class SharedModule { }

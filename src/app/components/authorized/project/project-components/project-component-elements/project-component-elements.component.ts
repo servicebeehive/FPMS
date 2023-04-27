@@ -11,7 +11,8 @@ export class ProjectComponentElementsComponent implements OnChanges {
 
   public dataSource: createProjectComponent[];
 
-  public columnToDispaly: string[]
+  public columnToDispaly: string[];
+  public componentDetails: createProjectComponent;
 
   @Input() componentElementDetails: createProjectComponent[];
   @Input() isParentSummaryDetails: boolean;
@@ -21,12 +22,7 @@ export class ProjectComponentElementsComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.componentElementDetails) {
-      if (this.isParentSummaryDetails) {
-        this.columnToDispaly = ['sorno', 'workdetail', 'quantity', 'uom', 'rate', 'amount', 'geolocation', 'startdate', 'enddate', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount']
-      }
-      else {
-        this.columnToDispaly = ['sorno', 'workdetail', 'quantity', 'uom', 'rate', 'amount', 'geolocation', 'startdate', 'enddate', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount', 'actions']
-      }
+      this.columnToDispaly = ['sorno', 'workdetail', 'quantity', 'rate', 'amount', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount', 'actions']
       this.dataSource = this.componentElementDetails;
     }
   }
@@ -38,6 +34,10 @@ export class ProjectComponentElementsComponent implements OnChanges {
     };
 
     this.onClickRowItem.emit(data);
+  }
+
+  onClickView(item: createProjectComponent) {
+    this.componentDetails = item;
   }
 
 }
