@@ -1,13 +1,13 @@
 
 
     <div class="container">
-        <h3 mat-dialog-title>Confirm {{data.actionTitle}}</h3>
-        <div mat-dialog-content>
+        <h3 mat-dialog-title class="text-center">Confirm {{data.actionTitle}}</h3>
+        <div mat-dialog-content class="min-width">
             <p class="text-center">{{data.message}}</p>
            
         </div>
         <div mat-dialog-actions align="center" class="mb-1 text-center">
-            <button type="button" mat-raised-button color="primary"
+            <button type="button" mat-raised-button class="mr-3" color="primary"
             (click)="onClickConfirm()">{{dialogAction[action] | capitalize}}</button>
             <button type="button" mat-raised-button color="warn" (click)="onClickCancel()">Cancel</button>
        
