@@ -4,12 +4,18 @@
         <td mat-cell *matCellDef="let row">{{row.componentheader[columnName]}}
             <ng-container *ngIf="!isSummaryDetails">
                 <ng-container *ngIf="columnName === 'action'">
-                    <button mat-stroked-button color="primary"
-                        (click)="onClickEdit('insert',row.componentheader)">Insert</button>
-                    <button mat-stroked-button color="primary"
-                        (click)="onClickEdit('edit',row.componentheader)">Edit</button>
-                    <button mat-stroked-button color="primary"
-                        (click)="onClickEdit('delete',row.componentheader)">Delete</button>
+                    <button mat-icon-button  matTooltip="Insert"
+                        (click)="onClickEdit('insert',row.componentheader)">
+                        <app-feather-icons   [icon]="'file-plus'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                    </button>
+                    <button mat-icon-button matTooltip="Edit"
+                        (click)="onClickEdit('edit',row.componentheader)">
+                        <app-feather-icons   [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                    </button>
+                    <button mat-icon-button  matTooltip="Delete"
+                        (click)="onClickEdit('delete',row.componentheader)">
+                        <app-feather-icons   [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                       </button>
                 </ng-container>
             </ng-container>
         </td>
