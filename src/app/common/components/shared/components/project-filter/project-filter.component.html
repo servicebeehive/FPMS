@@ -50,6 +50,19 @@
                     </div>
                     <div class="col">
                         <mat-form-field appearance="outline">
+                            <mat-label>Criteria Budget Head</mat-label>
+                            <mat-select formControlName="CriteriaBudget">
+                                <mat-option disabled selected>--Select Criteria Budget Head--</mat-option>
+                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.budgethead"
+                                    [value]="item?.budgetheadid">
+                                    {{item.budgetheaddesc}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                        <mat-form-field appearance="outline">
                             <mat-label>Project Name</mat-label>
                             <input matInput type="text" formControlName="projectName">
                         </mat-form-field>
