@@ -16,7 +16,8 @@ export class ProjectFilterComponent implements OnInit {
     financialYear: this.fb.control<number | undefined>(null),
     range: this.fb.control<number | undefined>(null),
     status: this.fb.control<number | undefined>(null),
-    projectName: this.fb.control<string | undefined>('')
+    projectName: this.fb.control<string | undefined>(''),
+    CriteriaBudget: this.fb.control<string | undefined>(null)
   })
 
   @Output() public projectFilter = new EventEmitter;
