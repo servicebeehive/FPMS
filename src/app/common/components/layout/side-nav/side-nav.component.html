@@ -1,13 +1,37 @@
 <div  class="sidebar">
     <div class="menu">
-       
-        <ul class="list">
-            <li *ngFor="let router of routers">
+        
+        <ul *ngFor="let router of routers" class="list">
+          
+            <mat-expansion-panel *ngIf="router.children && router.children.length > 0">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+            <li>
                 <a [routerLink]="router.route" routerLinkActive="active">
                  
                     <mat-icon class="material-icons-outlined"  fontIcon="{{router.icon}}"></mat-icon> {{router.label}}</a>
+                    
             </li>
+            </mat-panel-title>
+           </mat-expansion-panel-header>
+            <ul class="submenu">
+                <li *ngFor="let child of router.children">
+                    <a [routerLink]="child.route" routerLinkActive="active">
+                         
+                        <mat-icon class="material-icons-outlined"  fontIcon="{{child.icon}}"></mat-icon> {{child.label}}</a>
+                </li>
+            </ul>
+         </mat-expansion-panel>
+         <li *ngIf="!router.children || router.children.length === 0">
+            <a [routerLink]="router.route" routerLinkActive="active">
+             
+                <mat-icon class="material-icons-outlined"  fontIcon="{{router.icon}}"></mat-icon> {{router.label}}</a>
+        </li>
+            
         </ul>
+        
+
+
 <!-- <ng-container>
     
     

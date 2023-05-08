@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 import { FeatherIconsModule } from '../shared/components/feather-icons/feather-icons.module';
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FeatherIconsModule } from '../shared/components/feather-icons/feather-i
     MatListModule,
     MatMenuModule,
     // FeatherIconsModule
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule
+    
   ],
   exports: [
     SideNavComponent,
