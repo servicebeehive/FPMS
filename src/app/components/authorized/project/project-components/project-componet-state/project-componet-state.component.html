@@ -1,5 +1,7 @@
-<div class="viewer-wrapper">
-    <form [formGroup]="addProjectHeader" (ngSubmit)="onClickProjectHeader()">
+<mat-expansion-panel  class="addeventbox mb-3 mt-3" [expanded]="step === 0" (opened)="setStep(0)">
+    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor"></mat-expansion-panel-header>
+
+    <form [formGroup]="addProjectHeader" (ngSubmit)="Save()">
         <mat-card>
             <div class="conatiner row-container">
                 <div class="row row-cols-6 mb-3">
@@ -220,56 +222,46 @@
                                 is required</mat-error>
                         </mat-form-field>
                     </div>
-
                     <div class="col-md-6">
                         <mat-form-field appearance="outline">
-                            <mat-label>Execution Post</mat-label>
-                            <input matInput type="text" formControlName="executionPost">
-                            <mat-error
-                                *ngIf="addProjectHeader.controls['executionPost'].touched && addProjectHeader.controls['executionPost'].hasError('required')">Execution
-                                Post is required</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-md-6">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Budget Head</mat-label>
-                            <mat-select formControlName="budgetHead">
-                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.budgethead"
-                                    [value]="item?.budgetheadid">
-                                    {{item?.budgetheaddesc}}
-                                </mat-option>
+                            <mat-label>Project Category</mat-label>
+                            <mat-select>
+                                <mat-option disabled selected>--Select Division --</mat-option>
+                                <!-- <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
+                                    [value]="item?.divisionid">
+                                    {{item.divisiondesc}}
+                                </mat-option> -->
                             </mat-select>
-                            <mat-error
-                                *ngIf="addProjectHeader.controls['budgetHead'].touched && addProjectHeader.controls['budgetHead'].hasError('required')">You
-                                must make a selection of budget Head</mat-error>
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Project Work</mat-label>
+                            <mat-select>
+                                <mat-option disabled selected>--Select Division --</mat-option>
+                                <!-- <mat-option *ngFor="let item of masterDataService?.globalMasterData?.division"
+                                    [value]="item?.divisionid">
+                                    {{item.divisiondesc}}
+                                </mat-option> -->
+                            </mat-select>
+                            <mat-error></mat-error>
                         </mat-form-field>
                     </div>
                 </div>
-                <div formArrayName="addYearInformation">
-                    <div class="row row-cols-6 mb-3">
-                        <div class="col-md-6" *ngFor="let item of formControl.controls; let i = index">
-                            <div [formGroupName]="i">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>FY {{item.value.planyear}} Amount</mat-label>
-                                    <input matInput type="number" formControlName="budgetamount" numbersOnly>
-                                    <mat-error
-                                        *ngIf="item['controls'].budgetamount.touched && item['controls'].budgetamount.hasError('required')">FY
-                                        {{item.value.planyear}}
-                                        Amount
-                                        is required</mat-error>
-                                </mat-form-field>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <p>
-                    <button type="submit" mat-raised-button color="primary"
-                        [disabled]="addProjectHeader.invalid">{{isSaved?'Edit':'Create'}}
-                        Project Header</button>
+                    <button type="submit" mat-raised-button color="primary" [disabled]="addProjectHeader.invalid">
+                        Submit</button>
                 </p>
+
             </div>
         </mat-card>
     </form>
-</div>
+</mat-expansion-panel>
+<mat-expansion-panel  class="addeventbox eventboxes" [expanded]="step === 1">
+    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
+    </mat-expansion-panel-header>
+    <app-project-header-details></app-project-header-details>
+
+</mat-expansion-panel>
