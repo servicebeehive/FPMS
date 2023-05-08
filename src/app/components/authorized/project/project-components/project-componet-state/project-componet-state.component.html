@@ -1,8 +1,10 @@
-<mat-expansion-panel  class="addeventbox mb-3 mt-3" [expanded]="step === 0" (opened)="setStep(0)">
-    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor"></mat-expansion-panel-header>
+<div class="container-fluid"><mat-expansion-panel  class="addeventbox mb-3 mt-3" [expanded]="step === 0" (opened)="setStep(0)">
+    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+        Poject Header Deatils
+    </mat-expansion-panel-header>
 
-    <form [formGroup]="addProjectHeader" (ngSubmit)="Save()">
-        <mat-card>
+    <form [formGroup]="addProjectHeader" class="mt-3" (ngSubmit)="Save()">
+        
             <div class="conatiner row-container">
                 <div class="row row-cols-6 mb-3">
                     <div class="col-md-6">
@@ -256,12 +258,40 @@
                 </p>
 
             </div>
-        </mat-card>
+        
     </form>
 </mat-expansion-panel>
+<h5>Project Wrok Details</h5>
 <mat-expansion-panel  class="addeventbox eventboxes" [expanded]="step === 1">
     <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
+        <mat-panel-title>
+            Financial Year: 2023-2024 
+          </mat-panel-title>
+          <mat-panel-description>
+            Total Cost:1000
+          </mat-panel-description>
+       
+          <button mat-stroked-button color="primary" class="mr-4" style="margin-right: 20px;">Add Element</button>
+      
     </mat-expansion-panel-header>
+    <div class="mt-2">
     <app-project-header-details></app-project-header-details>
-
+   </div>
 </mat-expansion-panel>
+<mat-expansion-panel  class="addeventbox eventboxes " style="margin-bottom: 10px;" [expanded]="step === 1">
+    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
+        <mat-panel-title>
+            Financial Year: 2023-2025
+          </mat-panel-title>
+          <mat-panel-description>
+            Total Cost:1000
+          </mat-panel-description>
+       
+          <button mat-stroked-button color="primary" class="mr-4" style="margin-right: 20px;">Add Element</button>
+      
+    </mat-expansion-panel-header>
+    <div class="mt-2">
+    <app-project-header-details></app-project-header-details>
+   </div>
+</mat-expansion-panel>
+</div>

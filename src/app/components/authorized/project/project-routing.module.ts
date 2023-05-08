@@ -5,6 +5,7 @@ import { ProjectComponent } from './project.component';
 const routes: Routes = [{
   path: '',
   component: ProjectComponent
+  
 }];
 
 @NgModule({
