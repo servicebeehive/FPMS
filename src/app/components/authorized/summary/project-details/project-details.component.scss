@@ -1,0 +1,6 @@
+.table-bordered>:not(caption)>* {
+    border-width: 1px 0;
+    border: 1px solid;
+    border-color: #d0d0d0;
+    padding: 8px;
+}

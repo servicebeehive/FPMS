@@ -1,41 +1,57 @@
 <div class="viewer-wrapper">
   <div class="docs-example-viewer-title">
-    <!-- <h5 class="pl-2"> Project Details</h5> -->
+    <h6 class="mb-3">Project Name : {{projectDetails?.project_name}}</h6>
 
   </div>
 
   <div class="conatiner row-container">
-    <ul class="list-group list-group-flush flex-row row row-cols-5">
-      <li class="list-group-item col border-0"><b>Project Name :</b> {{projectDetails?.project_name}}</li>
-      <li class="list-group-item col border-0"><b>Division :</b> {{projectDetails?.division}}</li>
-      <li class="list-group-item col border-0"><b>SubDivision :</b> {{projectDetails?.subdivision}}</li>
-      <li class="list-group-item col border-0"><b>Range :</b> {{projectDetails?.range}}</li>
-      <li class="list-group-item col border-0"><b>Village :</b> {{projectDetails?.village}}</li>
-    </ul>
-    <ul class="list-group list-group-flush flex-row row row-cols-5">
-      <li class="list-group-item col border-0"><b>Tahsil :</b> {{projectDetails?.tahsil}}</li>
-      <li class="list-group-item col border-0"><b>Samittee :</b> {{projectDetails?.samitee}}</li>
-      <li class="list-group-item col border-0"><b>Vidhansabha :</b> {{projectDetails?.vidhansabha}}</li>
-      <li class="list-group-item col border-0"><b>Beat :</b> {{projectDetails?.beat}}</li>
-      <li class="list-group-item col border-0"><b>Compartment No :</b> {{projectDetails?.compartment}}</li>
-    </ul>
+    <table class="table table-bordered">
+      <tr>
+        <td><b>Division :</b> {{projectDetails?.division}}</td>
+        <td><b>SubDivision :</b> {{projectDetails?.subdivision}}</td>
+        <td><b>Range :</b> {{projectDetails?.range}}</td>
+      </tr>
+      <tr>
+        <td><b>Village :</b> {{projectDetails?.village}}</td>
+        <td><b>Tahsil :</b> {{projectDetails?.tahsil}}</td>
+        <td><b>Samittee :</b> {{projectDetails?.samitee}}</td>
+      </tr>
+      <tr>
+        <td><b>Vidhansabha :</b> {{projectDetails?.vidhansabha}}</td>
+        <td><b>Beat :</b> {{projectDetails?.beat}}</td>
+        <td><b>Compartment No :</b> {{projectDetails?.compartment}}</td>
+      </tr>
+      <tr>
+      <td><b>Site :</b> {{projectDetails?.site}}</td>
+      <td ><b>Total Area :</b> {{projectDetails?.totalarea}}</td>
+      <td ><b>APO Year :</b> {{projectDetails?.approval_year}}</td>
+      
+      </tr>
+      <tr>
+        <td ><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</td>
+        <td ><b>Project Area :</b> {{projectDetails?.project_area}}</td>
+        <td><b>Site :</b> {{projectDetails?.site}}</td>
+        </tr>
+      <tr>
+        <td><b>Total Area :</b> {{projectDetails?.totalarea}}</td>
+        <td><b>APO Year :</b> {{projectDetails?.approval_year}}</td>
+        <td><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</td>
+      </tr>
+      <tr>
+        <td><b>Project Area :</b> {{projectDetails?.project_area}}</td>
+        <td><b>Scheme Name :</b> {{projectDetails?.scheme}}</td>
+        <td><b>Execution Supervisor :</b> {{projectDetails?.execution_supervisor}}</td>
+      </tr>
+      <tr>
+        <td><b>APO Year :</b> {{projectDetails?.approval_year}}</td>
+        <td><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</td>
+        <td><b>Execution Post :</b> {{projectDetails?.execution_post}}</td>
+      </tr>
+    </table>
+ 
 
 
-    <ul class="list-group list-group-flush flex-row row row-cols-5">
-      <li class="list-group-item col border-0"><b>Site :</b> {{projectDetails?.site}}</li>
-      <li class="list-group-item col border-0"><b>Total Area :</b> {{projectDetails?.totalarea}}</li>
-      <li class="list-group-item col border-0"><b>APO Year :</b> {{projectDetails?.approval_year}}</li>
-      <li class="list-group-item col border-0"><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</li>
-      <li class="list-group-item col border-0"><b>Project Area :</b> {{projectDetails?.project_area}}</li>
-    </ul>
-    <ul class="list-group list-group-flush flex-row row row-cols-5">
-      <li class="list-group-item col border-0"><b>Scheme Name :</b> {{projectDetails?.scheme}}</li>
-      <li class="list-group-item col border-0"><b>Execution Supervisor :</b> {{projectDetails?.execution_supervisor}}
-      </li>
-      <li class="list-group-item col border-0"><b>APO Year :</b> {{projectDetails?.approval_year}}</li>
-      <li class="list-group-item col border-0"><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</li>
-      <li class="list-group-item col border-0"><b>Execution Post :</b> {{projectDetails?.execution_post}}</li>
-    </ul>
+   
 
 
 
