@@ -45,10 +45,7 @@ const routes: Routes = [{
       path: 'summary',
       loadChildren: () => import('./summary/summary.module').then((s) => s.SummaryModule)
     },
-    {
-      path: 'state',
-      loadChildren: () => import('./project/project-components/project-componet-state/project-component-state.module').then((s) => s.ProjectComponentStateModule)
-    }
+    
   ]
 }];
 

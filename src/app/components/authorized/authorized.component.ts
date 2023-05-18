@@ -23,18 +23,7 @@ export class AuthorizedComponent implements OnInit, AfterContentInit {
       label: "Project",
       route: "project",
       icon: "assignment",
-      children: [
-        {
-          label: "Manual Project",
-          route: "project",
-          icon: "",      
-        },
-        { 
-          label: "State Project",
-          route: "state",
-          icon: "",
-        }
-      ]
+      
       
     },
     {

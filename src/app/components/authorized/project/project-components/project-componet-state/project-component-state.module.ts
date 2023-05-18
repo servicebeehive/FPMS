@@ -47,6 +47,7 @@ import { ProjectHeaderDetailsComponent } from '../../project-header-details/proj
     
     MatMenuModule
 
-  ]
+  ],
+  exports:[ProjectHeaderDetailsComponent]
 })
 export class ProjectComponentStateModule { }
