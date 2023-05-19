@@ -19,85 +19,65 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
-            <div class="body">
-              <div class="responsive_table">
-                <mat-stepper linear #stepper>
-                    <mat-step  label="Create Project" [stepControl]="addProjectCreation">
-                        <form [formGroup]="addProjectCreation" class="pt-4" (ngSubmit)="onClickProjectCreation()">
-                 
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Project Name</mat-label>
-                                            <input matInput type="text" formControlName="projectName">
-                                            <mat-error
-                                                *ngIf="addProjectCreation.controls['projectName'].touched && addProjectCreation.controls['projectName'].hasError('required')">Project
-                                                Name is required</mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Tenure</mat-label>
-                                            <input matInput type="number" formControlName="tenure" numbersOnly>
-                                            <mat-error
-                                                *ngIf="addProjectCreation.controls['tenure'].touched && addProjectCreation.controls['tenure'].hasError('required')">
-                                                Tenure is required</mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>FY</mat-label>
-                                            <mat-select formControlName="financialYear">
-                                                <mat-option disabled selected>--Select Financial Year --</mat-option>
-                                                <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
-                                                    [value]="item?.fyid">
-                                                    {{item.fydesc}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error
-                                                *ngIf="addProjectCreation.controls['financialYear'].touched && addProjectCreation.controls['financialYear'].hasError('required')">You
-                                                must make a selection of financial year</mat-error>
-                                        </mat-form-field>
-                                    </div>
-                
-                                    <div class="col-md-6">
-                                        <div class="button-position-single">
-                                            <div  *ngIf="this.editProjectDetails?.projectdetails === null && !isEdit">
-                                                <button type="submit"  mat-raised-button color="primary"
-                                                    [disabled]="addProjectCreation.invalid" matStepperNext>Create
-                                                    Project</button>
-                                            </div>
-                                            <div  *ngIf="this.editProjectDetails?.projectdetails !== null || isEdit">
-                                                <button type="button" matStepperNext (click)="onClickFinalProjectSubmit()" mat-raised-button
-                                                    color="primary">Submit
-                                                    Project</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </form>
+            <div class="materialTableHeader p-3">
+              
+              <mat-radio-group color="primary">
+                <mat-radio-button value="1">Manual Project</mat-radio-button>
+                <mat-radio-button value="2">State Project</mat-radio-button>
+              </mat-radio-group>
+              
 
-                    </mat-step>
-                    <mat-step  label="Project Details">
-                        <div class="pt-4">
-                        
-                <ng-container *ngIf="showProjectCreation">
-                    <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"
-                        [editProjectHeaderDetails]="editProjectDetails"
-                        (setSubmitProjectButton)="onChangeSubmitButton($event)"></app-project-creation>
-                </ng-container>
-            </div>
-                    </mat-step>
-                    </mat-stepper>
-                <!-- <div class="materialTableHeader">
-                    <div class="p-2">
-                      
+              <form class="mt-3">
+                
+                    <div class="row">
+                        <div class="col-md-4">
+                            
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Project Category</mat-label>
+                                    <mat-select>
+                                        <mat-option disabled selected>--Select --</mat-option>
+                                        <mat-option >
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error></mat-error>
+                                </mat-form-field>
+                           
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Project Work</mat-label>
+                                <mat-select>
+                                    <mat-option disabled selected>--Select --</mat-option>
+                                    <mat-option >
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error></mat-error>
+                            </mat-form-field>
+                       
                     </div>
-                    
-                </div> -->
+                    <div class="col-md-4">
+                      <button mat-stroked-button color="primary" class="mr-2">Create</button>
+                      <button mat-stroked-button color="primary" class="mr-2">Darft</button>
+                      <button mat-stroked-button color="warn">Submit</button>
+                    </div>
+                    </div>
+               
+              
+              </form>
+            </div>
+            <div class="body">
+            
+              
+
+
+              <div class="responsive_table">
+                <ng-container>
+                <!-- <ng-container *ngIf="showProjectCreation"> -->
+                  <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"
+                      [editProjectHeaderDetails]="editProjectDetails"
+                      (setSubmitProjectButton)="onChangeSubmitButton($event)"></app-project-creation>
+              </ng-container>
            
             </div>
             </div>

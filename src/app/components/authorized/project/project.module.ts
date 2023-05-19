@@ -27,6 +27,11 @@ import { FeatherIconsModule } from 'src/app/common/components/shared/components/
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatRadioModule} from '@angular/material/radio';
+import { ProjectComponentStateModule } from './project-components/project-componet-state/project-component-state.module';
+// import { ProjectComponetStateComponent } from './project-components/project-componet-state/project-componet-state.component';
+// import { ProjectHeaderDetailsComponent } from './project-header-details/project-header-details.component';
+
 @NgModule({
   declarations: [
     ProjectComponent,
@@ -36,6 +41,8 @@ import { MatMenuModule } from '@angular/material/menu';
     CreateComponentsComponent,
     ProjectComponentElementsComponent,
     ProjectComponentHeadersComponent,
+    // ProjectComponetStateComponent,
+    // ProjectHeaderDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -56,8 +63,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatStepperModule,
     FeatherIconsModule,
     MatTooltipModule,
+    MatRadioModule,
     
-    MatMenuModule
+    MatMenuModule,
+    ProjectComponentStateModule
   ],
   exports: [
     ProjectComponentHeadersComponent,

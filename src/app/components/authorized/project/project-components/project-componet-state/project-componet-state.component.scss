@@ -1,0 +1,17 @@
+
+.addeventbox{
+    border: 1px solid transparent;
+    // cursor: pointer;
+    
+}
+.addeventbox:hover{
+    // border: 1px solid #00587f;
+    background-color: #ffffff !important;
+   
+}
+.addeventboxcursor:hover{
+    cursor: pointer;
+}
+.addeventbox .mat-expansion-panel-body .container-fluid .form-group {
+    margin-bottom: 1rem !important;
+}
