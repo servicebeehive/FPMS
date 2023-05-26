@@ -1,17 +1,15 @@
-
-
 <div class="container-fluid">
-    <mat-accordion>
-    <mat-expansion-panel  class="addeventbox mb-3 mt-3">
-    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+  <mat-accordion>
+    <mat-expansion-panel class="addeventbox mb-3 mt-3">
+      <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
         Poject Header
-    </mat-expansion-panel-header>
-    <app-project-header [tabYear]="tabNumber" [formsDetails]="projectCreationDetailsForTabs"
-    [projectDetailsForEdit]="projectDetails" (budgetYearAmount)="tabYearAmount($event)">
-</app-project-header>
-  
-</mat-expansion-panel>
-<mat-expansion-panel  class="addeventbox eventboxes">
+      </mat-expansion-panel-header>
+      <app-project-header [tabYear]="tabNumber" [formsDetails]="projectCreationDetailsForTabs"
+        [projectDetailsForEdit]="projectDetails" (budgetYearAmount)="tabYearAmount($event)">
+      </app-project-header>
+
+    </mat-expansion-panel>
+    <!-- <mat-expansion-panel  class="addeventbox eventboxes">
     <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
         <mat-panel-title>
             Financial Year: 2024
@@ -26,23 +24,23 @@
     <div class="mt-2">
         <app-project-header-details></app-project-header-details>
    </div>
-</mat-expansion-panel>
-<!-- <mat-expansion-panel  class="addeventbox eventboxes" *ngFor="let tab of tabNumber">
-    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
-        <mat-panel-title>
-            Financial Year: {{tab.planyear}}
-          </mat-panel-title>
-          <mat-panel-description>
-            Total Cost:1000
-          </mat-panel-description>
-       
-          <button mat-stroked-button color="primary" class="mr-4" style="margin-right: 20px;">Add Element</button>
-      
-    </mat-expansion-panel-header>
-    <div class="mt-2">
-        <app-project-components [planYearAmount]="tab"></app-project-components>
-   </div>
 </mat-expansion-panel> -->
+    <mat-expansion-panel class="addeventbox eventboxes" *ngFor="let tab of tabNumber">
+      <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
+        <mat-panel-title>
+          Financial Year: {{tab.planyear}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Total Cost:1000
+        </mat-panel-description>
 
-</mat-accordion>
+        <button mat-stroked-button color="primary" class="mr-4" style="margin-right: 20px;">Add Element</button>
+
+      </mat-expansion-panel-header>
+      <div class="mt-2">
+        <app-project-components [planYearAmount]="tab"></app-project-components>
+      </div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
 </div>

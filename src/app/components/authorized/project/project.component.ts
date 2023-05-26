@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatRadioChange } from '@angular/material/radio';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationDialogComponent } from 'src/app/common/components/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { confirmationDialogModel } from 'src/app/common/models/confirmation-dialog-data.model';
 import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
+import { proejctType } from 'src/app/common/models/enums/project-type.enum.model';
 import { ReturnResult } from 'src/app/common/models/return-result';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
 import { NotificationService } from 'src/app/common/services/notification/notification.service';
@@ -27,6 +29,8 @@ export class ProjectComponent implements OnInit {
   public editProjectDetails: editProjectDetails;
   public disabledSubmit: boolean;
   public isEdit: boolean = false;
+  public proejctType = proejctType;
+  public proejctTypeValue: string;
 
   constructor(public projectService: ProjectService,
     public masterDataService: MasterDataService,
@@ -37,6 +41,7 @@ export class ProjectComponent implements OnInit {
     public dialog: MatDialog) { }
 
   public addProjectCreation = this.fb.group({
+    projectType: this.fb.control<string | undefined>(proejctType.manual),
     projectName: this.fb.control<string | undefined>('', Validators.required),
     tenure: this.fb.control<number | undefined>(null, Validators.required),
     financialYear: this.fb.control<number | undefined>(null, Validators.required)
@@ -50,6 +55,10 @@ export class ProjectComponent implements OnInit {
       }
     })
 
+  }
+
+  public radioEventChange(event: MatRadioChange) {
+    this.addProjectCreation.controls.projectType.setValue(event.value);
   }
 
 
