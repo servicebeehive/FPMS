@@ -17,6 +17,7 @@ import { ProjectModule } from '../project/project.module';
 import { FeatherModule } from 'angular-feather';
 import { FeatherIconsModule } from 'src/app/common/components/shared/components/feather-icons/feather-icons.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatIconModule,
     ProjectModule,FeatherIconsModule, MatTooltipModule
   ]
 })
