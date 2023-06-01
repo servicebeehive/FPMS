@@ -1,11 +1,18 @@
 <div class="viewer-wrapper mt-2">
     <div class="docs-example-viewer-title space-between">
+       
 
         <h6 class="pl-2 pt-3">Attachment Details</h6>
-        <div>
-            <button type="button" mat-raised-button color="primary">
-                <input type="file" (change)="onFileSelect($event)" />
-            </button>
+        <div class="position-relative">
+         
+                <mat-icon>file_upload</mat-icon>
+                <p>Drag and Drop File </p> 
+                <p>-OR-</p>
+               <button mat-stroked-button color="primary"> Browse File</button>
+       
+            <input type="file" class="position-ab" (change)="onFileSelect($event)" />
+            
+
         </div>
     </div>
 
