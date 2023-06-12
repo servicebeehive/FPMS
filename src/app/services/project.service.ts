@@ -16,6 +16,8 @@ import { projectDocumentList } from '../models/project-document-list.model';
 import { getProjectDocumentDataModel } from '../models/project-document-data.model';
 import { Observable } from 'rxjs';
 import { workFlowOperation } from '../models/work-flow.model';
+import { stateCategoryData, stateCategoryDetails, stateProjectWorkDetails } from '../models/state-category.model';
+import { statePerHecDataDetails } from '../models/state-per-hec-details.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +56,18 @@ export class ProjectService extends BaseService {
 
   public getProjectSummaryData(data: { projectheadid: number }): Promise<ReturnResult<summaryDeatils>> {
     return this.GetWithHeaders<ReturnResult<summaryDeatils>, { projectheadid: number }>(this.controller.projectsummarydata, data)
+  }
+
+  public getStateProjectData(data: { statetaskcategoryid: number }): Promise<ReturnResult<stateCategoryDetails>> {
+    return this.GetWithHeaders<ReturnResult<stateCategoryDetails>, { statetaskcategoryid: number }>(this.controller.getstateprojectdata, data)
+  }
+
+  public getStateProjectWorkData(data: { statetaskcategoryid: number }): Promise<ReturnResult<stateProjectWorkDetails>> {
+    return this.GetWithHeaders<ReturnResult<stateProjectWorkDetails>, { statetaskcategoryid: number }>(this.controller.getstateprojectdata, data)
+  }
+
+  public getStateProjectComponentData(data: { statetaskid: number, totalarea: number }): Promise<ReturnResult<statePerHecDataDetails>> {
+    return this.GetWithHeaders<ReturnResult<statePerHecDataDetails>, { statetaskid: number, totalarea: number }>(this.controller.getstateprojecttskdata, data)
   }
 
   public getProjectDocumentOperation(getProjectDocumentData: getProjectDocumentDataModel): Promise<ReturnResult<projectDocumentList[]>> {

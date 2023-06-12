@@ -27,8 +27,11 @@ import { FeatherIconsModule } from 'src/app/common/components/shared/components/
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { ProjectComponentStateModule } from './project-components/project-componet-state/project-component-state.module';
+import { StateProjectDetailsComponent } from './state-project/state-project-details/state-project-details.component';
+import { StateProjectCreationComponent } from './state-project/state-project-creation/state-project-creation.component';
+import { StateProjectComponentDetailsComponent } from './state-project/state-project-component-details/state-project-component-details.component';
 // import { ProjectComponetStateComponent } from './project-components/project-componet-state/project-componet-state.component';
 // import { ProjectHeaderDetailsComponent } from './project-header-details/project-header-details.component';
 
@@ -41,6 +44,9 @@ import { ProjectComponentStateModule } from './project-components/project-compon
     CreateComponentsComponent,
     ProjectComponentElementsComponent,
     ProjectComponentHeadersComponent,
+    StateProjectDetailsComponent,
+    StateProjectCreationComponent,
+    StateProjectComponentDetailsComponent,
     // ProjectComponetStateComponent,
     // ProjectHeaderDetailsComponent,
   ],
@@ -64,13 +70,14 @@ import { ProjectComponentStateModule } from './project-components/project-compon
     FeatherIconsModule,
     MatTooltipModule,
     MatRadioModule,
-    
+
     MatMenuModule,
     ProjectComponentStateModule
   ],
   exports: [
     ProjectComponentHeadersComponent,
-    ProjectComponentsComponent
+    ProjectComponentsComponent,
+    StateProjectDetailsComponent
   ]
 })
 export class ProjectModule { }

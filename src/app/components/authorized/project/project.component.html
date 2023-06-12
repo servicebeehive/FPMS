@@ -7,16 +7,13 @@
         <div class="card">
           <div class="materialTableHeader p-3">
 
-
-
-
             <form [formGroup]="addProjectCreation">
               <mat-radio-group color="primary" formControlName="projectType">
                 <mat-radio-button value="manual" (change)="radioEventChange($event)">Manual Project</mat-radio-button>
                 <mat-radio-button value="state" (change)="radioEventChange($event)">State Project</mat-radio-button>
               </mat-radio-group>
               <div class="row">
-                <ng-container *ngIf="this.addProjectCreation.value.projectType===proejctType.manual">
+                <ng-container *ngIf="addProjectCreation.value.projectType===proejctType.manual">
                   <div class="col-md-4">
 
                     <mat-form-field appearance="outline">
@@ -55,14 +52,17 @@
                     </mat-form-field>
                   </div>
                 </ng-container>
-                <ng-container *ngIf="this.addProjectCreation.value.projectType===proejctType.state">
+                <ng-container *ngIf="addProjectCreation.value.projectType===proejctType.state">
                   <div class="col-md-4">
 
                     <mat-form-field appearance="outline">
                       <mat-label>Project Category state</mat-label>
-                      <mat-select>
+                      <mat-select formControlName="projectCategoryState"
+                        (selectionChange)="selectProjectCategory($event.value)">
                         <mat-option disabled selected>--Select --</mat-option>
-                        <mat-option>
+                        <mat-option *ngFor="let item of stateCategoryDetailsData?.state_category_data"
+                          [value]="item?.statetaskcategoryid">
+                          {{item?.statetaskcategoryname}}
                         </mat-option>
                       </mat-select>
                       <mat-error></mat-error>
@@ -73,12 +73,25 @@
 
                     <mat-form-field appearance="outline">
                       <mat-label>Project Work</mat-label>
-                      <mat-select>
+                      <mat-select formControlName="projectWork">
                         <mat-option disabled selected>--Select --</mat-option>
-                        <mat-option>
+                        <mat-option *ngFor="let item of stateProjectDetailsData?.state_category_data"
+                          [value]="item?.statetaskid">
+                          {{item?.statetaskdesc}}
                         </mat-option>
                       </mat-select>
                       <mat-error></mat-error>
+                    </mat-form-field>
+
+                  </div>
+                  <div class="col-md-4">
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>Area</mat-label>
+                      <input matInput type="number" formControlName="totalarea" numbersOnly>
+                      <mat-error
+                        *ngIf="addProjectCreation.controls['totalarea'].touched && addProjectCreation.controls['totalarea'].hasError('required')">
+                        Total Area is required</mat-error>
                     </mat-form-field>
 
                   </div>
@@ -86,7 +99,7 @@
                 <div class="col-md-4">
                   <button mat-stroked-button color="primary" (click)="onClickProjectCreation()"
                     class="mr-2">Create</button>
-                  <button *ngIf="this.addProjectCreation.value.projectType===proejctType.state" mat-stroked-button
+                  <button *ngIf="addProjectCreation.value.projectType===proejctType.state" mat-stroked-button
                     color="primary" class="mr-2">Darft</button>
                   <button mat-stroked-button color="warn">Submit</button>
                 </div>
@@ -101,10 +114,16 @@
 
 
             <div class="responsive_table">
-              <ng-container *ngIf="showProjectCreation">
+              <ng-container *ngIf="showProjectCreation && addProjectCreation.value.projectType===proejctType.manual">
                 <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"
                   [editProjectHeaderDetails]="editProjectDetails"
                   (setSubmitProjectButton)="onChangeSubmitButton($event)"></app-project-creation>
+              </ng-container>
+
+            </div>
+            <div class="responsive_table">
+              <ng-container *ngIf="addProjectCreation.value.projectType===proejctType.state">
+                <app-state-project-details [stateProjectComponentData]="statePerHecData"></app-state-project-details>
               </ng-container>
 
             </div>

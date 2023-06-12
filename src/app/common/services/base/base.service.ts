@@ -43,7 +43,7 @@ export abstract class BaseService {
       .toPromise();
   }
 
-  public async GetWithHeaders<U, T>(controllerInfo: string, Value: T): Promise<U> {
+  public async GetWithHeaders<U, T>(controllerInfo: string, Value?: T): Promise<U> {
     const value = JSON.stringify(Value)
     return await this.httpClient
       .get<U>(this.BaseUrl + controllerInfo, { headers: new HttpHeaders().set('data', value) })

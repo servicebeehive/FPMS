@@ -15,6 +15,8 @@ import { budgetYearDetails } from 'src/app/models/budgetyear.model';
 import { editProjectDetails } from 'src/app/models/edit-project-details.model';
 import { finalProjectSubmission } from 'src/app/models/final-project-submission.model';
 import { projectCreationDetails } from 'src/app/models/project-creation.model';
+import { stateCategoryDetails, stateProjectWorkDetails } from 'src/app/models/state-category.model';
+import { statePerHecDataDetails } from 'src/app/models/state-per-hec-details.model';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -31,6 +33,9 @@ export class ProjectComponent implements OnInit {
   public isEdit: boolean = false;
   public proejctType = proejctType;
   public proejctTypeValue: string;
+  public stateCategoryDetailsData: stateCategoryDetails;
+  public stateProjectDetailsData: stateProjectWorkDetails;
+  public statePerHecData: statePerHecDataDetails;
 
   constructor(public projectService: ProjectService,
     public masterDataService: MasterDataService,
@@ -44,7 +49,10 @@ export class ProjectComponent implements OnInit {
     projectType: this.fb.control<string | undefined>(proejctType.manual),
     projectName: this.fb.control<string | undefined>('', Validators.required),
     tenure: this.fb.control<number | undefined>(null, Validators.required),
-    financialYear: this.fb.control<number | undefined>(null, Validators.required)
+    financialYear: this.fb.control<number | undefined>(null, Validators.required),
+    projectCategoryState: this.fb.control<number | undefined>(null),
+    projectWork: this.fb.control<number | undefined>(null),
+    totalarea: this.fb.control<number | undefined>(null, Validators.required),
   })
 
   ngOnInit(): void {
@@ -54,30 +62,53 @@ export class ProjectComponent implements OnInit {
         this.onEditProjectHeader(value.id);
       }
     })
-
+    this.getStateProjectData();
   }
 
   public radioEventChange(event: MatRadioChange) {
     this.addProjectCreation.controls.projectType.setValue(event.value);
   }
 
+  public getStateProjectData() {
+    const data = {
+      statetaskcategoryid: 0
+    }
+    this.projectService.getStateProjectData(data).then((res: ReturnResult<stateCategoryDetails>) => {
+      if (res.success) {
+        this.stateCategoryDetailsData = res.data;
+      }
+    })
+  };
 
   public onClickProjectCreation(projectYearBudget?: budgetYearDetails[]) {
-    const checkTenure = this.checkTenureYears(this.addProjectCreation.value.tenure)
-    if (!checkTenure) {
-      return
-    }
-    this.showProjectCreation = true;
-    this.prjectCreationFormsDetails = this.addProjectCreation.value as projectCreationDetails
-    const tabs = Array.from({ length: Number(this.prjectCreationFormsDetails.tenure) }, (_, index) => index + 1);
-    this.prjectCreationFormsDetails.tabs = this.setFinancialYears(tabs, this.addProjectCreation.value.financialYear);
-    if (projectYearBudget) {
-      projectYearBudget.forEach((item: budgetYearDetails) => {
-        const index = this.prjectCreationFormsDetails.tabs.findIndex((element: budgetYearDetails) => element.planyear === item.planyear);
-        this.prjectCreationFormsDetails.tabs[index].budgetamount = item.amountconsumed;
-        this.prjectCreationFormsDetails.tabs[index].projectid = item.projectheadid;
-        this.prjectCreationFormsDetails.tabs[index].yearbudgetid = item.yearbudgetid;
+    if (this.addProjectCreation.value.projectType === proejctType.state) {
+      const data = {
+        statetaskid: this.addProjectCreation.value.projectWork,
+        totalarea: this.addProjectCreation.value.totalarea
+      }
+      this.projectService.getStateProjectComponentData(data).then((res: ReturnResult<statePerHecDataDetails>) => {
+        if (res.success) {
+          this.statePerHecData = res.data;
+        }
       })
+    }
+    else {
+      const checkTenure = this.checkTenureYears(this.addProjectCreation.value.tenure)
+      if (!checkTenure) {
+        return
+      }
+      this.showProjectCreation = true;
+      this.prjectCreationFormsDetails = this.addProjectCreation.value as projectCreationDetails
+      const tabs = Array.from({ length: Number(this.prjectCreationFormsDetails.tenure) }, (_, index) => index + 1);
+      this.prjectCreationFormsDetails.tabs = this.setFinancialYears(tabs, this.addProjectCreation.value.financialYear);
+      if (projectYearBudget) {
+        projectYearBudget.forEach((item: budgetYearDetails) => {
+          const index = this.prjectCreationFormsDetails.tabs.findIndex((element: budgetYearDetails) => element.planyear === item.planyear);
+          this.prjectCreationFormsDetails.tabs[index].budgetamount = item.amountconsumed;
+          this.prjectCreationFormsDetails.tabs[index].projectid = item.projectheadid;
+          this.prjectCreationFormsDetails.tabs[index].yearbudgetid = item.yearbudgetid;
+        })
+      }
     }
   }
 
@@ -102,6 +133,17 @@ export class ProjectComponent implements OnInit {
       this.notificationService.showNotification(data);
     }
     return checkTenure;
+  }
+
+  public selectProjectCategory(value: number) {
+    const data = {
+      statetaskcategoryid: value
+    }
+    this.projectService.getStateProjectWorkData(data).then((res: ReturnResult<stateProjectWorkDetails>) => {
+      if (res.success) {
+        this.stateProjectDetailsData = res.data;
+      }
+    })
   }
 
   public setFinancialYears(tabs: number[], startFinancialYear: number): budgetYearDetails[] {
