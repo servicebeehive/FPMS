@@ -12,7 +12,7 @@
                 <mat-radio-button value="manual" (change)="radioEventChange($event)">Manual Project</mat-radio-button>
                 <mat-radio-button value="state" (change)="radioEventChange($event)">State Project</mat-radio-button>
               </mat-radio-group>
-              <div class="row">
+              <div class="row mt-4">
                 <ng-container *ngIf="addProjectCreation.value.projectType===proejctType.manual">
                   <div class="col-md-4">
 
@@ -101,7 +101,7 @@
                     class="mr-2">Create</button>
                   <button *ngIf="addProjectCreation.value.projectType===proejctType.state" mat-stroked-button
                     color="primary" class="mr-2">Darft</button>
-                  <button mat-stroked-button color="warn">Submit</button>
+                  <button mat-flat-button color="primary">Submit</button>
                 </div>
               </div>
 
