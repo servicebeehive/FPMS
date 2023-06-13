@@ -48,6 +48,30 @@ export class BaseInterceptor implements HttpInterceptor {
         })
       })
     }
+
+    else if (request.url.includes('getstateprojectdata')) {
+      const headerData = JSON.parse(request.headers.get("data"));
+      request = request.clone({
+        withCredentials: true,
+        headers: new HttpHeaders({
+          'token': localStorage.getItem('access-token'),
+          'statetaskcategoryid': String(headerData.statetaskcategoryid),
+        })
+      })
+    }
+
+    else if (request.url.includes('getstateprojecttskdata')) {
+      const headerData = JSON.parse(request.headers.get("data"));
+      request = request.clone({
+        withCredentials: true,
+        headers: new HttpHeaders({
+          'token': localStorage.getItem('access-token'),
+          'statetaskid': String(headerData.statetaskid),
+          'totalarea': String(headerData.totalarea)
+        })
+      })
+    }
+
     else if (request.url.includes('getprojectcomponentdetailbyyear')) {
       const headerData = JSON.parse(request.headers.get("data"));
       request = request.clone({
