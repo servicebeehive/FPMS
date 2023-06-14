@@ -5,7 +5,7 @@
         <mat-spinner [mode]="'indeterminate'" [diameter]="40"></mat-spinner>
     </div>
     </ng-container>
-<mat-drawer-container autosize>
+<mat-drawer-container class="fix-layout" autosize>
   
     <mat-drawer mode="side" [opened]="isOpenSideBar">
         <app-side-nav [routers]="routerData"></app-side-nav>

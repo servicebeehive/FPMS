@@ -9,8 +9,8 @@ body {
     height: 100%;
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    // overflow-x: hidden;
+    // overflow-y: hidden;
     font-size: 14px;
 }
 
@@ -95,10 +95,10 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
     z-index: 11;
     position: fixed
   }
-  mat-drawer-container{ padding-top: 60px;
-    .mat-drawer-content{ height: 100vh;}
-.mat-drawer{ top: 64px;}
-}
+//   mat-drawer-container{ 
+//     .mat-drawer-content{ padding-top: 64px;}
+// .mat-drawer{ padding-top: 64px;}
+// }
 .mat-form-field{ width: 100%;}
 .p-0{ 
     .mat-form-field-wrapper{ padding: 0 !important;}
@@ -125,6 +125,8 @@ mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-f
   }
   tbody {
     .mat-row:nth-child(odd){
-        background-color: #f8f8f8;
+        background-color: #f4f4f4;
     }
   }
+  .fix-layout{ position: fixed !important; left: 0; right: 0; bottom: 0; top: 64px; }
+  .mat-column-action{width: 150px;}
