@@ -124,7 +124,7 @@ mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-f
     background-color: transparent; box-shadow: none;
   }
   tbody {
-    .mat-row:nth-child(odd){
+    .mat-row:nth-child(even){
         background-color: #f4f4f4;
     }
   }
