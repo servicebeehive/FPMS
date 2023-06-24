@@ -1,13 +1,15 @@
 <div class="container-fluid">
   <mat-accordion>
-    <mat-expansion-panel class="addeventbox mb-3 mt-3">
+    <mat-expansion-panel class="addeventbox mb-3 mt-3" [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
       <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
         Poject Header
       </mat-expansion-panel-header>
       <app-project-header [tabYear]="tabNumber" [formsDetails]="projectCreationDetailsForTabs"
         [projectDetailsForEdit]="projectDetails" (budgetYearAmount)="tabYearAmount($event)">
       </app-project-header>
-
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
     </mat-expansion-panel>
     <!-- <mat-expansion-panel  class="addeventbox eventboxes">
     <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
@@ -25,8 +27,8 @@
         <app-project-header-details></app-project-header-details>
    </div>
 </mat-expansion-panel> -->
-    <mat-expansion-panel class="addeventbox eventboxes" *ngFor="let tab of tabNumber">
-      <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2 addeventboxcursor">
+    <mat-expansion-panel class="addeventbox eventboxes" *ngFor="let tab of tabNumber; let i=index"  [expanded]="step ==i+1" (opened)="setStep(i+1)" hideToggle>
+      <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*"  class="pl-2 pr-2 addeventboxcursor">
         <mat-panel-title>
           Financial Year: {{tab.planyear}}
         </mat-panel-title>
@@ -40,6 +42,10 @@
       <div class="mt-2">
         <app-project-components [planYearAmount]="tab"></app-project-components>
       </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
     </mat-expansion-panel>
 
   </mat-accordion>

@@ -35,5 +35,17 @@ export class ProjectCreationComponent implements OnChanges {
     this.setSubmitProjectButton.emit(true);
     this.tabNumber = value;
   }
+  step=0 ;
 
+  setStep(index:number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 }
