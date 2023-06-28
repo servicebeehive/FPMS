@@ -12,7 +12,7 @@ export class StateProjectComponentDetailsComponent implements OnChanges {
   @Input() public componentDataDetails: compenentDetails[];
   @Input() public year: string;
 
-  public columnToDispaly: string[] = ['tasksequance', 'taskdesc', 'startdate', 'enddate', 'rate_uom', 'rate', 'action'];
+  public columnToDispaly: string[] = ['tasksequance', 'taskdesc', 'startdate', 'enddate', 'rate_uom', 'rate', 'maxexpd', 'action'];
   public dataSource: compenentDetails[];
   public actionTypes = ActionTypes;
 
