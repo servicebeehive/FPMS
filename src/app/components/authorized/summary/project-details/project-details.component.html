@@ -1,11 +1,12 @@
 <div class="viewer-wrapper">
   <div class="docs-example-viewer-title">
-    <h6 class="mb-3">Project Name : {{projectDetails?.project_name}}</h6>
+    <h5 class="pl-2 pt-3 mb-2">{{projectDetails?.project_name}}</h5>
 
   </div>
 
   <div class="conatiner row-container">
-    <table class="table table-bordered">
+    <table class="table table-striped">
+      <tbody>
       <tr>
         <td><b>Division :</b> {{projectDetails?.division}}</td>
         <td><b>SubDivision :</b> {{projectDetails?.subdivision}}</td>
@@ -47,6 +48,7 @@
         <td><b>Project Tenure :</b> {{projectDetails?.project_tenure}}</td>
         <td><b>Execution Post :</b> {{projectDetails?.execution_post}}</td>
       </tr>
+    </tbody>
     </table>
  
 
