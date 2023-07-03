@@ -46,7 +46,7 @@ export class ProjectComponent implements OnInit {
     public dialog: MatDialog) { }
 
   public addProjectCreation = this.fb.group({
-    projectType: this.fb.control<string | undefined>(proejctType.manual),
+    projectType: this.fb.control<string | undefined>(proejctType.state),
     projectName: this.fb.control<string | undefined>('', Validators.required),
     tenure: this.fb.control<number | undefined>(null, Validators.required),
     financialYear: this.fb.control<number | undefined>(null, Validators.required),
