@@ -38,7 +38,7 @@ export class AuthorizedComponent implements OnInit, AfterContentInit {
     },
     {
       label: "Labor",
-      route: "",
+      route: "labor",
       icon: "settings_accessibility",
     },
     {

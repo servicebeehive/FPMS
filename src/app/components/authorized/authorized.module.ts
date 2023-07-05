@@ -7,9 +7,10 @@ import { LayoutModule } from 'src/app/common/components/layout/layout.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+
 @NgModule({
   declarations: [
-    AuthorizedComponent,
+    AuthorizedComponent
   ],
   imports: [
     CommonModule,
