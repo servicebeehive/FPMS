@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatRadioChange } from '@angular/material/radio';
@@ -18,6 +18,7 @@ import { projectCreationDetails } from 'src/app/models/project-creation.model';
 import { stateCategoryDetails, stateProjectWorkDetails } from 'src/app/models/state-category.model';
 import { statePerHecDataDetails } from 'src/app/models/state-per-hec-details.model';
 import { ProjectService } from 'src/app/services/project.service';
+import { StateProjectDetailsComponent } from './state-project/state-project-details/state-project-details.component';
 
 @Component({
   selector: 'app-project',
@@ -25,6 +26,8 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+
+  @ViewChild(StateProjectDetailsComponent) stateProjectDetailsComponent:StateProjectDetailsComponent;
 
   public showProjectCreation: boolean;
   public prjectCreationFormsDetails: projectCreationDetails;
@@ -52,7 +55,7 @@ export class ProjectComponent implements OnInit {
     financialYear: this.fb.control<number | undefined>(null, Validators.required),
     projectCategoryState: this.fb.control<number | undefined>(null),
     projectWork: this.fb.control<number | undefined>(null),
-    totalarea: this.fb.control<number | undefined>(null, Validators.required),
+    totalarea: this.fb.control<string | undefined>(null, Validators.required),
   })
 
   ngOnInit(): void {
@@ -228,6 +231,32 @@ export class ProjectComponent implements OnInit {
 
   public onChangeSubmitButton(value: boolean) {
     this.isEdit = value;
+  }
+
+  public onClickDraft(){
+    if(!this.stateProjectDetailsComponent){
+      console.log('Error : Create Project');
+      return
+    }
+    const componenetdata = this.stateProjectDetailsComponent.onClickStateProjectDetails();
+    if(!componenetdata){
+      console.log('Error : projectHeaderDetails');
+      return
+    }
+    const { financialyear } = this.masterDataService.globalMasterData;
+    const fydesc = financialyear.filter(element => element.fyid === this.addProjectCreation.value.financialYear)[0].fydesc;
+    componenetdata.statetaskcategoryid = this.addProjectCreation.value.projectCategoryState;
+    componenetdata.statetaskid = this.addProjectCreation.value.projectWork;
+    componenetdata.totalarea  =  this.addProjectCreation.value.totalarea;
+    componenetdata.projectname = this.stateProjectDetailsData.state_category_data.find(item=>item.statetaskid===this.addProjectCreation.value.projectWork).statetaskdesc;
+    componenetdata.financialyear = fydesc;
+    this.projectService.stateProjectCreation(componenetdata).then((res: ReturnResult<any>) => {
+      if (res.success) {
+        console.log('res',res);
+      }
+      this.notificationService.showNotification(res);
+    })
+    console.log('componenetdata',componenetdata);
   }
 
 }

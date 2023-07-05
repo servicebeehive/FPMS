@@ -12,7 +12,7 @@ export interface projectDetails {
     beatid?: number;
     compantmentid?: number;
     apoyear?: string;
-    financialyear?: number;
+    financialyear?: string;
     projecttenure?: number;
     projectarea?: string;
     schemeid?: number;
@@ -48,4 +48,6 @@ export interface projectDetails {
     updatedon?: string;
     financial_year_desc?: string;
     status?: string;
+    statetaskcategoryid? : number,
+    statetaskid? : number,
 }
