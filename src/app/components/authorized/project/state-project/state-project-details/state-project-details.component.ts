@@ -9,6 +9,7 @@ import { statePerHecDataDetails } from 'src/app/models/state-per-hec-details.mod
 export class StateProjectDetailsComponent implements OnChanges {
 
   @Input() public stateProjectComponentData: statePerHecDataDetails;
+  step:number=0;
 
   constructor() { }
 
@@ -17,5 +18,22 @@ export class StateProjectDetailsComponent implements OnChanges {
       const yearData = element.case.toLowerCase();
     });
   }
+  setStep(index: number) {
+    this.step = index;
+   }
+   Save(){
+    this.step++;
+ 
+   }
+   
 
+ 
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 }

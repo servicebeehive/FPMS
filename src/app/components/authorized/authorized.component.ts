@@ -40,6 +40,24 @@ export class AuthorizedComponent implements OnInit, AfterContentInit {
       label: "Labor",
       route: "labor",
       icon: "settings_accessibility",
+      children:[
+        {
+          label: "Labor Rate",
+          route: "labor/labor-rate",
+          icon: "settings_accessibility",
+         
+         
+        },
+        {
+          label: "Project Labor",
+          route: "labor/project-labor",
+          icon: "settings_accessibility",
+          
+         
+        },
+      ],
+      
+     
     },
     {
       label: "Material",

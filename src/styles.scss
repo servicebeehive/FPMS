@@ -130,3 +130,10 @@ mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-f
   }
   .fix-layout{ position: fixed !important; left: 0; right: 0; bottom: 0; top: 64px; }
   .mat-column-action{width: 150px;}
+.mat-datapicker-fill{
+  .mat-form-field-infix{ display: inline-flex; height: 44px;
+  .mat-datepicker-toggle{
+    margin-top: -15px;
+  }
+}
+}

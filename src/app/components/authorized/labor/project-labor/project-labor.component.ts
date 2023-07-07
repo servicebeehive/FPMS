@@ -15,11 +15,12 @@ import { statusDetails } from 'src/app/models/status-details.model';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
-  selector: 'app-labor',
-  templateUrl: './labor.component.html',
-  styleUrls: ['./labor.component.scss']
+  selector: 'app-project-labor',
+  templateUrl: './project-labor.component.html',
+  styleUrls: ['./project-labor.component.scss']
 })
-export class LaborComponent implements OnInit {
+export class ProjectLaborComponent implements OnInit {
+
 
 
   public actionButtons: string[] = ['edit', 'delete', 'view summary']
@@ -29,7 +30,7 @@ export class LaborComponent implements OnInit {
   public actionTypes = ActionTypes;
   public statusDetails = statusCode;
   public columnDisplay: string[] = ['Labor Rate', 'Effective Date', 'Changed By', 'Changed On', 'Action']
-
+  public hide = true;
   constructor(public projectService: ProjectService,
     public router: Router,
     public masterDataService: MasterDataService,

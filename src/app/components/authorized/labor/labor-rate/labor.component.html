@@ -23,10 +23,10 @@
                     </div>
                     <div class="col-md-4">
   
-                        <mat-form-field appearance="outline">
+                        <mat-form-field appearance="outline" class="mat-datapicker-fill">
                             <mat-label>Effective Date</mat-label>
                             <input matInput [matDatepicker]="picker" required>
-                            <mat-hint>MM/DD/YYYY</mat-hint>
+                         
                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                           </mat-form-field>
@@ -48,12 +48,18 @@
             </div>
             <div class="body">
   
-  
-  
-  
               <div class="responsive_table">
-             
+                <div class="materialTableHeader  w-100">
+                  <div class="p-2 d-flex justify-content-end">
+                
+                     <app-project-filter (projectFilter)="onProjectFilterData($event)"
+                      (clearProjectFilter)="onClearProjectFilter()"></app-project-filter>
+                   </div>
   
+                </div>
+                <app-generic-table [title]="'Project Information'" [tableData]="getProjectListTableData"
+                  [actionButtons]="actionButtons" (actionButtonItem)="onGetActionItem($event)"
+                  [columnDisplayNames]="columnDisplay"></app-generic-table>
               </div>
              
             </div>
