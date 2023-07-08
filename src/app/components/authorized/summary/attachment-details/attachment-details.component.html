@@ -69,6 +69,6 @@
 
     </div>
     <div class="viewer-wrapper pt-3">
-        <app-generic-table [title]="'Approval Task'" [tableData]="projectWorkflow" [actionButtons]="actionButtons"
+        <app-generic-table [title]="'Approval Task'" [pagination]="true"  [tableData]="projectWorkflow" [actionButtons]="actionButtons"
             (actionButtonItem)="onGetActionItem($event)" [columnDisplayNames]="columnToDispaly"></app-generic-table>
     </div>

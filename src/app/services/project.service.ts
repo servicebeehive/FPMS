@@ -66,8 +66,8 @@ export class ProjectService extends BaseService {
     return this.GetWithHeaders<ReturnResult<stateProjectWorkDetails>, { statetaskcategoryid: number }>(this.controller.getstateprojectdata, data)
   }
 
-  public getStateProjectComponentData(data: { statetaskid: number, totalarea: number }): Promise<ReturnResult<statePerHecDataDetails>> {
-    return this.GetWithHeaders<ReturnResult<statePerHecDataDetails>, { statetaskid: number, totalarea: number }>(this.controller.getstateprojecttskdata, data)
+  public getStateProjectComponentData(data: { statetaskid: number, totalarea: string }): Promise<ReturnResult<statePerHecDataDetails>> {
+    return this.GetWithHeaders<ReturnResult<statePerHecDataDetails>, { statetaskid: number, totalarea: string }>(this.controller.getstateprojecttskdata, data)
   }
 
   public getProjectDocumentOperation(getProjectDocumentData: getProjectDocumentDataModel): Promise<ReturnResult<projectDocumentList[]>> {
@@ -82,5 +82,9 @@ export class ProjectService extends BaseService {
 
   public workFlowTaskOperation(workFlowOperationData: workFlowOperation): Promise<ReturnResult<any>> {
     return this.PostReturn<workFlowOperation, ReturnResult<any>>(this.controller.workflowtaskoperation, workFlowOperationData)
+  }
+
+  public stateProjectCreation(stateProjectCreationData: projectHeaderDetails): Promise<ReturnResult<any>> {
+    return this.PostReturn<projectHeaderDetails, ReturnResult<any>>(this.controller.createstateproject, stateProjectCreationData)
   }
 }

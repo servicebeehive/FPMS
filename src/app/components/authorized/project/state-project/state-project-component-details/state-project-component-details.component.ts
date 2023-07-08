@@ -29,5 +29,9 @@ export class StateProjectComponentDetailsComponent implements OnChanges {
 
   }
 
+  getComponentData(){
+    console.log('componentDataDetails',this.dataSource);
+  }
+
 
 }

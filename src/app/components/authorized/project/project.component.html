@@ -37,22 +37,22 @@
                     </mat-form-field>
 
                   </div>
-                  <div class="col-2">
-                    <mat-form-field appearance="outline">
-                      <mat-label>FY</mat-label>
-                      <mat-select formControlName="financialYear">
-                        <mat-option disabled selected>--Select Financial Year --</mat-option>
-                        <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
-                          [value]="item?.fyid">
-                          {{item.fydesc}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error
-                        *ngIf="addProjectCreation.controls['financialYear'].touched && addProjectCreation.controls['financialYear'].hasError('required')">You
-                        must make a selection of financial year</mat-error>
-                    </mat-form-field>
-                  </div>
                 </ng-container>
+                <div class="col-2">
+                  <mat-form-field appearance="outline">
+                    <mat-label>FY</mat-label>
+                    <mat-select formControlName="financialYear">
+                      <mat-option disabled selected>--Select Financial Year --</mat-option>
+                      <mat-option *ngFor="let item of masterDataService?.globalMasterData?.financialyear"
+                        [value]="item?.fyid">
+                        {{item.fydesc}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="addProjectCreation.controls['financialYear'].touched && addProjectCreation.controls['financialYear'].hasError('required')">You
+                      must make a selection of financial year</mat-error>
+                  </mat-form-field>
+                </div>
                 <ng-container *ngIf="addProjectCreation.value.projectType===proejctType.state">
                   <div class="col-md-4">
 
@@ -101,7 +101,7 @@
                   <button mat-stroked-button color="primary" (click)="onClickProjectCreation()"
                     class="mr-2">Create</button>
                   <button *ngIf="addProjectCreation.value.projectType===proejctType.state" mat-stroked-button
-                    color="primary" class="mr-2">Darft</button>
+                    color="primary" class="mr-2" (click)="onClickDraft()">Darft</button>
                   <button mat-flat-button color="primary">Submit</button>
                 </div>
               </div>

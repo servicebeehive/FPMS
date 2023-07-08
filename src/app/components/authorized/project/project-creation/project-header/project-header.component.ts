@@ -123,7 +123,7 @@ export class ProjectHeaderComponent implements OnInit {
       site: this.addProjectHeader.value.site,
       totalarea: this.addProjectHeader.value.totalArea,
       apoyear: this.addProjectHeader.value.apoYear,
-      financialyear: this.formsDetails.financialYear,
+      financialyear: String(this.formsDetails.financialYear),
       projecttenure: this.formsDetails.tenure,
       projectarea: this.addProjectHeader.value.projectArea,
       schemeid: this.addProjectHeader.value.schemeName,

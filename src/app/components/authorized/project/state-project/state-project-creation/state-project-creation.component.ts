@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
+import { projectHeaderDetails } from 'src/app/models/projectheader.model';
 
 @Component({
   selector: 'app-state-project-creation',
@@ -20,7 +21,6 @@ export class StateProjectCreationComponent implements OnInit {
     beat: this.fb.control<number | undefined>(null, Validators.required),
     compartmentNo: this.fb.control<number | undefined>(null, Validators.required),
     site: this.fb.control<string | undefined>('', Validators.required),
-    totalArea: this.fb.control<string | undefined>('', Validators.required),
     apoYear: this.fb.control<string | undefined>('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
     projectArea: this.fb.control<string | undefined>('', Validators.required),
     schemeName: this.fb.control<number | undefined>(null, Validators.required),
@@ -30,11 +30,42 @@ export class StateProjectCreationComponent implements OnInit {
     budgetHead: this.fb.control<number | undefined>(null, Validators.required)
   })
 
-
   constructor(public fb: FormBuilder,
     public masterDataService: MasterDataService) { }
 
   ngOnInit(): void {
+  }
+
+  onClickProjectHeaderDetails() : projectHeaderDetails{
+    let today = new Date();
+    console.log('this.addProjectHeader.valid',this.addProjectHeader.valid)
+    if(!this.addProjectHeader.valid){
+      console.log('Error : Project Header Details');
+      return;
+    }
+    const projectDetails: projectHeaderDetails = {
+      projectheadid: 0,
+      divisionid: this.addProjectHeader.value.division,
+      subdivisionid: this.addProjectHeader.value.subDivision,
+      rangeid: this.addProjectHeader.value.range,
+      villageid: this.addProjectHeader.value.village,
+      tahsilid: this.addProjectHeader.value.tahsil,
+      samitteedid: this.addProjectHeader.value.samittee,
+      vidhansabhaid: this.addProjectHeader.value.vidhansabha,
+      beatid: this.addProjectHeader.value.beat,
+      compantmentid: this.addProjectHeader.value.compartmentNo,
+      statuscode: "D",
+      site: this.addProjectHeader.value.site,
+      apoyear: this.addProjectHeader.value.apoYear,
+      projectarea: this.addProjectHeader.value.projectArea,
+      schemeid: this.addProjectHeader.value.schemeName,
+      executionsupervisor: this.addProjectHeader.value.executionSupervisor,
+      executionpost: this.addProjectHeader.value.executionPost,
+      budgetheaddesc: this.addProjectHeader.value.budgetHead,
+      projecttask:[],
+      operationtype:  "INSERT",
+    }
+    return projectDetails;
   }
 
 }

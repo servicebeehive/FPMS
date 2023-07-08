@@ -15,6 +15,7 @@ export class GenericTableComponent<T> implements OnChanges {
   @Input() actionButtons: string[];
   @Input() title: string;
   @Input() columnDisplayNames: string[];
+  @Input() pagination
 
   @Output() actionButtonItem = new EventEmitter<tableActionData<T>>();
 
