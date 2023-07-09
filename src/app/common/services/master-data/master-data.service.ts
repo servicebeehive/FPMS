@@ -17,7 +17,7 @@ export class MasterDataService extends BaseService {
   constructor(public http: HttpClient,
     public controllers: Controllers,
     public config: ConfigService<IConfig>) {
-    super(http, 'http://localhost:1610')
+    super(http, 'http://3.110.148.123:1610')
     //"APIUrl": "http://3.110.148.123:1610"
   }
 
