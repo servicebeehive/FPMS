@@ -12,6 +12,7 @@ import { projectHeaderDetails } from 'src/app/models/projectheader.model';
 export class StateProjectDetailsComponent implements OnChanges {
 
   @Input() public stateProjectComponentData: statePerHecDataDetails;
+  step:number=0;
 
   @ViewChild(StateProjectComponentDetailsComponent) stateProjectComponentDetails:StateProjectComponentDetailsComponent;
   @ViewChild(StateProjectCreationComponent) stateProjectCreation:StateProjectCreationComponent;
@@ -49,5 +50,22 @@ export class StateProjectDetailsComponent implements OnChanges {
     projectHeaderDetails.projecttenure = this.stateProjectComponentData.project_year_data.length;
     return projectHeaderDetails;
   }
+  setStep(index: number) {
+    this.step = index;
+   }
+   Save(){
+    this.step++;
+ 
+   }
+   
 
+ 
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 }

@@ -23,9 +23,10 @@ import { ProjectRoutingModule } from '../project/project-routing.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ProjectLaborComponent } from './project-labor/project-labor.component';
 
 @NgModule({
-  declarations: [ LaborComponent],
+  declarations: [ LaborComponent, ProjectLaborComponent],
   imports: [
     CommonModule,
     LaborRoutingModule,
