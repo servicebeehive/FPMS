@@ -1,15 +1,6 @@
 <div class="container-fluid">
     <mat-accordion>
-        <mat-expansion-panel class="addeventbox mb-3 mt-3"  [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-            <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
-                Poject Header
-            </mat-expansion-panel-header>
-            <app-state-project-creation #stateProjectCreation>
-            </app-state-project-creation>
-            <mat-action-row>
-                <button mat-button color="primary" (click)="nextStep()">Next</button>
-              </mat-action-row>
-        </mat-expansion-panel>
+    
     
 
 
@@ -22,18 +13,29 @@
             Total Cost:1000
           </mat-panel-description> -->
   
-          <button mat-stroked-button color="primary" class="mr-4" style="margin-right: 20px;">Add Element</button>
+          <!-- <button mat-stroked-button color="primary" class="mr-4" style="margin-right: 20px;">Add Element</button> -->
   
         </mat-expansion-panel-header>
         <div class="mt-2">
             <app-state-project-component-details [year]="item.case"
             [componentDataDetails]="stateProjectComponentData.calculated_ht_data[item.case.toLowerCase()]"></app-state-project-component-details>
         </div>
-        <mat-action-row>
+        <!-- <mat-action-row>
           <button mat-button color="warn" (click)="prevStep()">Previous</button>
           <button mat-button color="primary" (click)="nextStep()">Next</button>
-        </mat-action-row>
+        </mat-action-row> -->
       </mat-expansion-panel>
+      
+      <mat-expansion-panel class="addeventbox mb-3 mt-3"  [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+            Poject Header
+        </mat-expansion-panel-header>
+        <app-state-project-creation #stateProjectCreation>
+        </app-state-project-creation>
+        <mat-action-row>
+          <!-- <button mat-button color="primary" (click)="nextStep()">Next</button> -->
+          </mat-action-row>
+    </mat-expansion-panel>
     </mat-accordion>
 
 </div>
