@@ -1,7 +1,6 @@
 <div class="container-fluid">
     <mat-accordion>
     
-    
 
 
     <mat-expansion-panel class="addeventbox eventboxes" *ngFor="let item of stateProjectComponentData?.project_year_data; let i=index"  [expanded]="step ==i+1" (opened)="setStep(i+1)" hideToggle>
@@ -13,7 +12,9 @@
             Total Cost:1000
           </mat-panel-description> -->
   
+
           <!-- <button mat-stroked-button color="primary" class="mr-4" style="margin-right: 20px;">Add Element</button> -->
+
   
         </mat-expansion-panel-header>
         <div class="mt-2">
