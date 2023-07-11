@@ -1,3 +1,4 @@
+<div *ngIf="!isSummaryDetails">
 <table *ngIf="this.projectComponentData?.length !==0" mat-table [dataSource]="dataSource" multiTemplateDataRows>
     <ng-container *ngFor="let columnName of columnToDispaly" [matColumnDef]="columnName">
         <th mat-header-cell *matHeaderCellDef>{{ columnName |capitalize }}</th>
@@ -42,8 +43,24 @@
     <tr mat-row *matRowDef="let row; columns: columnsToDisplayWithExpand"></tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" [class.hidden]="row.componentheader['isExpand']">
     </tr>
-</table>
+</table> 
+</div>
+<div *ngIf="isSummaryDetails==true">
+<mat-expansion-panel  class="addeventbox mb-3 mt-3" *ngFor="let headeritem of this.projectComponentData">
+    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+        Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}} 
+        
+    </mat-expansion-panel-header>
+    <div class="mt-2">
+        
+             <app-project-component-elements [componentElementDetails]="headeritem['componentelement']"
+                    (onClickRowItem)="rowItemDetails($event)"
+                    [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
+    </div>
 
+    </mat-expansion-panel>
+    
+</div>
 <div *ngIf="this.projectComponentData?.length === 0">
     <span class="error-font-color"> No Data available</span>
 </div>
