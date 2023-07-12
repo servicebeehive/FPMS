@@ -1,8 +1,15 @@
 export interface routerModel {
-    label: string;
-    route: string;
-    icon: string;
-    children?
+   
+path:string
+title:string
+iconType:string
+icon:string
+class:string
+groupTitle:boolean
+badge:string
+badgeClass: string
+submenu:routerModel[]
+
 
     
 }
