@@ -87,4 +87,8 @@ export class ProjectService extends BaseService {
   public stateProjectCreation(stateProjectCreationData: projectHeaderDetails): Promise<ReturnResult<any>> {
     return this.PostReturn<projectHeaderDetails, ReturnResult<any>>(this.controller.createstateproject, stateProjectCreationData)
   }
+
+  public getStateProjectInfoDetails(data: { projectheadid: number }): Promise<ReturnResult<statePerHecDataDetails>> {
+    return this.GetWithHeaders<ReturnResult<statePerHecDataDetails>, { projectheadid: number }>(this.controller.getprojectheaderdata, data)
+  }
 }

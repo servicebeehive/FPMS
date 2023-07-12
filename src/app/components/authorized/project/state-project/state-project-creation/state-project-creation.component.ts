@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
+import { projectDetails } from 'src/app/models/project-details.model';
 import { projectHeaderDetails } from 'src/app/models/projectheader.model';
 
 @Component({
@@ -8,7 +9,10 @@ import { projectHeaderDetails } from 'src/app/models/projectheader.model';
   templateUrl: './state-project-creation.component.html',
   styleUrls: ['./state-project-creation.component.scss']
 })
-export class StateProjectCreationComponent implements OnInit {
+export class StateProjectCreationComponent implements OnChanges {
+
+  @Input() projectDetailsForEdit: projectDetails;
+  public projectheadid:number = 0
 
   public addProjectHeader = this.fb.group({
     division: this.fb.control<number | undefined>(null, Validators.required),
@@ -33,7 +37,11 @@ export class StateProjectCreationComponent implements OnInit {
   constructor(public fb: FormBuilder,
     public masterDataService: MasterDataService) { }
 
-  ngOnInit(): void {
+    ngOnChanges(): void {
+      if(this.projectDetailsForEdit){
+        this.setFormControlsForEdit();
+      }
+
   }
 
   onClickProjectHeaderDetails() : projectHeaderDetails{
@@ -44,7 +52,7 @@ export class StateProjectCreationComponent implements OnInit {
       return;
     }
     const projectDetails: projectHeaderDetails = {
-      projectheadid: 0,
+      projectheadid: this.projectheadid,
       divisionid: this.addProjectHeader.value.division,
       subdivisionid: this.addProjectHeader.value.subDivision,
       rangeid: this.addProjectHeader.value.range,
@@ -66,6 +74,26 @@ export class StateProjectCreationComponent implements OnInit {
       operationtype:  "INSERT",
     }
     return projectDetails;
+  }
+
+  setFormControlsForEdit() {
+    this.projectheadid = this.projectDetailsForEdit.projectheadid;
+    this.addProjectHeader.controls.division.setValue(this.projectDetailsForEdit.divisionid);
+    this.addProjectHeader.controls.subDivision.setValue(this.projectDetailsForEdit.subdivisionid);
+    this.addProjectHeader.controls.range.setValue(this.projectDetailsForEdit.rangeid);
+    this.addProjectHeader.controls.village.setValue(this.projectDetailsForEdit.villageid);
+    this.addProjectHeader.controls.tahsil.setValue(this.projectDetailsForEdit.tahsilid);
+    this.addProjectHeader.controls.samittee.setValue(this.projectDetailsForEdit.samitteedid);
+    this.addProjectHeader.controls.vidhansabha.setValue(this.projectDetailsForEdit.vidhansabhaid);
+    this.addProjectHeader.controls.beat.setValue(this.projectDetailsForEdit.beatid);
+    this.addProjectHeader.controls.compartmentNo.setValue(this.projectDetailsForEdit.compantmentid);
+    this.addProjectHeader.controls.site.setValue(this.projectDetailsForEdit.site);
+    this.addProjectHeader.controls.apoYear.setValue(this.projectDetailsForEdit.approval_year);
+    this.addProjectHeader.controls.projectArea.setValue(this.projectDetailsForEdit.project_area);
+    this.addProjectHeader.controls.schemeName.setValue(this.projectDetailsForEdit.schemeid);
+    this.addProjectHeader.controls.executionSupervisor.setValue(this.projectDetailsForEdit.execution_supervisor);
+    this.addProjectHeader.controls.executionPost.setValue(this.projectDetailsForEdit.execution_post);
+    this.addProjectHeader.controls.budgetHead.setValue(this.projectDetailsForEdit.budgethead);
   }
 
 }

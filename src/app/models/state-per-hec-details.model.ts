@@ -1,7 +1,10 @@
+import { projectDetails } from "./project-details.model"
+
 export interface statePerHecDataDetails {
     per_ht_data: compenentDetailData,
     calculated_ht_data: compenentDetailData,
-    project_year_data: projectYearData[]
+    project_year_data: projectYearData[],
+    project_header_data?:projectDetails[]
 };
 
 export interface compenentDetailData {

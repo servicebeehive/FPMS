@@ -63,6 +63,7 @@ export class ProjectComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((value: { id: number }) => {
       if (value.id) {
         this.onEditProjectHeader(value.id);
+        this.onEditStateProjectHeader(value.id)
       }
     })
     this.getStateProjectData();
@@ -188,6 +189,23 @@ export class ProjectComponent implements OnInit {
         }
       }
     })
+  }
+
+  public onEditStateProjectHeader(id: number){
+    const getProjectHeaderDetail = {
+      projectheadid: id
+    };
+    this.projectService.getStateProjectInfoDetails(getProjectHeaderDetail).then((res: ReturnResult<statePerHecDataDetails>) => {
+      if (res.success) {
+        this.statePerHecData = res.data;
+        this.selectProjectCategory(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
+        if (this.statePerHecData?.project_header_data.length > 0) {
+          this.addProjectCreation.controls.projectWork.setValue(this.statePerHecData?.project_header_data[0].statetaskid);
+          this.addProjectCreation.controls.projectCategoryState.setValue(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
+          this.addProjectCreation.controls.financialYear.setValue(Number(this.statePerHecData?.project_header_data[0].financial_year));
+          this.addProjectCreation.controls.totalarea.setValue(this.statePerHecData?.project_header_data[0].project_area);
+        }
+      }})
   }
 
   public onClickFinalProjectSubmit() {

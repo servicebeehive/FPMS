@@ -16,5 +16,6 @@ export class Controllers {
     public readonly workflowtaskoperation = '/api/projectsummary/workflowtaskoperation';
     public readonly getstateprojectdata = '/api/stateproject/getstateprojectdata';
     public readonly getstateprojecttskdata = '/api/stateproject/getstateprojecttskdata';
-    public readonly createstateproject = '/api/stateproject/createstateproject'
+    public readonly createstateproject = '/api/stateproject/createstateproject';
+    public readonly getprojectheaderdata='/api/stateproject/getprojectheaderdata'
 }
