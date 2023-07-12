@@ -3,6 +3,7 @@ import { compenentDetails, statePerHecDataDetails } from 'src/app/models/state-p
 import { StateProjectComponentDetailsComponent } from '../state-project-component-details/state-project-component-details.component';
 import { StateProjectCreationComponent } from '../state-project-creation/state-project-creation.component';
 import { projectHeaderDetails } from 'src/app/models/projectheader.model';
+import { projectDetails } from 'src/app/models/project-details.model';
 
 @Component({
   selector: 'app-state-project-details',
@@ -12,7 +13,8 @@ import { projectHeaderDetails } from 'src/app/models/projectheader.model';
 export class StateProjectDetailsComponent implements OnChanges {
 
   @Input() public stateProjectComponentData: statePerHecDataDetails;
-  step:number=0;
+  public step:number=0;
+  public stateProjectDetails : projectDetails;
 
   @ViewChild(StateProjectComponentDetailsComponent) stateProjectComponentDetails:StateProjectComponentDetailsComponent;
   @ViewChild(StateProjectCreationComponent) stateProjectCreation:StateProjectCreationComponent;
@@ -25,6 +27,8 @@ export class StateProjectDetailsComponent implements OnChanges {
       return a.taskyear-b.taskyear
     })
     this.stateProjectComponentData.project_year_data = data;
+    this.stateProjectDetails = this.stateProjectComponentData?.project_header_data[0];
+    console.log('stateProjectComponentData',this.stateProjectComponentData)
   }
   }
 
@@ -50,6 +54,7 @@ export class StateProjectDetailsComponent implements OnChanges {
     projectHeaderDetails.projecttenure = this.stateProjectComponentData.project_year_data.length;
     return projectHeaderDetails;
   }
+
   setStep(index: number) {
     this.step = index;
    }
@@ -57,10 +62,6 @@ export class StateProjectDetailsComponent implements OnChanges {
     this.step++;
  
    }
-   
-
- 
-
   nextStep() {
     this.step++;
   }

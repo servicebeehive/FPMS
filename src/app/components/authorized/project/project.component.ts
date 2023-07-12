@@ -39,6 +39,7 @@ export class ProjectComponent implements OnInit {
   public stateCategoryDetailsData: stateCategoryDetails;
   public stateProjectDetailsData: stateProjectWorkDetails;
   public statePerHecData: statePerHecDataDetails;
+  public editStatePerHecData: statePerHecDataDetails;
 
   constructor(public projectService: ProjectService,
     public masterDataService: MasterDataService,
@@ -63,6 +64,7 @@ export class ProjectComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((value: { id: number }) => {
       if (value.id) {
         this.onEditProjectHeader(value.id);
+        this.onEditStateProjectHeader(value.id)
       }
     })
     this.getStateProjectData();
@@ -188,6 +190,23 @@ export class ProjectComponent implements OnInit {
         }
       }
     })
+  }
+
+  public onEditStateProjectHeader(id: number){
+    const getProjectHeaderDetail = {
+      projectheadid: id
+    };
+    this.projectService.getStateProjectInfoDetails(getProjectHeaderDetail).then((res: ReturnResult<statePerHecDataDetails>) => {
+      if (res.success) {
+        this.editStatePerHecData = res.data;
+        this.selectProjectCategory(this.editStatePerHecData?.project_header_data[0].statetaskcategoryid);
+        if (this.editStatePerHecData?.project_header_data.length > 0) {
+          this.addProjectCreation.controls.projectWork.setValue(this.editStatePerHecData?.project_header_data[0].statetaskid);
+          this.addProjectCreation.controls.projectCategoryState.setValue(this.editStatePerHecData?.project_header_data[0].statetaskcategoryid);
+          this.addProjectCreation.controls.financialYear.setValue(Number(this.editStatePerHecData?.project_header_data[0].financial_year));
+          this.addProjectCreation.controls.totalarea.setValue(this.editStatePerHecData?.project_header_data[0].project_area);
+        }
+      }})
   }
 
   public onClickFinalProjectSubmit() {

@@ -49,6 +49,17 @@ export class BaseInterceptor implements HttpInterceptor {
       })
     }
 
+    else if (request.url.includes('getprojectheaderdata')) {
+      const headerData = JSON.parse(request.headers.get("data"));
+      request = request.clone({
+        withCredentials: true,
+        headers: new HttpHeaders({
+          'token': localStorage.getItem('access-token'),
+          'projectheaderid': String(headerData.projectheadid),
+        })
+      })
+    }
+
     else if (request.url.includes('getstateprojectdata')) {
       const headerData = JSON.parse(request.headers.get("data"));
       request = request.clone({
