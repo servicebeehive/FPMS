@@ -23,13 +23,13 @@ export class ProjectLaborComponent implements OnInit {
 
 
 
-  public actionButtons: string[] = ['edit', 'delete', 'view summary']
+  public actionButtons: string[] = ['edit', 'delete']
   public getProjectListTableData: projectDetails[];
   public getProjectListCollectionData: projectDetails[];
   public masterDataCollection: masterData;
   public actionTypes = ActionTypes;
   public statusDetails = statusCode;
-  public columnDisplay: string[] = ['Labor Rate', 'Effective Date', 'Changed By', 'Changed On', 'Action']
+  public columnDisplay: string[] = ['AddharNo', 'First Name', 'Last Name']
   public hide = true;
   constructor(public projectService: ProjectService,
     public router: Router,
