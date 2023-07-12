@@ -27,7 +27,7 @@ export class StateProjectDetailsComponent implements OnChanges {
       return a.taskyear-b.taskyear
     })
     this.stateProjectComponentData.project_year_data = data;
-    this.stateProjectDetails = this.stateProjectComponentData.project_header_data[0];
+    this.stateProjectDetails = this.stateProjectComponentData?.project_header_data[0];
     console.log('stateProjectComponentData',this.stateProjectComponentData)
   }
   }

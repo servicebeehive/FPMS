@@ -39,6 +39,7 @@ export class ProjectComponent implements OnInit {
   public stateCategoryDetailsData: stateCategoryDetails;
   public stateProjectDetailsData: stateProjectWorkDetails;
   public statePerHecData: statePerHecDataDetails;
+  public editStatePerHecData: statePerHecDataDetails;
 
   constructor(public projectService: ProjectService,
     public masterDataService: MasterDataService,
@@ -197,13 +198,13 @@ export class ProjectComponent implements OnInit {
     };
     this.projectService.getStateProjectInfoDetails(getProjectHeaderDetail).then((res: ReturnResult<statePerHecDataDetails>) => {
       if (res.success) {
-        this.statePerHecData = res.data;
-        this.selectProjectCategory(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
-        if (this.statePerHecData?.project_header_data.length > 0) {
-          this.addProjectCreation.controls.projectWork.setValue(this.statePerHecData?.project_header_data[0].statetaskid);
-          this.addProjectCreation.controls.projectCategoryState.setValue(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
-          this.addProjectCreation.controls.financialYear.setValue(Number(this.statePerHecData?.project_header_data[0].financial_year));
-          this.addProjectCreation.controls.totalarea.setValue(this.statePerHecData?.project_header_data[0].project_area);
+        this.editStatePerHecData = res.data;
+        this.selectProjectCategory(this.editStatePerHecData?.project_header_data[0].statetaskcategoryid);
+        if (this.editStatePerHecData?.project_header_data.length > 0) {
+          this.addProjectCreation.controls.projectWork.setValue(this.editStatePerHecData?.project_header_data[0].statetaskid);
+          this.addProjectCreation.controls.projectCategoryState.setValue(this.editStatePerHecData?.project_header_data[0].statetaskcategoryid);
+          this.addProjectCreation.controls.financialYear.setValue(Number(this.editStatePerHecData?.project_header_data[0].financial_year));
+          this.addProjectCreation.controls.totalarea.setValue(this.editStatePerHecData?.project_header_data[0].project_area);
         }
       }})
   }
