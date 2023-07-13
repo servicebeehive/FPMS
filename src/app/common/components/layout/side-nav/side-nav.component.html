@@ -1,7 +1,53 @@
-<div  class="sidebar">
+<div id="leftsidebar" class="sidebar">
     <div class="menu">
-        
-        <ul *ngFor="let router of routers" class="list">
+        <ul class="list">
+             <li *ngFor="let sidebarItem of routers"
+            [routerLinkActive]="sidebarItem.submenu.length != 0 ? 'active' : 'active-top'">
+            <div class="header" *ngIf="sidebarItem.groupTitle === true">{{sidebarItem.title}}</div>
+            <a [routerLink]="sidebarItem.class === '' ? [sidebarItem.path] : null" *ngIf="!sidebarItem.groupTitle;"
+              [ngClass]="[sidebarItem.class]" (click)="callToggleMenu($event, sidebarItem.submenu.length)"
+              class="menu-top">
+              <mat-icon class="material-icons-outlined"  fontIcon="{{sidebarItem.icon}}"></mat-icon>
+              <!-- <i [ngClass]="[sidebarItem.iconType]">{{sidebarItem.icon}}</i> -->
+              <span class="hide-menu">{{sidebarItem.title}}
+              </span>
+              <span *ngIf="sidebarItem.badge != '' " [ngClass]="[sidebarItem.badgeClass]">{{sidebarItem.badge}}</span>
+            </a>
+            <!-- First level menu -->
+            <ul class="ml-menu" *ngIf="sidebarItem.submenu.length > 0">
+              <li *ngFor="let sidebarSubItem1 of sidebarItem.submenu"
+                [routerLinkActive]="sidebarSubItem1.submenu.length > 0 ? '' : 'active'">
+                <a [routerLink]="sidebarSubItem1.submenu.length > 0 ? null : [sidebarSubItem1.path]"
+                  (click)="callToggleMenu($event,sidebarSubItem1.submenu.length)" [ngClass]="[sidebarSubItem1.class]">
+                  {{sidebarSubItem1.title }}
+                </a>
+                <!-- Second level menu -->
+                <ul class="ml-menu-2" *ngIf="sidebarSubItem1.submenu.length > 0">
+                  <li *ngFor="let sidebarSubItem2 of sidebarSubItem1.submenu"
+                    [routerLinkActive]="sidebarSubItem2.submenu.length > 0 ? '' : 'active'">
+                    <a [routerLink]="sidebarSubItem2.submenu.length > 0 ? null : [sidebarSubItem2.path]"
+                      (click)="callToggleMenu($event,sidebarSubItem2.submenu.length)"
+                      [ngClass]="[sidebarSubItem2.class]">
+                      {{sidebarSubItem2.title}}
+                    </a>
+                    <!-- Third level menu -->
+                    <ul class="ml-menu-3" *ngIf="sidebarSubItem2.submenu.length > 0">
+                      <li *ngFor="let sidebarSubItem3 of sidebarSubItem2.submenu"
+                        [routerLinkActive]="sidebarSubItem3.submenu.length > 0 ? '' : 'active'">
+                        <a [routerLink]="sidebarSubItem3.submenu.length > 0 ? null : [sidebarSubItem3.path]"
+                          (click)="callToggleMenu($event,sidebarSubItem3.submenu.length)"
+                          [ngClass]="[sidebarSubItem3.class]">
+                          {{sidebarSubItem3.title}}
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- <ul *ngFor="let router of routers" class="list">
           
             <mat-expansion-panel *ngIf="router.children && router.children.length > 0">
                 <mat-expansion-panel-header>
@@ -28,7 +74,7 @@
                 <mat-icon class="material-icons-outlined"  fontIcon="{{router.icon}}"></mat-icon> {{router.label}}</a>
         </li>
             
-        </ul>
+        </ul> -->
         
 
 

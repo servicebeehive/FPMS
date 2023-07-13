@@ -2,3 +2,19 @@
 //     background: #e5e6eb
 // }
 
+// .sidebar .menu .list .menu-toggle:before {
+//     content: "+";
+//     transform: scale(1);
+// }
+// .sidebar .menu .list .menu-toggle:after {
+//     content: "\2013";
+//     transform: scale(0);
+// }
+// .sidebar .menu .list .menu-toggle:after, .sidebar .menu .list .menu-toggle:before {
+//     position: absolute;
+//     top: calc(50% - 13px);
+//     right: 17px;
+//     font-size: 19px;
+//     transform: scale(0);
+//     transition: all .3s;
+// }
