@@ -86,9 +86,20 @@ export class AuthorizedComponent implements OnInit, AfterContentInit {
    "submenu":[
      
    ]
-    }
+    },
+  
   ]
-   }
+   },
+  //  {"path": "Material",
+  //  "title": "",
+  //  "iconType": "material-icons-two-tone",
+  //  "icon": "assignment",
+  //  "class": "",
+  //  "groupTitle": false,
+  //  "badge": "",
+  //  "badgeClass": "",
+  //  "submenu":[]
+  //   },
 //     {
 //       label: "Dashboard",
 //       route: "dashboard",
