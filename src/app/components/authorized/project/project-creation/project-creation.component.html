@@ -27,7 +27,7 @@
         <app-project-header-details></app-project-header-details>
    </div>
 </mat-expansion-panel> -->
-    <mat-expansion-panel class="addeventbox eventboxes" *ngFor="let tab of tabNumber; let i=index" >
+    <mat-expansion-panel class="addeventbox eventboxes mb-2" *ngFor="let tab of tabNumber; let i=index" >
       <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*"  class="pl-2 pr-2 addeventboxcursor">
         <mat-panel-title>
           Financial Year: {{tab.planyear}}
@@ -42,10 +42,10 @@
       <div class="mt-2">
         <app-project-components [planYearAmount]="tab"></app-project-components>
       </div>
-      <mat-action-row>
-        <!-- <button mat-button color="warn" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">Next</button> -->
-      </mat-action-row>
+       <!-- <mat-action-row>
+       <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button> 
+      </mat-action-row>-->
     </mat-expansion-panel>
 
   </mat-accordion>
