@@ -171,6 +171,16 @@ export class CreateStateComponentComponent implements OnInit {
   onClickProjectComponent() {
     const updatedDialogData = this.dialogData;
     if(!updatedDialogData.isheader){
+      const differMonth = moment(this.addComponentInformation.value.enddate).diff(moment(this.addComponentInformation.value.startdate),'months', true);
+      if(differMonth < 0){
+        const messageNotifier:ReturnResult<any> ={
+          data:null,
+          message:'Start Date Should not be greater than end date',
+          success:false
+          }
+          this.notificationService.showNotification(messageNotifier);
+          return
+      }
       updatedDialogData.enddate = moment(this.addComponentInformation.value.enddate).format().toString();
       updatedDialogData.startdate = moment(this.addComponentInformation.value.startdate).format().toString();
     }
