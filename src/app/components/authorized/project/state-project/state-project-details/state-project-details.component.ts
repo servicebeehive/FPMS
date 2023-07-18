@@ -13,6 +13,7 @@ import { projectDetails } from 'src/app/models/project-details.model';
 export class StateProjectDetailsComponent implements OnChanges {
 
   @Input() public stateProjectComponentData: statePerHecDataDetails;
+  @Input() public isEdit: boolean =false;
   public step:number=0;
   public stateProjectDetails : projectDetails;
 
@@ -27,8 +28,9 @@ export class StateProjectDetailsComponent implements OnChanges {
       return a.taskyear-b.taskyear
     })
     this.stateProjectComponentData.project_year_data = data;
-    this.stateProjectDetails = this.stateProjectComponentData?.project_header_data[0];
-    console.log('stateProjectComponentData',this.stateProjectComponentData)
+    if(this.isEdit){
+      this.stateProjectDetails = this.stateProjectComponentData?.project_header_data[0];
+    }
   }
   }
 
@@ -43,8 +45,6 @@ export class StateProjectDetailsComponent implements OnChanges {
       console.log('Error : projectHeaderDetails');
       return
     }
-    console.log('ProjectHeaderDetails',projectHeaderDetails);
-    console.log('ProjectHeaderDetails',projectHeaderDetails.projecttask);
     this.stateProjectComponentData.project_year_data.forEach(x=>{
       this.stateProjectComponentData.calculated_ht_data[x.case.toLowerCase()].forEach(y=>{
         componentData.push(y);
@@ -55,18 +55,10 @@ export class StateProjectDetailsComponent implements OnChanges {
     return projectHeaderDetails;
   }
 
-  setStep(index: number) {
-    this.step = index;
-   }
-   Save(){
-    this.step++;
- 
-   }
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
+  onDeletedAction(value: compenentDetails[]){
+    const yearDesc = this.stateProjectComponentData.project_year_data.filter(x=>x.taskyear===value[0].taskyear);
+    const componentDeatils = <compenentDetails[]>this.stateProjectComponentData.calculated_ht_data[yearDesc[0].case.toLowerCase()];
+    const index = componentDeatils.findIndex(x=>x.tasksequance===value[0].tasksequance);
+    this.stateProjectComponentData.calculated_ht_data[yearDesc[0].case.toLowerCase()].splice(index, 1);
   }
 }

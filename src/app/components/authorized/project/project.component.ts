@@ -40,6 +40,7 @@ export class ProjectComponent implements OnInit {
   public stateProjectDetailsData: stateProjectWorkDetails;
   public statePerHecData: statePerHecDataDetails;
   public editStatePerHecData: statePerHecDataDetails;
+  public isEditValue:boolean = false;
 
   constructor(public projectService: ProjectService,
     public masterDataService: MasterDataService,
@@ -54,8 +55,8 @@ export class ProjectComponent implements OnInit {
     projectName: this.fb.control<string | undefined>('', Validators.required),
     tenure: this.fb.control<number | undefined>(null, Validators.required),
     financialYear: this.fb.control<number | undefined>(null, Validators.required),
-    projectCategoryState: this.fb.control<number | undefined>(null),
-    projectWork: this.fb.control<number | undefined>(null),
+    projectCategoryState: this.fb.control<number | undefined>(null,Validators.required),
+    projectWork: this.fb.control<number | undefined>(null,Validators.required),
     totalarea: this.fb.control<string | undefined>(null, Validators.required),
   })
 
@@ -68,6 +69,17 @@ export class ProjectComponent implements OnInit {
       }
     })
     this.getStateProjectData();
+    if(this.addProjectCreation.value.projectType === proejctType.state){
+      this.setFormValidation();
+    }
+  }
+
+  public setFormValidation(){
+    this.addProjectCreation.controls.projectName.clearValidators();
+    this.addProjectCreation.controls.projectName.updateValueAndValidity();
+
+    this.addProjectCreation.controls.tenure.clearValidators();
+    this.addProjectCreation.controls.tenure.updateValueAndValidity();
   }
 
   public radioEventChange(event: MatRadioChange) {
@@ -86,7 +98,9 @@ export class ProjectComponent implements OnInit {
   };
 
   public onClickProjectCreation(projectYearBudget?: budgetYearDetails[]) {
+    this.showProjectCreation = true;
     if (this.addProjectCreation.value.projectType === proejctType.state) {
+      this.statePerHecData = null;
       const data = {
         statetaskid: this.addProjectCreation.value.projectWork,
         totalarea: this.addProjectCreation.value.totalarea
@@ -102,7 +116,6 @@ export class ProjectComponent implements OnInit {
       if (!checkTenure) {
         return
       }
-      this.showProjectCreation = true;
       this.prjectCreationFormsDetails = this.addProjectCreation.value as projectCreationDetails
       const tabs = Array.from({ length: Number(this.prjectCreationFormsDetails.tenure) }, (_, index) => index + 1);
       this.prjectCreationFormsDetails.tabs = this.setFinancialYears(tabs, this.addProjectCreation.value.financialYear);
@@ -193,18 +206,22 @@ export class ProjectComponent implements OnInit {
   }
 
   public onEditStateProjectHeader(id: number){
+    this.statePerHecData = null;
+    this.isEditValue = true;
     const getProjectHeaderDetail = {
       projectheadid: id
     };
     this.projectService.getStateProjectInfoDetails(getProjectHeaderDetail).then((res: ReturnResult<statePerHecDataDetails>) => {
       if (res.success) {
-        this.editStatePerHecData = res.data;
-        this.selectProjectCategory(this.editStatePerHecData?.project_header_data[0].statetaskcategoryid);
-        if (this.editStatePerHecData?.project_header_data.length > 0) {
-          this.addProjectCreation.controls.projectWork.setValue(this.editStatePerHecData?.project_header_data[0].statetaskid);
-          this.addProjectCreation.controls.projectCategoryState.setValue(this.editStatePerHecData?.project_header_data[0].statetaskcategoryid);
-          this.addProjectCreation.controls.financialYear.setValue(Number(this.editStatePerHecData?.project_header_data[0].financial_year));
-          this.addProjectCreation.controls.totalarea.setValue(this.editStatePerHecData?.project_header_data[0].project_area);
+        this.statePerHecData = res.data;
+        this.selectProjectCategory(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
+        if (this.statePerHecData?.project_header_data.length > 0) {
+          const { financialyear } = this.masterDataService.globalMasterData;
+          const financialyearData = financialyear.filter(element => element.fydesc === this.statePerHecData?.project_header_data[0].financial_year); 
+          this.addProjectCreation.controls.projectWork.setValue(this.statePerHecData?.project_header_data[0].statetaskid);
+          this.addProjectCreation.controls.projectCategoryState.setValue(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
+          this.addProjectCreation.controls.financialYear.setValue(financialyearData[0].fyid);
+          this.addProjectCreation.controls.totalarea.setValue(this.statePerHecData?.project_header_data[0].project_area);
         }
       }})
   }
@@ -270,12 +287,8 @@ export class ProjectComponent implements OnInit {
     componenetdata.projectname = this.stateProjectDetailsData.state_category_data.find(item=>item.statetaskid===this.addProjectCreation.value.projectWork).statetaskdesc;
     componenetdata.financialyear = fydesc;
     this.projectService.stateProjectCreation(componenetdata).then((res: ReturnResult<any>) => {
-      if (res.success) {
-        console.log('res',res);
-      }
       this.notificationService.showNotification(res);
     })
-    console.log('componenetdata',componenetdata);
   }
 
 }

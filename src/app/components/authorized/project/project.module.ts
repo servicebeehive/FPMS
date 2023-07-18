@@ -32,6 +32,8 @@ import { ProjectComponentStateModule } from './project-components/project-compon
 import { StateProjectDetailsComponent } from './state-project/state-project-details/state-project-details.component';
 import { StateProjectCreationComponent } from './state-project/state-project-creation/state-project-creation.component';
 import { StateProjectComponentDetailsComponent } from './state-project/state-project-component-details/state-project-component-details.component';
+import { CreateStateComponentComponent } from './state-project/create-state-component/create-state-component.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 // import { ProjectComponetStateComponent } from './project-components/project-componet-state/project-componet-state.component';
 // import { ProjectHeaderDetailsComponent } from './project-header-details/project-header-details.component';
 
@@ -47,6 +49,7 @@ import { StateProjectComponentDetailsComponent } from './state-project/state-pro
     StateProjectDetailsComponent,
     StateProjectCreationComponent,
     StateProjectComponentDetailsComponent,
+    CreateStateComponentComponent,
     // ProjectComponetStateComponent,
     // ProjectHeaderDetailsComponent,
   ],
@@ -65,6 +68,7 @@ import { StateProjectComponentDetailsComponent } from './state-project/state-pro
     MatCheckboxModule,
     SharedModule,
     MatExpansionModule,
+    MatDatepickerModule,
     MatTableModule,
     MatStepperModule,
     FeatherIconsModule,
