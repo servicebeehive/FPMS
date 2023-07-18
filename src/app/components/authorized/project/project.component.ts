@@ -270,7 +270,7 @@ export class ProjectComponent implements OnInit {
     this.isEdit = value;
   }
 
-  public onClickDraft(){
+  public onClickSave(isFinalSubmit:boolean){
     if(!this.stateProjectDetailsComponent){
       console.log('Error : Create Project');
       return
@@ -287,6 +287,29 @@ export class ProjectComponent implements OnInit {
     componenetdata.totalarea  =  this.addProjectCreation.value.totalarea;
     componenetdata.projectname = this.stateProjectDetailsData.state_category_data.find(item=>item.statetaskid===this.addProjectCreation.value.projectWork).statetaskdesc;
     componenetdata.financialyear = fydesc;
+    if(isFinalSubmit){
+      componenetdata.statuscode='I'
+      let shouldSkip = false;
+      componenetdata.projecttask.forEach(item=>{
+        if(shouldSkip){
+          return;
+        }
+        if(!item.isheader){
+          if(item.startdate === "" || item.enddate === ""){
+            shouldSkip = true;
+            const data: ReturnResult = {
+              data: null,
+              success: false,
+              message: `Task Startdate/Enddate can not be empty of Tasksequance# ${item.tasksequance}`
+            }
+            this.notificationService.showNotification(data);
+          }
+        }
+      })
+      if(shouldSkip){
+        return;
+      }
+    }
     this.projectService.stateProjectCreation(componenetdata).then((res: ReturnResult<any>) => {
       this.notificationService.showNotification(res);
     })

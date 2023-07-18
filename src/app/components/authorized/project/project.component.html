@@ -104,10 +104,11 @@
                 </ng-container>
                 <div class="col-md-12">
                   <button mat-stroked-button color="primary" [disabled]="addProjectCreation.invalid" (click)="onClickProjectCreation()"
-                    class="mr-2">Create</button>
+                    class="mr-2">{{showProjectCreation?'Edit':'Create'}}</button>
                   <button *ngIf="addProjectCreation.value.projectType===proejctType.state" mat-stroked-button
-                    color="primary" class="mr-2" (click)="onClickDraft()">Save</button>
-                  <button mat-flat-button color="primary">Submit</button>
+                    color="primary" class="mr-2" (click)="onClickSave(false)">Save</button>
+                  <button *ngIf="addProjectCreation.value.projectType===proejctType.state" mat-flat-button 
+                  color="primary" (click)="onClickSave(true)">Submit</button>
                 </div>
               </div>
 
