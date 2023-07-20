@@ -1,0 +1,134 @@
+<div class="addContainer">
+
+    <div class="modalHeader clearfix">
+      <div class="modal-about">
+          Edit State Component 
+      </div>
+    </div>
+ 
+
+<div mat-dialog-content>
+<form  class="register-form" [formGroup]="addComponentInformation" (ngSubmit)="onClickProjectComponent()">
+ 
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col">
+              <mat-form-field appearance="outline">
+                  <mat-label>Work Details</mat-label>
+                  <textarea matInput type="text" formControlName="workdetail"> </textarea>
+                  <mat-error
+                      *ngIf="addComponentInformation.controls['workdetail'].touched && addComponentInformation.controls['workdetail'].hasError('required')">
+                      Work Details
+                      is required</mat-error>
+              </mat-form-field>
+              </div>
+          </div>
+          <ng-container *ngIf="!addComponentInformation.controls['componentHeadreType'].value">
+              <div class="row">
+                  <mat-form-field appearance="outline">
+                      <mat-label>UOM</mat-label>
+                      <input matInput type="text" formControlName="uom">
+                      <mat-error
+                          *ngIf="addComponentInformation.controls['uom'].touched && addComponentInformation.controls['uom'].hasError('required')">
+                          UOM
+                          is required</mat-error>
+                  </mat-form-field>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Quantity</mat-label>
+                          <input matInput type="number" min="0" formControlName="quantity">
+                          <mat-error
+                              *ngIf="addComponentInformation.controls['quantity'].touched && addComponentInformation.controls['quantity'].hasError('required')">
+                              Quantity
+                              is required</mat-error>
+                      </mat-form-field>
+                  </div>
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Rate</mat-label>
+                          <input matInput type="number" min="0" formControlName="rate">
+                          <mat-error
+                              *ngIf="addComponentInformation.controls['rate'].touched && addComponentInformation.controls['rate'].hasError('required')">
+                              Rate
+                              is required</mat-error>
+                      </mat-form-field>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Amount</mat-label>
+                          <input matInput type="number" formControlName="amount">
+                          <mat-error
+                              *ngIf="addComponentInformation.controls['amount'].touched && addComponentInformation.controls['amount'].hasError('required')">
+                              Amount
+                              is required</mat-error>
+                      </mat-form-field>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Start Time</mat-label>
+                      <input [disabled]="true" matInput [matDatepicker]="dp" formControlName="startdate">
+                      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                      <mat-datepicker #dp
+                                      disabled="false"
+                                      startView="multi-year"
+                                      (yearSelected)="chosenYearHandler($event,true)"
+                                      (monthSelected)="chosenMonthHandler($event, dp,true)"
+                                      panelClass="example-month-picker">
+                      </mat-datepicker>
+                      <mat-error
+                      *ngIf="addComponentInformation.controls['startdate'].touched && addComponentInformation.controls['startdate'].hasError('required')">Start
+                      Time
+                      is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>End Time</mat-label>
+
+                          <input [disabled]="true" matInput [matDatepicker]="dp1" formControlName="enddate">
+                          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                          <mat-datepicker #dp1
+                                          disabled="false"
+                                          startView="multi-year"
+                                          (yearSelected)="chosenYearHandler($event,false)"
+                                          (monthSelected)="chosenMonthHandler($event, dp1,false)"
+                                          panelClass="example-month-picker">
+                          </mat-datepicker>
+                          <mat-error
+                              *ngIf="addComponentInformation.controls['enddate'].touched && addComponentInformation.controls['enddate'].hasError('required')">End
+                              Time
+                              is required</mat-error>
+                      </mat-form-field>
+                  </div>
+              </div>
+              <div class="row mb-4">
+                  <div class="col-6">
+                      <mat-checkbox  formControlName="materialRequired">Material
+                          Required</mat-checkbox>
+                  </div>
+              </div>
+          </ng-container>
+          <div class="row mt-2 pt-2">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <div class="example-button-row">
+                    <button type="submit" mat-raised-button color="primary"
+                      [disabled]="addComponentInformation.invalid">
+                      Edit
+                      Component</button>
+                  
+                      <button type="button" mat-raised-button color="warn" (click)="onClickCancel()">Cancel</button>
+                </div>
+              </div>
+            </div>
+         
+      </div>
+  
+</form>
+</div>
+</div>

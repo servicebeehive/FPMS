@@ -83,7 +83,6 @@ export class SideNavComponent implements OnInit {
     }
   }
   callToggleMenu(event: any, length: any) {
-    console.log(length)
     if (length > 0) {
       const parentElement = event.target.closest("li");
       const activeClass = parentElement.classList.contains("active");

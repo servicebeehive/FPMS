@@ -29,7 +29,7 @@ export interface compenentDetails {
     qty_uom: string,
     rate: number,
     rate_uom: string,
-    maxexpd: string,
+    maxexpd: number,
     isheader: boolean,
     materialreq: boolean,
     startdate: string,

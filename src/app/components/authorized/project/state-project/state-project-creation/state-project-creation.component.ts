@@ -46,7 +46,6 @@ export class StateProjectCreationComponent implements OnChanges {
 
   onClickProjectHeaderDetails() : projectHeaderDetails{
     let today = new Date();
-    console.log('this.addProjectHeader.valid',this.addProjectHeader.valid)
     if(!this.addProjectHeader.valid){
       console.log('Error : Project Header Details');
       return;
@@ -71,7 +70,7 @@ export class StateProjectCreationComponent implements OnChanges {
       executionpost: this.addProjectHeader.value.executionPost,
       budgetheaddesc: this.addProjectHeader.value.budgetHead,
       projecttask:[],
-      operationtype:  "INSERT",
+      operationtype:  this.projectheadid===0?"INSERT":"UPDATE",
     }
     return projectDetails;
   }

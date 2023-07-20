@@ -9,10 +9,11 @@
         
           <div class="body">
   <div class="materialTableHeader p-3">
+        
             
             <form [formGroup]="addProjectCreation">
               <mat-radio-group color="primary" formControlName="projectType">
-                <mat-radio-button value="manual" (change)="radioEventChange($event)">Manual Project</mat-radio-button>
+                <mat-radio-button value="manual" [disabled]="true" (change)="radioEventChange($event)">Manual Project</mat-radio-button>
                 <mat-radio-button value="state" (change)="radioEventChange($event)">State Project</mat-radio-button>
               </mat-radio-group>
               <div class="row mt-4">
@@ -68,7 +69,8 @@
                           {{item?.statetaskcategoryname}}
                         </mat-option>
                       </mat-select>
-                      <mat-error></mat-error>
+                      <mat-error *ngIf="addProjectCreation.controls['projectCategoryState'].touched && addProjectCreation.controls['projectCategoryState'].hasError('required')">You
+                        must make a selection of Project Category State</mat-error>
                     </mat-form-field>
 
                   </div>
@@ -83,7 +85,9 @@
                           {{item?.statetaskdesc}}
                         </mat-option>
                       </mat-select>
-                      <mat-error></mat-error>
+                      <mat-error *ngIf="addProjectCreation.controls['projectWork'].touched && addProjectCreation.controls['projectWork'].hasError('required')">
+                        You must make a selection of Project Work.
+                      </mat-error>
                     </mat-form-field>
 
                   </div>
@@ -100,22 +104,21 @@
                   </div>
                 </ng-container>
                 <div class="col-md-12">
-                  <button mat-stroked-button color="primary" (click)="onClickProjectCreation()"
-                    class="mr-2">Create</button>
+                  <button mat-stroked-button color="primary" [disabled]="addProjectCreation.invalid" (click)="onClickProjectCreation()"
+                    class="mr-2">{{showProjectCreation?'Edit':'Create'}}</button>
                   <button *ngIf="addProjectCreation.value.projectType===proejctType.state" mat-stroked-button
-                    color="primary" class="mr-2" (click)="onClickDraft()">Darft</button>
-                  <button mat-flat-button color="primary">Submit</button>
+                    color="primary" class="mr-2" (click)="onClickSave(false)">Save</button>
+                  <button *ngIf="addProjectCreation.value.projectType===proejctType.state" mat-flat-button 
+                  color="primary" (click)="onClickSave(true)">Submit</button>
                 </div>
               </div>
 
 
             </form>
           </div>
-
-
-
+          <ng-container *ngIf="showProjectCreation">
             <div class="responsive_table">
-              <ng-container *ngIf="showProjectCreation && addProjectCreation.value.projectType===proejctType.manual">
+              <ng-container *ngIf="addProjectCreation.value.projectType===proejctType.manual">
                 <app-project-creation [projectCreationDetailsForTabs]="prjectCreationFormsDetails"
                   [editProjectHeaderDetails]="editProjectDetails"
                   (setSubmitProjectButton)="onChangeSubmitButton($event)"></app-project-creation>
@@ -124,10 +127,11 @@
             </div>
             <div class="responsive_table">
               <ng-container *ngIf="addProjectCreation.value.projectType===proejctType.state">
-                <app-state-project-details [stateProjectComponentData]="editStatePerHecData"></app-state-project-details>
+                <app-state-project-details [stateProjectComponentData]="statePerHecData" [isEdit]="isEditValue"></app-state-project-details>
               </ng-container>
 
             </div>
+          </ng-container>
           </div>
         </div>
       </div>

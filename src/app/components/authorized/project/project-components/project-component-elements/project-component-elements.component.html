@@ -19,8 +19,8 @@
     <tr mat-header-row *matHeaderRowDef="columnToDispaly"></tr>
     <tr mat-row *matRowDef="let row; columns: columnToDispaly"></tr>
 </table>
-<div *ngIf="this.componentElementDetails?.length === 0">
-    <span class="error-font-color"> No Data available</span>
+<div *ngIf="this.componentElementDetails?.length === 0" class="p-3">
+    <span class="error-font-color"> No Data Available</span>
 </div>
 
 <mat-menu #viewDetail="matMenu" [hasBackdrop]="true">
