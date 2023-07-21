@@ -50,4 +50,5 @@ export interface projectDetails {
     status?: string;
     statetaskcategoryid? : number,
     statetaskid? : number,
+    statetaskcategoryname?:string
 }
