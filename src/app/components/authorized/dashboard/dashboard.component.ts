@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(public projectService: ProjectService,
     public router: Router,
-    public masterDataService: MasterDataService,
+    public masterDataService: MasterDataService, public loader:LoadingService,
     public notificationService: NotificationService<ReturnResult>) { }
 
   ngOnInit(): void {
@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public onProjectFilterData(data: projectFilterData) {
+  this.loader._loading.next(true)
     let financialYearData: financialYearDetails;
     let rangeData: rangeDetails;
     let statusData: statusDetails;
@@ -70,6 +71,7 @@ export class DashboardComponent implements OnInit {
       projectListCollectionData = projectListCollectionData.filter(res => res.project_name.trim().toLocaleLowerCase().includes(data.projectName.trim().toLocaleLowerCase()));
     }
     this.getProjectListTableData = this.mapProjectData(projectListCollectionData);
+    this.loader._loading.next(false)
   }
 
   public onGetActionItem(actionItem: tableActionData<projectDetails>) {
