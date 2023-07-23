@@ -18,6 +18,7 @@ import { NumbersWithDecimalDirective } from './directives/numbers-with-decimal.d
 import { FeatherIconsModule } from './components/feather-icons/feather-icons.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { MatMenuModule } from '@angular/material/menu';
     FeatherIconsModule,
     MatButtonModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSortModule,
   ],
   exports: [
     ProjectFilterComponent,

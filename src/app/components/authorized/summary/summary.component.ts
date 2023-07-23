@@ -33,6 +33,7 @@ export class SummaryComponent implements OnInit {
     this.projectService.getProjectSummaryData(data).then((res: ReturnResult<summaryDeatils>) => {
       if (res.success) {
         this.projectSummaryDetails = res.data;
+        console.log(this.projectSummaryDetails.projectdetails.project_name)
       }
     })
   }
