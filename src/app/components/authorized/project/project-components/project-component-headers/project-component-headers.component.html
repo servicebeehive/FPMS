@@ -53,7 +53,7 @@
         
     </mat-expansion-panel-header>
     <div class="mt-2">
-        {{headeritem |json}}
+     
              <app-project-component-elements [componentElementDetails]="headeritem['componentelement']"
                     (onClickRowItem)="rowItemDetails($event)"
                     [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
