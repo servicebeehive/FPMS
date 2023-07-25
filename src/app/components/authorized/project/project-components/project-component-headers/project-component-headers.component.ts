@@ -20,9 +20,10 @@ import { CreateComponentsComponent } from '../create-components/create-component
 })
 export class ProjectComponentHeadersComponent implements OnChanges {
 
-  @Input() projectComponentData: componentDetails[];
+  @Input() projectComponentData:any;
   @Input() planYearWiseAmount: budgetYearDetails;
   @Input() isSummaryDetails: boolean;
+  @Input() projectYear
 
   @Output() public getProjectComponent = new EventEmitter<boolean>();
 
@@ -37,6 +38,7 @@ export class ProjectComponentHeadersComponent implements OnChanges {
     public notificationService: NotificationService<any>) { }
 
   ngOnChanges(): void {
+    console.log(this.projectYear)
     if (this.projectComponentData) {
       if (this.isSummaryDetails) {
         this.columnToDispaly = ['sorno', 'workdetail'];

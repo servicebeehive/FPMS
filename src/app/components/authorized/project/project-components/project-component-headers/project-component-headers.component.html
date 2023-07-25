@@ -46,13 +46,14 @@
 </table> 
 </div>
 <div *ngIf="isSummaryDetails==true">
+ 
 <mat-expansion-panel  class="addeventbox mb-3 mt-3" *ngFor="let headeritem of this.projectComponentData">
     <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
         Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}} 
         
     </mat-expansion-panel-header>
     <div class="mt-2">
-        
+     
              <app-project-component-elements [componentElementDetails]="headeritem['componentelement']"
                     (onClickRowItem)="rowItemDetails($event)"
                     [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
