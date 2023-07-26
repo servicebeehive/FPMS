@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatRadioChange } from '@angular/material/radio';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationDialogComponent } from 'src/app/common/components/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { confirmationDialogModel } from 'src/app/common/models/confirmation-dialog-data.model';
 import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
@@ -19,6 +19,7 @@ import { stateCategoryDetails, stateProjectWorkDetails } from 'src/app/models/st
 import { statePerHecDataDetails } from 'src/app/models/state-per-hec-details.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { StateProjectDetailsComponent } from './state-project/state-project-details/state-project-details.component';
+import { stateProjectSubmission } from 'src/app/models/state-project-submission.model';
 
 @Component({
   selector: 'app-project',
@@ -27,7 +28,7 @@ import { StateProjectDetailsComponent } from './state-project/state-project-deta
 })
 export class ProjectComponent implements OnInit {
 
-  @ViewChild(StateProjectDetailsComponent) stateProjectDetailsComponent:StateProjectDetailsComponent;
+  @ViewChild(StateProjectDetailsComponent) stateProjectDetailsComponent: StateProjectDetailsComponent;
 
   public showProjectCreation: boolean;
   public prjectCreationFormsDetails: projectCreationDetails;
@@ -40,7 +41,7 @@ export class ProjectComponent implements OnInit {
   public stateProjectDetailsData: stateProjectWorkDetails;
   public statePerHecData: statePerHecDataDetails;
   public editStatePerHecData: statePerHecDataDetails;
-  public isEditValue:boolean = false;
+  public isEditValue: boolean = false;
 
   constructor(public projectService: ProjectService,
     public masterDataService: MasterDataService,
@@ -48,15 +49,16 @@ export class ProjectComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public projectSubmissionValidationService: ProjectSubmissionValidationService,
     public notificationService: NotificationService<any>,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public router:Router) { }
 
   public addProjectCreation = this.fb.group({
     projectType: this.fb.control<string | undefined>(proejctType.state),
     projectName: this.fb.control<string | undefined>('', Validators.required),
     tenure: this.fb.control<number | undefined>(null, Validators.required),
     financialYear: this.fb.control<number | undefined>(null, Validators.required),
-    projectCategoryState: this.fb.control<number | undefined>(null,Validators.required),
-    projectWork: this.fb.control<number | undefined>(null,Validators.required),
+    projectCategoryState: this.fb.control<number | undefined>(null, Validators.required),
+    projectWork: this.fb.control<number | undefined>(null, Validators.required),
     totalarea: this.fb.control<string | undefined>(null, Validators.required),
   })
 
@@ -69,12 +71,12 @@ export class ProjectComponent implements OnInit {
       }
     })
     this.getStateProjectData();
-    if(this.addProjectCreation.value.projectType === proejctType.state){
+    if (this.addProjectCreation.value.projectType === proejctType.state) {
       this.setFormValidation();
     }
   }
 
-  public setFormValidation(){
+  public setFormValidation() {
     this.addProjectCreation.controls.projectName.clearValidators();
     this.addProjectCreation.controls.projectName.updateValueAndValidity();
 
@@ -205,7 +207,7 @@ export class ProjectComponent implements OnInit {
     })
   }
 
-  public onEditStateProjectHeader(id: number){
+  public onEditStateProjectHeader(id: number) {
     this.statePerHecData = null;
     this.isEditValue = true;
     const getProjectHeaderDetail = {
@@ -218,13 +220,14 @@ export class ProjectComponent implements OnInit {
         this.selectProjectCategory(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
         if (this.statePerHecData?.project_header_data.length > 0) {
           const { financialyear } = this.masterDataService.globalMasterData;
-          const financialyearData = financialyear.filter(element => element.fydesc === this.statePerHecData?.project_header_data[0].financial_year); 
+          const financialyearData = financialyear.filter(element => element.fydesc === this.statePerHecData?.project_header_data[0].financial_year);
           this.addProjectCreation.controls.projectWork.setValue(this.statePerHecData?.project_header_data[0].statetaskid);
           this.addProjectCreation.controls.projectCategoryState.setValue(this.statePerHecData?.project_header_data[0].statetaskcategoryid);
           this.addProjectCreation.controls.financialYear.setValue(financialyearData[0].fyid);
           this.addProjectCreation.controls.totalarea.setValue(this.statePerHecData?.project_header_data[0].totalarea);
         }
-      }})
+      }
+    })
   }
 
   public onClickFinalProjectSubmit() {
@@ -270,49 +273,66 @@ export class ProjectComponent implements OnInit {
     this.isEdit = value;
   }
 
-  public onClickSave(isFinalSubmit:boolean){
-    if(!this.stateProjectDetailsComponent){
-      console.log('Error : Create Project');
+  public onClickSave(isFinalSubmit: boolean) {
+    if (!this.stateProjectDetailsComponent) {
+      const messageNotifier:ReturnResult<any> ={
+        data:null,
+        message:'Please create the project.',
+        success:false
+        }
+        this.notificationService.showNotification(messageNotifier);
       return
     }
     const componenetdata = this.stateProjectDetailsComponent.onClickStateProjectDetails();
-    if(!componenetdata){
-      console.log('Error : projectHeaderDetails');
+    if (!componenetdata) {
       return
     }
     const { financialyear } = this.masterDataService.globalMasterData;
     const fydesc = financialyear.filter(element => element.fyid === this.addProjectCreation.value.financialYear)[0].fydesc;
     componenetdata.statetaskcategoryid = this.addProjectCreation.value.projectCategoryState;
     componenetdata.statetaskid = this.addProjectCreation.value.projectWork;
-    componenetdata.totalarea  =  this.addProjectCreation.value.totalarea;
-    componenetdata.projectname = this.stateProjectDetailsData.state_category_data.find(item=>item.statetaskid===this.addProjectCreation.value.projectWork).statetaskdesc;
+    componenetdata.totalarea = this.addProjectCreation.value.totalarea;
+    componenetdata.projectname = this.stateProjectDetailsData.state_category_data.find(item => item.statetaskid === this.addProjectCreation.value.projectWork).statetaskdesc;
     componenetdata.financialyear = fydesc;
-    if(isFinalSubmit){
-      componenetdata.statuscode='I'
-      let shouldSkip = false;
-      componenetdata.projecttask.forEach(item=>{
-        if(shouldSkip){
-          return;
-        }
-        if(!item.isheader){
-          if(item.startdate === "" || item.enddate === ""){
-            shouldSkip = true;
-            const data: ReturnResult = {
-              data: null,
-              success: false,
-              message: `Task Startdate/Enddate can not be empty of Tasksequance# ${item.tasksequance}`
+    if (isFinalSubmit) {
+      componenetdata.statuscode = 'I'
+      const dialogData: confirmationDialogModel = {
+        actionTitle: 'Submit',
+        message: 'Are you sure you want to submit ?',
+        action: ActionTypes.submit
+      }
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      dialogConfig.autoFocus = true;
+      dialogConfig.disableClose = true;
+      dialogConfig.data = dialogData;
+      const dialogRef = this.dialog.open
+      (ConfirmationDialogComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe((dialogResult: boolean) => {
+        if (dialogResult) {
+          this.projectService.stateProjectCreation(componenetdata).then((res: ReturnResult<stateProjectSubmission[]>) => {
+            if (res.success) {
+                  const finalSubmitProject: finalProjectSubmission = {
+                    projectheadid: res.data[0].id,
+                    projectamount: res.data[0].amount,
+                    projectstatus: "I"
+                  }
+                  this.projectService.finalSubmitProject(finalSubmitProject).then(res => {
+                      this.router.navigate(['authorized/dashboard']);
+                    this.notificationService.showNotification(res);
+              })
             }
-            this.notificationService.showNotification(data);
-          }
+          });
+        }})
+    }
+    else {
+      this.projectService.stateProjectCreation(componenetdata).then((res: ReturnResult<stateProjectSubmission[]>) => {
+        this.notificationService.showNotification(res);
+        if(componenetdata.operationtype==='INSERT'){
+          this.router.navigate(['authorized/dashboard']);
         }
       })
-      if(shouldSkip){
-        return;
-      }
     }
-    this.projectService.stateProjectCreation(componenetdata).then((res: ReturnResult<any>) => {
-      this.notificationService.showNotification(res);
-    })
   }
 
 }
