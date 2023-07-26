@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from 'src/app/common/components/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { confirmationDialogModel } from 'src/app/common/models/confirmation-dialog-data.model';
 import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
 import { statusCode } from 'src/app/common/models/enums/status-code.enum.model';
 import { masterData } from 'src/app/common/models/master-data.model';
@@ -8,6 +11,7 @@ import { ReturnResult } from 'src/app/common/models/return-result';
 import { tableActionData } from 'src/app/common/models/table-action-data.model';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
 import { NotificationService } from 'src/app/common/services/notification/notification.service';
+import { createProjectComponent } from 'src/app/models/create-project-component.model';
 import { financialYearDetails } from 'src/app/models/financialyear-details.model';
 import { projectDetails } from 'src/app/models/project-details.model';
 import { rangeDetails } from 'src/app/models/range-details.model';
@@ -18,7 +22,9 @@ import { ProjectService } from 'src/app/services/project.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers:[ConfirmationDialogComponent]
+  
 })
 export class DashboardComponent implements OnInit {
 
@@ -30,7 +36,7 @@ export class DashboardComponent implements OnInit {
   public statusDetails = statusCode;
   public columnDisplay: string[] = ['project_id', 'project_name', 'financial_year_desc', 'project_tenure', 'status']
 
-  constructor(public projectService: ProjectService,
+  constructor(public projectService: ProjectService,public dialog: MatDialog,
     public router: Router,
     public masterDataService: MasterDataService, public loader:LoadingService,
     public notificationService: NotificationService<ReturnResult>) { }
@@ -135,8 +141,46 @@ export class DashboardComponent implements OnInit {
     this.getProjectDetails();
   }
 
-  public onClickDeleteAction(data: projectDetails) {
-    console.log('delete', data);
+  public onClickDeleteAction(item: createProjectComponent) {
+    console.log(item)
+    const dialogData: confirmationDialogModel = {
+      actionTitle: 'Delete',
+      message: 'Are you sure you want to delete ?',
+      action: ActionTypes.delete
+    }
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = dialogData;
+    const dialogRef = this.dialog.open
+      (ConfirmationDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((dialogResult: boolean) => {
+      if (dialogResult) {
+        const componentData: createProjectComponent = {
+          // componentid: item?.componentid,
+          projectheadid: item.project_id,
+          // year: null,
+          // sorno: null,
+          // workdetail: null,
+          // quantity: null,
+          // uom: null,
+          // rate: null,
+          // geolocation: null,
+          // materialreq: false,
+          // startdate: null,
+          // enddate: null,
+          // isheader: false,
+          // headercomponentid: null,
+          operationtype: 'DELETE'
+        }
+        this.projectService.createProjectComponent(componentData).then((res: ReturnResult<any>) => {
+          if (res.success) {
+            this.getProjectDetails()
+          }
+          this.notificationService.showNotification(res);
+        })
+      }
+    });
   }
 
 }

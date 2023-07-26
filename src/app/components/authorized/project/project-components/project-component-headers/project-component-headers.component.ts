@@ -32,12 +32,15 @@ export class ProjectComponentHeadersComponent implements OnChanges {
   public dataSource: componentDetails[];
   public columnsToDisplayWithExpand: string[];
   public actionTypes = ActionTypes;
-
+  combinations: { outer: any, inner: any }[] = [];
   constructor(public dialog: MatDialog,
     public projectService: ProjectService,
-    public notificationService: NotificationService<any>) { }
+    public notificationService: NotificationService<any>) {
+      
+     }
 
   ngOnChanges(): void {
+    this.calculateCombinations()
     console.log(this.projectYear)
     if (this.projectComponentData) {
       if (this.isSummaryDetails) {
@@ -52,6 +55,19 @@ export class ProjectComponentHeadersComponent implements OnChanges {
       this.dataSource = this.projectComponentData;
       this.columnsToDisplayWithExpand = ['expand', ...this.columnToDispaly];
     }
+  }
+  calculateCombinations() {
+    this.combinations = [];
+    const minLength = Math.min(this.projectYear.length, this.projectComponentData.length);
+    for (let i = 0; i < minLength; i++) {
+      this.combinations.push({ outer: this.projectYear[i], inner: this.projectComponentData[i] });
+    }
+    // this.projectComponentData.forEach((outerItem) => {
+    //   this.projectYear.forEach((innerItem) => {
+    //     this.combinations.push({ outer: outerItem, inner: innerItem });
+    //   });
+    // });
+    console.log(this.combinations)
   }
 
   onClickExpand(element: createProjectComponent) {

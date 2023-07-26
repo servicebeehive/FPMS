@@ -22,7 +22,8 @@ export class ProjectComponentElementsComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.componentElementDetails) {
-      this.columnToDispaly = ['sorno', 'workdetail', 'quantity', 'rate', 'amount', 'materialreq', 'remainingbuget', 'carryforwardamt', 'totalamount', 'actions']
+      						
+      this.columnToDispaly = ['tasksequance','taskdesc', 'startdate', 'enddate', 'uom', 'rate', 'maxexpd']
       this.dataSource = this.componentElementDetails;
     }
   }
