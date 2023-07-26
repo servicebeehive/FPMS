@@ -19,7 +19,7 @@ export class StateProjectComponentDetailsComponent implements OnChanges {
   @Input() public year: string;
   @Output() public onDeletedItem = new EventEmitter<compenentDetails[]>();
   
-  public columnToDispaly: string[] = ['tasksequance', 'taskdesc', 'startdate', 'enddate', 'rate_uom', 'rate', 'maxexpd', 'action'];
+  public columnToDispaly: string[] = ['tasksequance', 'taskdesc', 'startdate', 'enddate', 'rate_uom','quantity','rate', 'maxexpd', 'action'];
   public dataSource: compenentDetails[];
   public actionTypes = ActionTypes;
 
@@ -48,7 +48,7 @@ export class StateProjectComponentDetailsComponent implements OnChanges {
       if (result) {
         const messageNotifier:ReturnResult<any> ={
         data:null,
-        message:'Data has been updated, Please click on the Draft/Submit button to save',
+        message:'Data has been updated, Please click on the Save/Submit button to save',
         success:true
         }
         this.notificationService.showNotification(messageNotifier);
@@ -77,7 +77,7 @@ export class StateProjectComponentDetailsComponent implements OnChanges {
         this.onDeletedItem.emit(deletedItem);
         const messageNotifier:ReturnResult<any> ={
           data:null,
-          message:'Row has been deleted, Please click on the Draft/Submit button to save',
+          message:'Row has been deleted, Please click on the Save/Submit button to save',
           success:true
           }
           this.notificationService.showNotification(messageNotifier);

@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ReturnResult } from 'src/app/common/models/return-result';
 import { MasterDataService } from 'src/app/common/services/master-data/master-data.service';
+import { NotificationService } from 'src/app/common/services/notification/notification.service';
 import { projectDetails } from 'src/app/models/project-details.model';
 import { projectHeaderDetails } from 'src/app/models/projectheader.model';
 
@@ -35,7 +37,8 @@ export class StateProjectCreationComponent implements OnChanges {
   })
 
   constructor(public fb: FormBuilder,
-    public masterDataService: MasterDataService) { }
+    public masterDataService: MasterDataService,
+    public notificationService:NotificationService<any>) { }
 
     ngOnChanges(): void {
       if(this.projectDetailsForEdit){
@@ -45,9 +48,13 @@ export class StateProjectCreationComponent implements OnChanges {
   }
 
   onClickProjectHeaderDetails() : projectHeaderDetails{
-    let today = new Date();
     if(!this.addProjectHeader.valid){
-      console.log('Error : Project Header Details');
+      const messageNotifier:ReturnResult<any> ={
+        data:null,
+        message:'Please check the Project Header Details',
+        success:false
+        }
+        this.notificationService.showNotification(messageNotifier);
       return;
     }
     const projectDetails: projectHeaderDetails = {

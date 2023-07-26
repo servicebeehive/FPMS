@@ -38,7 +38,6 @@ export class ProjectComponentHeadersComponent implements OnChanges {
     public notificationService: NotificationService<any>) { }
 
   ngOnChanges(): void {
-    console.log(this.projectYear)
     if (this.projectComponentData) {
       if (this.isSummaryDetails) {
         this.columnToDispaly = ['sorno', 'workdetail'];
