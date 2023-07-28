@@ -40,18 +40,8 @@ export class ProjectComponentHeadersComponent implements OnChanges {
      }
 
   ngOnChanges(): void {
-<<<<<<< .mine
-
-=======
-
->>>>>>> .theirs
     this.calculateCombinations()
     console.log(this.projectYear)
-<<<<<<< .mine
-
-=======
-
->>>>>>> .theirs
     if (this.projectComponentData) {
       if (this.isSummaryDetails) {
         this.columnToDispaly = ['sorno', 'workdetail'];
