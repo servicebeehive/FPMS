@@ -7,7 +7,6 @@ import { SharedModule } from 'src/app/common/components/shared/shared.module';
 import { FeatherIconsModule } from 'src/app/common/components/shared/components/feather-icons/feather-icons.module';
 import { MatButtonModule } from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    MatDialogModule,
-  
     FeatherIconsModule, MatButtonModule,MatMenuModule
   ]
 })
