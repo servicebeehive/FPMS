@@ -4,8 +4,6 @@ import { StateProjectComponentDetailsComponent } from '../state-project-componen
 import { StateProjectCreationComponent } from '../state-project-creation/state-project-creation.component';
 import { projectHeaderDetails } from 'src/app/models/projectheader.model';
 import { projectDetails } from 'src/app/models/project-details.model';
-import { ReturnResult } from 'src/app/common/models/return-result';
-import { NotificationService } from 'src/app/common/services/notification/notification.service';
 
 @Component({
   selector: 'app-state-project-details',
@@ -22,7 +20,7 @@ export class StateProjectDetailsComponent implements OnChanges {
   @ViewChild(StateProjectComponentDetailsComponent) stateProjectComponentDetails:StateProjectComponentDetailsComponent;
   @ViewChild(StateProjectCreationComponent) stateProjectCreation:StateProjectCreationComponent;
 
-  constructor(public notificationService:NotificationService<any>) { }
+  constructor() { }
 
   ngOnChanges(): void {
     if(this.stateProjectComponentData?.project_year_data){
@@ -39,16 +37,12 @@ export class StateProjectDetailsComponent implements OnChanges {
   onClickStateProjectDetails():projectHeaderDetails{
     let componentData : compenentDetails[] = [];
     if(!this.stateProjectComponentDetails || !this.stateProjectCreation){
-      const messageNotifier:ReturnResult<any> ={
-        data:null,
-        message:'Please create the project.',
-        success:false
-        }
-        this.notificationService.showNotification(messageNotifier);
+      console.log('Error : Create Project');
       return 
     }
     const projectHeaderDetails = this.stateProjectCreation.onClickProjectHeaderDetails();
     if(!projectHeaderDetails){
+      console.log('Error : projectHeaderDetails');
       return
     }
     this.stateProjectComponentData.project_year_data.forEach(x=>{

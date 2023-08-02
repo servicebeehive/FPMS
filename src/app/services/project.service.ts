@@ -18,7 +18,6 @@ import { Observable } from 'rxjs';
 import { workFlowOperation } from '../models/work-flow.model';
 import { stateCategoryData, stateCategoryDetails, stateProjectWorkDetails } from '../models/state-category.model';
 import { statePerHecDataDetails } from '../models/state-per-hec-details.model';
-import { stateProjectSubmission } from '../models/state-project-submission.model';
 
 @Injectable({
   providedIn: 'root'
@@ -85,8 +84,8 @@ export class ProjectService extends BaseService {
     return this.PostReturn<workFlowOperation, ReturnResult<any>>(this.controller.workflowtaskoperation, workFlowOperationData)
   }
 
-  public stateProjectCreation(stateProjectCreationData: projectHeaderDetails): Promise<ReturnResult<stateProjectSubmission[]>> {
-    return this.PostReturn<projectHeaderDetails, ReturnResult<stateProjectSubmission[]>>(this.controller.createstateproject, stateProjectCreationData)
+  public stateProjectCreation(stateProjectCreationData: projectHeaderDetails): Promise<ReturnResult<any>> {
+    return this.PostReturn<projectHeaderDetails, ReturnResult<any>>(this.controller.createstateproject, stateProjectCreationData)
   }
 
   public getStateProjectInfoDetails(data: { projectheadid: number }): Promise<ReturnResult<statePerHecDataDetails>> {
