@@ -80,8 +80,8 @@ export class CreateStateComponentComponent implements OnInit {
           this.addComponentInformation.controls.uom.setValue(dailogData?.rate_uom);
           this.addComponentInformation.controls.rate.setValue(dailogData?.rate);
           this.addComponentInformation.controls.materialRequired.setValue(dailogData?.materialreq);
-          this.addComponentInformation.controls.startdate.setValue(dailogData?.startdate===""?moment():moment(new Date(dailogData?.startdate)));
-          this.addComponentInformation.controls.enddate.setValue(dailogData?.enddate===""?moment():moment(new Date(dailogData?.enddate)));
+          this.addComponentInformation.controls.startdate.setValue(dailogData?.startmonth===""?moment():moment(new Date(dailogData?.startmonth)));
+          this.addComponentInformation.controls.enddate.setValue(dailogData?.endmonth===""?moment():moment(new Date(dailogData?.endmonth)));
           this.addComponentInformation.controls.amount.setValue(dailogData?.maxexpd);
 
           this.addComponentInformation.controls.quantity.disable();
@@ -180,8 +180,8 @@ export class CreateStateComponentComponent implements OnInit {
           this.notificationService.showNotification(messageNotifier);
           return
       }
-      updatedDialogData.enddate = moment(this.addComponentInformation.value.enddate).format().toString();
-      updatedDialogData.startdate = moment(this.addComponentInformation.value.startdate).format().toString();
+      updatedDialogData.endmonth = moment(this.addComponentInformation.value.enddate).format().toString();
+      updatedDialogData.startmonth = moment(this.addComponentInformation.value.startdate).format().toString();
     }
     updatedDialogData.taskdesc = this.addComponentInformation.value.workdetail;
     updatedDialogData.materialreq = this.addComponentInformation.value.materialRequired;
