@@ -87,6 +87,7 @@ export class CreateStateComponentComponent implements OnInit {
           this.addComponentInformation.controls.quantity.disable();
           this.addComponentInformation.controls.uom.disable();
           this.addComponentInformation.controls.rate.disable();
+          this.addComponentInformation.controls.materialRequired.disable();
           this.addComponentInformation.controls.amount.disable();
       }
       this.onChangeHeader(dailogData?.isheader);
@@ -184,7 +185,6 @@ export class CreateStateComponentComponent implements OnInit {
       updatedDialogData.startmonth = moment(this.addComponentInformation.value.startdate).format().toString();
     }
     updatedDialogData.taskdesc = this.addComponentInformation.value.workdetail;
-    updatedDialogData.materialreq = this.addComponentInformation.value.materialRequired;
 
     this.matDialogRef.close(updatedDialogData);
   }

@@ -25,5 +25,6 @@ export interface createProjectComponent {
     carryforwardamt?: number
     totalamount?: number
     isExpand?: boolean
+    project_id?:number
 
 }
