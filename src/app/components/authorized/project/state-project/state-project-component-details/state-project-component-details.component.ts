@@ -18,7 +18,6 @@ export class StateProjectComponentDetailsComponent implements OnChanges {
   @Input() public componentDataDetails: compenentDetails[];
   @Input() public year: string;
   @Output() public onDeletedItem = new EventEmitter<compenentDetails[]>();
-  
   public columnToDispaly: string[] = ['tasksequance', 'taskdesc', 'startdate', 'enddate', 'rate_uom', 'rate', 'maxexpd', 'action'];
   public dataSource: compenentDetails[];
   public actionTypes = ActionTypes;

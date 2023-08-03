@@ -32,8 +32,8 @@ export interface compenentDetails {
     maxexpd: number,
     isheader: boolean,
     materialreq: boolean,
-    startdate: string,
-    enddate: string
+    startmonth: string,
+    endmonth: string
 };
 
 export interface projectYearData {
