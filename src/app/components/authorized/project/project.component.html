@@ -95,7 +95,7 @@
 
                     <mat-form-field appearance="outline">
                       <mat-label>Area</mat-label>
-                      <input matInput type="number" formControlName="totalarea" numbersOnly>
+                      <input matInput type="number" formControlName="totalarea" numbersWithDecimal>
                       <mat-error
                         *ngIf="addProjectCreation.controls['totalarea'].touched && addProjectCreation.controls['totalarea'].hasError('required')">
                         Total Area is required</mat-error>

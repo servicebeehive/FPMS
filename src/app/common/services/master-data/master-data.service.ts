@@ -18,7 +18,8 @@ export class MasterDataService extends BaseService {
     public controllers: Controllers,
     public config: ConfigService<IConfig>) {
     super(http, 'http://localhost:1610')
-    //"APIUrl": "http://3.110.148.123:1610"
+    //"APIUrl Dev": "http://3.110.148.123:1610"
+    //"APIUrl Pord": "http://13.234.115.22:1611"
   }
 
   getMasterData() {
