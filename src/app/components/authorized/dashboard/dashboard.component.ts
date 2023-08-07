@@ -173,7 +173,7 @@ export class DashboardComponent implements OnInit {
           // headercomponentid: null,
           operationtype: 'DELETE'
         }
-        this.projectService.createProjectComponent(componentData).then((res: ReturnResult<any>) => {
+        this.projectService.stateProjectCreation(componentData).then((res: ReturnResult<any>) => {
           if (res.success) {
             this.getProjectDetails()
           }
