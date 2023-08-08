@@ -9,4 +9,9 @@ export interface summaryDeatils {
     projectworkflow: projectWorkFlow[];
     projectyearbudget: budgetYearDetails[];
     projectyeardata: budgetYearDetails[];
+    project_header_data:projectDetails;
+    project_component_data:componentDetails[];
+    project_year_data:projectDetails;
+    project_workflow_data:projectWorkFlow[];
+    
 }

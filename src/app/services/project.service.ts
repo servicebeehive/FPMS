@@ -58,6 +58,9 @@ export class ProjectService extends BaseService {
   public getProjectSummaryData(data: { projectheadid: number }): Promise<ReturnResult<summaryDeatils>> {
     return this.GetWithHeaders<ReturnResult<summaryDeatils>, { projectheadid: number }>(this.controller.projectsummarydata, data)
   }
+  public getstateummaryData(data:{projectheaderid:number}): Promise<ReturnResult<summaryDeatils>> {
+    return this.GetWithHeaders<ReturnResult<summaryDeatils>, { projectheaderid: number }>(this.controller.stateprojectsummarydata, data)
+  }
 
   public getStateProjectData(data: { statetaskcategoryid: number }): Promise<ReturnResult<stateCategoryDetails>> {
     return this.GetWithHeaders<ReturnResult<stateCategoryDetails>, { statetaskcategoryid: number }>(this.controller.getstateprojectdata, data)
@@ -75,9 +78,9 @@ export class ProjectService extends BaseService {
     return this.PostReturn<getProjectDocumentDataModel, ReturnResult<projectDocumentList[]>>(this.controller.getprojectdocumentoperation, getProjectDocumentData)
   }
 
-  public getProjectUploadApprovalFile(data: { projectheadid: number }, fileUploadData: FormData): Promise<ReturnResult<any>> {
+  public getProjectUploadApprovalFile(data:{projectheaderid:number}, fileUploadData: FormData): Promise<ReturnResult<any>> {
     return this.PostWithFormData<{
-      projectheadid: number;
+     projectheaderid:number
     }, ReturnResult<any>>(this.controller.getprojectuploadapprovalfile, data, fileUploadData)
   }
 

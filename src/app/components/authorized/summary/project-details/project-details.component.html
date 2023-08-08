@@ -1,10 +1,11 @@
+<ng-container *ngFor="let projectDetails of projectDetails">
 <div class="viewer-wrapper">
   <div class="docs-example-viewer-title">
     <h3 class="pl-2 pt-3 mb-3 " class="text-primary-dark">{{projectDetails?.project_name}}</h3>
 
   </div>
-
-  <div class="conatiner row-container">
+<div>
+  <div class="conatiner row-container" >
     <table class="table table-striped">
       <tbody>
         <tr>
@@ -49,7 +50,7 @@
     
     </tbody>
     </table>
- 
+  </div>
 
 
    
@@ -60,6 +61,7 @@
   </div>
 
   <app-attachment-details [projectHeaderID]="projectDetails?.projectheadid"
-    [projectWorkflow]="projectSummaryDetails?.projectworkflow"
+    [projectWorkflow]="projectSummaryDetails?.project_workflow_data"
     (actionItemClicked)="onClickedActionButton($event)"></app-attachment-details>
 </div>
+</ng-container>
