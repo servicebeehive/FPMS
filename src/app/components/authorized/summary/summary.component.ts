@@ -28,9 +28,9 @@ export class SummaryComponent implements OnInit {
 
   public getProjectSummaryDetails(id: number) {
     const data = {
-      projectheadid: id
+      projectheaderid: id
     }
-    this.projectService.getProjectSummaryData(data).then((res: ReturnResult<summaryDeatils>) => {
+    this.projectService.getstateummaryData(data).then((res: ReturnResult<summaryDeatils>) => {
       if (res.success) {
         this.projectSummaryDetails = res.data;
         console.log(this.projectSummaryDetails.projectdetails.project_name)

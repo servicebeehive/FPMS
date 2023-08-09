@@ -47,19 +47,84 @@
 </div>
 <div *ngIf="isSummaryDetails==true">
  
-<mat-expansion-panel  class="addeventbox mb-3 mt-3" *ngFor="let headeritem of this.combinations; let i = index">
+<mat-expansion-panel  class="addeventbox mb-3 mt-3">
     <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
         <!-- Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}}  -->
-{{headeritem.outer.case}} Year
+First Year
     </mat-expansion-panel-header>
     <div class="mt-2">
      
-             <app-project-component-elements [componentElementDetails]="headeritem.inner['componentelement']"
+             <app-project-component-elements [componentElementDetails]="this.projectComponentData['first']"
                     (onClickRowItem)="rowItemDetails($event)"
                     [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
     </div>
 
     </mat-expansion-panel>
+    <mat-expansion-panel  class="addeventbox mb-3 mt-3">
+        <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+            <!-- Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}}  -->
+    Second Year
+        </mat-expansion-panel-header>
+        <div class="mt-2">
+         
+                 <app-project-component-elements [componentElementDetails]="this.projectComponentData['second']"
+                        (onClickRowItem)="rowItemDetails($event)"
+                        [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
+        </div>
+    
+        </mat-expansion-panel>
+        <mat-expansion-panel  class="addeventbox mb-3 mt-3">
+            <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+                <!-- Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}}  -->
+        Third Year
+            </mat-expansion-panel-header>
+            <div class="mt-2">
+             
+                     <app-project-component-elements [componentElementDetails]="this.projectComponentData['third']"
+                            (onClickRowItem)="rowItemDetails($event)"
+                            [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
+            </div>
+        
+            </mat-expansion-panel>
+            <mat-expansion-panel  class="addeventbox mb-3 mt-3">
+                <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+                    <!-- Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}}  -->
+            Fourth Year
+                </mat-expansion-panel-header>
+                <div class="mt-2">
+                 
+                         <app-project-component-elements [componentElementDetails]="this.projectComponentData['fourth']"
+                                (onClickRowItem)="rowItemDetails($event)"
+                                [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
+                </div>
+            
+                </mat-expansion-panel>
+                <mat-expansion-panel  class="addeventbox mb-3 mt-3">
+                    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+                        <!-- Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}}  -->
+                        Fifth Year
+                    </mat-expansion-panel-header>
+                    <div class="mt-2">
+                     
+                             <app-project-component-elements [componentElementDetails]="this.projectComponentData['fifth']"
+                                    (onClickRowItem)="rowItemDetails($event)"
+                                    [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
+                    </div>
+                
+                    </mat-expansion-panel>
+                    <mat-expansion-panel  class="addeventbox mb-3 mt-3">
+                        <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*" class="pl-2 pr-2  addeventboxcursor">
+                            <!-- Financial Year:  {{headeritem['componentheader'].planyear}}    | {{headeritem['componentheader'].workdetail}}  -->
+                            Sixth Year
+                        </mat-expansion-panel-header>
+                        <div class="mt-2">
+                         
+                                 <app-project-component-elements [componentElementDetails]="this.projectComponentData['sixth']"
+                                        (onClickRowItem)="rowItemDetails($event)"
+                                        [isParentSummaryDetails]=isSummaryDetails></app-project-component-elements>
+                        </div>
+                    
+                        </mat-expansion-panel>
     
 </div>
 <div *ngIf="this.projectComponentData?.length === 0" class="p-3">

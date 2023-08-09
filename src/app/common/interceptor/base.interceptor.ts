@@ -25,6 +25,31 @@ export class BaseInterceptor implements HttpInterceptor {
         })
       })
     }
+    else if (request.url.includes('stateprojectsummarydata')) {
+      console.log(request)
+      const headerData = JSON.parse(request.headers.get("data"));
+      request = request.clone({
+        withCredentials: true,
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          'token': localStorage.getItem('access-token'),
+          'operationtype': 'LIST',
+          'projectheaderid': String(headerData.projectheaderid),
+
+        })
+      })
+    }
+    else if (request.url.includes('getprojectuploadapprovalfile')) {
+      const headerData = JSON.parse(request.headers.get("data"));
+      request = request.clone({
+        withCredentials: true,
+        headers: new HttpHeaders({
+          'token': localStorage.getItem('access-token'),
+          'projectheaderid': String(headerData.projectheaderid),
+        })
+      })
+    }
+
     else if (request.url.includes('getprojectinfodetails') || request.url.includes('projectsummarydata')) {
       const headerData = JSON.parse(request.headers.get("data"));
       request = request.clone({
@@ -38,17 +63,8 @@ export class BaseInterceptor implements HttpInterceptor {
         })
       })
     }
-    else if (request.url.includes('getprojectuploadapprovalfile')) {
-      const headerData = JSON.parse(request.headers.get("data"));
-      request = request.clone({
-        withCredentials: true,
-        headers: new HttpHeaders({
-          'token': localStorage.getItem('access-token'),
-          'projectheadid': String(headerData.projectheadid),
-        })
-      })
-    }
-
+   
+ 
     else if (request.url.includes('getprojectheaderdata')) {
       const headerData = JSON.parse(request.headers.get("data"));
       request = request.clone({

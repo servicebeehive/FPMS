@@ -47,6 +47,7 @@ export class AttachmentDetailsComponent implements OnChanges {
   public actionButtons = ['approve', 'reject']
 
   ngOnChanges(): void {
+    console.log(this.projectHeaderID)
     this.getAttachmentDocumentDetails();
   }
 
@@ -54,7 +55,7 @@ export class AttachmentDetailsComponent implements OnChanges {
     if (event.target.files.length > 0) {
       const formData = new FormData();
       const data = {
-        projectheadid: this.projectHeaderID
+        projectheaderid: this.projectHeaderID
       }
       formData.append('approval_file', event.target.files[0], event.target.files[0].fileName);
       this.projectService.getProjectUploadApprovalFile(data, formData).then((res: ReturnResult<any>) => {

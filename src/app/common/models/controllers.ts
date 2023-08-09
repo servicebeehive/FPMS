@@ -17,5 +17,6 @@ export class Controllers {
     public readonly getstateprojectdata = '/api/stateproject/getstateprojectdata';
     public readonly getstateprojecttskdata = '/api/stateproject/getstateprojecttskdata';
     public readonly createstateproject = '/api/stateproject/createstateproject';
-    public readonly getprojectheaderdata='/api/stateproject/getprojectheaderdata'
+    public readonly getprojectheaderdata='/api/stateproject/getprojectheaderdata';
+    public readonly stateprojectsummarydata = '/api/projectsummary/stateprojectsummarydata';
 }

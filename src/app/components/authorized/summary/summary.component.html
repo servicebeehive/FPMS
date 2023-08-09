@@ -26,7 +26,8 @@
                         </mat-tab>
                         <mat-tab label="Component Details">
                             <div class="pt-3">
-                            <app-project-component-headers [projectYear]="projectSummaryDetails?.projectyeardata" [projectComponentData]="projectSummaryDetails?.projectcomponent"
+            
+                            <app-project-component-headers *ngIf="projectSummaryDetails" [projectYear]="projectSummaryDetails?.project_year_data" [projectComponentData]="projectSummaryDetails?.project_component_data"
                                 [isSummaryDetails]=true></app-project-component-headers>
                             </div>
                            
