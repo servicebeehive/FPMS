@@ -78,10 +78,11 @@ export class ProjectService extends BaseService {
     return this.PostReturn<getProjectDocumentDataModel, ReturnResult<projectDocumentList[]>>(this.controller.getprojectdocumentoperation, getProjectDocumentData)
   }
 
+
   public getProjectUploadApprovalFile(data:{projectheadid:number}, fileUploadData: FormData): Promise<ReturnResult<any>> {
     return this.PostWithFormData<{
       projectheadid:number
-    }, ReturnResult<any>>(this.controller.getprojectuploadapprovalfile, data, fileUploadData)
+      }, ReturnResult<any>>(this.controller.getprojectuploadapprovalfile, data, fileUploadData)
   }
 
   public workFlowTaskOperation(workFlowOperationData: workFlowOperation): Promise<ReturnResult<any>> {
