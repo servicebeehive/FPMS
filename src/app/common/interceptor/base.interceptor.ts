@@ -44,8 +44,9 @@ export class BaseInterceptor implements HttpInterceptor {
       request = request.clone({
         withCredentials: true,
         headers: new HttpHeaders({
+          // "Content-Type": "application/json",
           'token': localStorage.getItem('access-token'),
-          'projectheaderid': String(headerData.projectheaderid),
+          'projectheadid': String(headerData.projectheadid),
         })
       })
     }
