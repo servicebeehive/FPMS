@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class NumbersWithDecimalDirective {
 
-  public regex: RegExp = new RegExp(/^\d*\.?\d{0,2}$/g);
+  public regex: RegExp = new RegExp(/^\d*\.?\d{0,6}$/g);
   public sepcialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight', 'Del', 'Delete'];
 
   constructor(public _el: ElementRef) { }
