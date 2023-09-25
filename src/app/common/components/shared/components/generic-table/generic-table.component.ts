@@ -32,7 +32,7 @@ export class GenericTableComponent<T> implements OnChanges {
       }
      
       this.dataSource = new MatTableDataSource(this.tableData);
-      
+      console.log(this.dataSource)
       this.columnNames = [...this.columnDisplayNames, 'actions']
       setTimeout(() => {
         this.dataSource.sort = this.sort;

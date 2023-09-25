@@ -17,7 +17,10 @@ export class MasterDataService extends BaseService {
   constructor(public http: HttpClient,
     public controllers: Controllers,
     public config: ConfigService<IConfig>) {
-    super(http, 'http://fpmsind.com:1611')
+     // let item='http://localhost:1610'
+       let item='http://fpmsind.com:1611'
+      
+    super(http, item)
     //"APIUrl Dev": "http://3.110.148.123:1610"
     //"APIUrl Pord": "http://13.234.115.22:1611"
   }
