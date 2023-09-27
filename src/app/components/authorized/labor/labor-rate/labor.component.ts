@@ -43,7 +43,7 @@ export class LaborComponent implements OnInit {
   public laborlistdata: any
   public labordetialsdata: labordata[]
   public laborformdata: FormGroup
-  public actionButtons: string[] = ['delete']
+  public actionButtons: string[] = []
 
   public actionTypes = ActionTypes;
   public statusDetails = statusCode;

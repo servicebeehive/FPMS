@@ -5,7 +5,6 @@ export interface laborDetails {
     success?:any
 }
 export interface labordata{
-    createdate: any
     labourcost: number
     versionstartdate: string,
     versionenddate:string
