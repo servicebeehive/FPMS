@@ -25,6 +25,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProjectLaborComponent } from './project-labor/project-labor.component';
 
+
+
 @NgModule({
   declarations: [ LaborComponent, ProjectLaborComponent],
   imports: [
@@ -53,6 +55,7 @@ import { ProjectLaborComponent } from './project-labor/project-labor.component';
     MatDatepickerModule,
     MatMenuModule,
     MatNativeDateModule
+
 
   ]
 })

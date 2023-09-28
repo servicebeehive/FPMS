@@ -15,7 +15,7 @@ export class BaseInterceptor implements HttpInterceptor {
 
   constructor(public loadingService: LoadingService) { }
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loadingService.show();
     if (request.url.includes('signin') || request.url.includes('getglobalmasterdata')) {
       request = request.clone({
@@ -24,6 +24,18 @@ export class BaseInterceptor implements HttpInterceptor {
           "Content-Type": "application/json",
         })
       })
+    }
+    else if (request.url.includes('labouroperation')) {
+      const labordata=request.body
+      request = request.clone({
+        withCredentials: true,
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          'token': localStorage.getItem('access-token'),
+           }),
+        body:labordata.body
+      })
+      
     }
     else if (request.url.includes('stateprojectsummarydata')) {
       console.log(request)

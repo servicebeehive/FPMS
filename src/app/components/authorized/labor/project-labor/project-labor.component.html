@@ -76,7 +76,7 @@
 
                 <div class="col-md-4">
                   <button mat-flat-button color="primary" class="mr-2">Add</button>
-
+                  <button mat-flat-button color="primary" class="mr-2">Add and Approve</button>
 
                 </div>
               </div>
@@ -87,7 +87,7 @@
             <div class="responsive_table mt-3">
               <div class="materialTableHeader  w-100">
                 <div class="p-2 d-flex justify-content-end">
-                  <button mat-flat-button color="primary" class="mr-3">Approve</button>
+                  <button mat-flat-button color="primary" (click)="getApprovedlist('500ms', '250ms')" class="mr-3">Approve</button>
                   <app-project-filter (projectFilter)="onProjectFilterData($event)"
                     (clearProjectFilter)="onClearProjectFilter()"></app-project-filter>
                 </div>

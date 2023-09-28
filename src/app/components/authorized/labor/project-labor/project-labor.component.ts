@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DualistDialogComponent } from 'src/app/common/components/shared/components/dualist-dialog/dualist-dialog.component';
 import { ActionTypes } from 'src/app/common/models/enums/action-button-types.enum.model';
 import { statusCode } from 'src/app/common/models/enums/status-code.enum.model';
 import { masterData } from 'src/app/common/models/master-data.model';
@@ -34,7 +36,7 @@ export class ProjectLaborComponent implements OnInit {
   constructor(public projectService: ProjectService,
     public router: Router,
     public masterDataService: MasterDataService,
-    public notificationService: NotificationService<ReturnResult>) { }
+    public notificationService: NotificationService<ReturnResult>,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProjectDetails();
@@ -132,6 +134,17 @@ export class ProjectLaborComponent implements OnInit {
 
   public onClickDeleteAction(data: projectDetails) {
     console.log('delete', data);
+  }
+  getApprovedlist(enterAnimationDuration: string, exitAnimationDuration: string){
+   const dialogRef=this.dialog.open(DualistDialogComponent, {
+      width: '770px',
+      data:'a',
+      enterAnimationDuration, exitAnimationDuration
+    }, );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+    
   }
 
 }

@@ -8,6 +8,7 @@
           <div class="card">
             
             <div class="body">
+              <form [formGroup]="this.laborformdata" (ngSubmit)="getAttachmentDocumentDetails()">
               <div class="materialTableHeader p-3">
               
            
@@ -16,8 +17,8 @@
                     <div class="col-md-4">
   
                         <mat-form-field appearance="outline">
-                            <mat-label>Labor Rate/Day</mat-label>
-                            <input matInput type="number" required>
+                            <mat-label>Labor Rate</mat-label>
+                            <input matInput formControlName="laborrate" type="number" required>
                             <!-- <mat-error>Project
                               Name is required</mat-error> -->
                           </mat-form-field>
@@ -27,7 +28,7 @@
   
                         <mat-form-field appearance="outline" class="mat-datapicker-fill">
                             <mat-label>Effective Date</mat-label>
-                            <input matInput [matDatepicker]="picker" required>
+                            <input matInput readonly="true" [min]="currentDate" [matDatepicker]="picker" formControlName="createdate" required>
                          
                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
@@ -39,26 +40,28 @@
                  
                  
                   <div class="col-md-4">
-                    <button  mat-flat-button color="primary"
+                    <button  mat-flat-button type="submit" [disabled]="this.laborformdata.invalid" color="primary"
                       class="mr-2">Save</button>
                   
-                    <button mat-stroked-button color="warn">Cancel</button>
+                    <!-- <button mat-stroked-button color="warn">Cancel</button> -->
                   </div>
+                
                 </div>
   
   
             </div>
+          </form>
               <div class="responsive_table mt-3">
                 <div class="materialTableHeader  w-100">
                   <div class="p-2 d-flex justify-content-end">
                 
-                     <app-project-filter (projectFilter)="onProjectFilterData($event)"
-                      (clearProjectFilter)="onClearProjectFilter()"></app-project-filter>
+                     <!-- <app-project-filter (projectFilter)="onProjectFilterData($event)"
+                      (clearProjectFilter)="onClearProjectFilter()"></app-project-filter> -->
                    </div>
   
                 </div>
-                <app-generic-table [title]="'Project Information'" [tableData]="getProjectListTableData"
-                  [actionButtons]="actionButtons" (actionButtonItem)="onGetActionItem($event)"
+                <app-generic-table [title]="'Labor Rate'" [tableData]="labordetialsdata"
+                 
                   [columnDisplayNames]="columnDisplay"></app-generic-table>
               </div>
              
